@@ -1,0 +1,101 @@
+.trailblazers {
+  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+  padding: 100px 50px;
+}
+
+.trailblazers-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.achievers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.achiever-card {
+  background: white;
+  padding: 35px 30px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(74, 144, 226, 0.15);
+  transition: all 0.4s ease;
+  text-align: center;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.achiever-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #FFD700, #FFA500);
+}
+
+.achiever-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(74, 144, 226, 0.25);
+  border-color: #4A90E2;
+}
+
+.achiever-icon {
+  font-size: 3.5rem;
+  color: #FFD700;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.4));
+}
+
+.achiever-name {
+  font-size: 1.6rem;
+  color: #2E5C8A;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.achiever-achievement {
+  font-size: 1.2rem;
+  color: #4A90E2;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.achiever-year {
+  display: inline-block;
+  background: linear-gradient(135deg, #4A90E2, #2E5C8A);
+  color: white;
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.achiever-testimonial {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  font-style: italic;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #E6F3FF;
+}
+
+@media screen and (max-width: 768px) {
+  .trailblazers {
+    padding: 60px 20px;
+  }
+
+  .achievers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .achiever-card {
+    padding: 30px 25px;
+  }
+}
