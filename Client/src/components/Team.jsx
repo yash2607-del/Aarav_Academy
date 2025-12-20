@@ -1,4 +1,6 @@
 import { FaUserTie, FaChalkboardTeacher, FaAward, FaUser } from 'react-icons/fa';
+import arvind from "../assets/arvind.jpeg"
+import reena from "../assets/reena.jpeg"
 
 const Team = () => {
   const teamMembers = [
@@ -11,7 +13,7 @@ const Team = () => {
       description: "Visionary leader dedicated to providing quality education and transforming the lives of students through excellence in teaching.",
       specialization: "Educational Leadership & Student Development",
       showDetails: true,
-      image: null // Will be added by user
+      image: arvind // Will be added by use
     },
     {
       id: 2,
@@ -22,7 +24,7 @@ const Team = () => {
       description: "Committed to academic excellence and ensuring every student reaches their full potential through personalized guidance.",
       specialization: "Academic Planning & Student Mentoring",
       showDetails: true,
-      image: null // Will be added by user
+      image: reena
     },
     {
       id: 3,
@@ -160,15 +162,26 @@ const Team = () => {
                       border: '3px solid #e0e0e0'
                     }}
                   >
-                    {/* Placeholder for image - add <img src="path" alt={member.name} style={{width: '100%', height: '100%', objectFit: 'cover'}} /> */}
-                    <div style={{ 
-                      fontSize: '5rem', 
-                      color: '#bbb',
-                      fontWeight: 'bold',
-                      fontFamily: '"Poppins", sans-serif'
-                    }}>
-                      {member.icon}
-                    </div>
+                    {member.image ? (
+                      <img 
+                        src={member.image} 
+                        alt={member.name} 
+                        style={{
+                          width: '100%', 
+                          height: '100%', 
+                          objectFit: 'cover'
+                        }} 
+                      />
+                    ) : (
+                      <div style={{ 
+                        fontSize: '5rem', 
+                        color: '#bbb',
+                        fontWeight: 'bold',
+                        fontFamily: '"Poppins", sans-serif'
+                      }}>
+                        {member.icon}
+                      </div>
+                    )}
                   </div>
                   
                   <h3 className="fw-bold mb-2" style={{ 
