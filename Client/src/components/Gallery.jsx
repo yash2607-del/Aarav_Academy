@@ -1,13 +1,13 @@
 import React from 'react';
+import aarav1 from '../assets/aarav_1.jpeg';
+import aarav3 from '../assets/aarav_3.jpeg';
+import aarav5 from '../assets/aarav_5.jpeg';
 
 const Gallery = () => {
   const galleryItems = [
-    { id: 1, title: 'Students Learning Together', image: null },
-    { id: 2, title: 'Interactive Study Sessions', image: null },
-    { id: 3, title: 'Expert Faculty Teaching', image: null },
-    { id: 4, title: 'Classroom Environment', image: null },
-    { id: 5, title: 'Focused Learning', image: null },
-    { id: 6, title: 'Professional Teaching', image: null }
+    { id: 1, title: 'Students Learning Together', image: aarav1 },
+    { id: 3, title: 'Expert Faculty Teaching', image: aarav3 },
+    { id: 5, title: 'Focused Learning', image: aarav5 },
   ];
 
   return (
@@ -59,7 +59,7 @@ const Gallery = () => {
                 <div 
                   style={{
                     width: '100%',
-                    height: '280px',
+                    height: '400px',
                     background: 'linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%)',
                     display: 'flex',
                     alignItems: 'center',
@@ -75,7 +75,7 @@ const Gallery = () => {
                       style={{
                         width: '100%',
                         height: '100%',
-                        objectFit: 'cover'
+                        objectFit: 'contain'
                       }}
                     />
                   ) : (

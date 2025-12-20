@@ -11,6 +11,10 @@ const Contact = () => {
     message: ''
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -18,18 +22,53 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to a backend
-    console.log('Form submitted:', formData);
-    alert('Thank you for your query! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      grade: '',
-      message: ''
-    });
+    setIsLoading(true);
+    setError('');
+    setSuccess(false);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/send-query', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          class: formData.grade, // Convert grade to class for backend
+          course: formData.grade, // Use grade as course
+          message: formData.message
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          grade: '',
+          message: ''
+        });
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setSuccess(false);
+        }, 5000);
+      } else {
+        setError(data.message || 'Failed to send query. Please try again.');
+      }
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -75,6 +114,33 @@ const Contact = () => {
           <div className="contact-form-wrapper">
             <form className="contact-form" onSubmit={handleSubmit}>
               <h3>Send Us a Query</h3>
+              
+              {error && (
+                <div style={{
+                  padding: '12px',
+                  marginBottom: '15px',
+                  backgroundColor: '#fee',
+                  color: '#c33',
+                  borderRadius: '8px',
+                  textAlign: 'center'
+                }}>
+                  {error}
+                </div>
+              )}
+              
+              {success && (
+                <div style={{
+                  padding: '12px',
+                  marginBottom: '15px',
+                  backgroundColor: '#e8f5e9',
+                  color: '#2e7d32',
+                  borderRadius: '8px',
+                  textAlign: 'center'
+                }}>
+                  ✓ Query sent successfully! We'll contact you soon.
+                </div>
+              )}
+              
               <div className="form-group">
                 <input
                   type="text"
@@ -133,9 +199,17 @@ const Contact = () => {
                   onChange={handleChange}
                 ></textarea>
               </div>
-              <button type="submit" className="submit-btn">
-                <FaPaperPlane className="btn-icon" />
-                Send Message
+              <button type="submit" className="submit-btn" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <span style={{ marginRight: '8px' }}>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <FaPaperPlane className="btn-icon" />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>
