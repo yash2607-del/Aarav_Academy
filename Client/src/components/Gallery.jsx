@@ -1,7 +1,7 @@
 import React from 'react';
 import aarav1 from '../assets/aarav_1.jpeg';
 import aarav3 from '../assets/aarav_3.jpeg';
-import aarav5 from '../assets/aarav_5.jpeg';
+import aarav5 from '../assets/aarav_5.png';
 
 const Gallery = () => {
   const galleryItems = [
@@ -58,8 +58,8 @@ const Gallery = () => {
               >
                 <div 
                   style={{
-                    width: '100%',
-                    height: '400px',
+                    width: '90%',
+                    height: '200px',
                     background: 'linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%)',
                     display: 'flex',
                     alignItems: 'center',
