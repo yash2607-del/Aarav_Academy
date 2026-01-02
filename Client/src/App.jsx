@@ -1,6 +1,7 @@
 import './index.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import About from './components/About'
 import Programs from './components/Programs'
 import Stats from './components/Stats'
 import WhyChooseUs from './components/WhyChooseUs'
@@ -18,6 +19,7 @@ function App() {
     <div className="app">
       <Navbar />
       <Hero />
+      <About />
       <Programs />
       <Stats />
       <WhyChooseUs />

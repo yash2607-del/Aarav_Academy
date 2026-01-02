@@ -1,46 +1,46 @@
-import { FaUserGraduate, FaTrophy, FaLaptop, FaUsers, FaChartLine, FaHeadset, FaClock, FaBook } from 'react-icons/fa';
+import { FaUserGraduate, FaTrophy, FaUsers, FaChartLine, FaClock, FaBook, FaShieldAlt, FaComments } from 'react-icons/fa';
 
 function WhyChooseUs() {
   const features = [
     {
+      icon: <FaBook />,
+      title: 'Comprehensive Coaching',
+      description: 'Structured coaching for students from Classes 1st to 12th, ensuring complete academic support under one roof.'
+    },
+    {
       icon: <FaUserGraduate />,
       title: 'Expert Faculty',
-      description: 'Learn from highly qualified and experienced educators dedicated to your success and excellence.'
-    },
-    {
-      icon: <FaTrophy />,
-      title: 'Proven Results',
-      description: '95% success rate with students consistently achieving top ranks in board examinations.'
-    },
-    {
-      icon: <FaLaptop />,
-      title: 'Digital Learning',
-      description: 'Interactive smart board technology with digital content and engaging live classes for better understanding.'
+      description: 'Highly qualified and experienced teachers focused on conceptual clarity and overall student development.'
     },
     {
       icon: <FaUsers />,
-      title: 'Small Batches',
-      description: 'Limited students per batch for maximum attention and better doubt resolution.'
+      title: 'Small Batch Sizes',
+      description: 'Limited students in each batch to ensure personalized attention and proper guidance for every learner.'
     },
     {
       icon: <FaChartLine />,
-      title: 'Progress Tracking',
-      description: 'Advanced analytics and regular assessments to monitor and boost performance.'
-    },
-    {
-      icon: <FaHeadset />,
-      title: '24/7 Doubt Support',
-      description: 'Round-the-clock doubt clearing through dedicated mentors and online portal.'
-    },
-    {
-      icon: <FaClock />,
-      title: 'Flexible Schedule',
-      description: 'Weekend and weekday batches with recorded sessions for flexible learning.'
+      title: 'Regular Assessments',
+      description: 'Frequent tests, mock exams, and performance evaluations to track progress and strengthen exam readiness.'
     },
     {
       icon: <FaBook />,
-      title: 'Premium Material',
-      description: 'Comprehensive study materials, previous year papers, and practice tests included.'
+      title: 'Doubt & Revision Support',
+      description: 'Dedicated doubt-clearing and revision sessions to reinforce learning and remove confusion in key concepts.'
+    },
+    {
+      icon: <FaClock />,
+      title: 'Flexible Timings',
+      description: 'Morning and evening batch timings designed to suit different school schedules and student needs.'
+    },
+    {
+      icon: <FaShieldAlt />,
+      title: 'Safe Environment',
+      description: 'A disciplined, student-friendly, and safe learning atmosphere that promotes focus and positive growth.'
+    },
+    {
+      icon: <FaComments />,
+      title: 'Continuous Feedback',
+      description: 'Regular communication and performance updates shared with students and parents for consistent improvement and confidence building.'
     }
   ];
 
