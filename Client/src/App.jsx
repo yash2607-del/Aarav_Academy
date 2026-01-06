@@ -1,8 +1,8 @@
 import './index.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import YouTubeVideos from './components/YouTubeVideos'
 import About from './components/About'
-import Programs from './components/Programs'
 import Stats from './components/Stats'
 import WhyChooseUs from './components/WhyChooseUs'
 import Trailblazers from './components/Trailblazers'
@@ -19,12 +19,11 @@ function App() {
     <div className="app">
       <Navbar />
       <Hero />
-      <About />
-      <Programs />
-      <Stats />
+      <YouTubeVideos />
       <WhyChooseUs />
+      <Stats />
       <Trailblazers />
-      <Testimonials />
+      <About />
       <Team />
       <Gallery />
       <FAQ />

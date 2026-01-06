@@ -63,13 +63,11 @@ const Trailblazers = () => {
               boxShadow: '0 4px 15px rgba(46, 92, 138, 0.3)'
             }}
           >
-            <span style={{ color: 'white', fontWeight: '600', fontSize: '0.9rem', letterSpacing: '1px' }}>
-              OUR ACHIEVERS
+            <span style={{ color: 'white', fontWeight: '600', fontSize: '1.5rem', letterSpacing: '1px' }}>
+             MEET  OUR ACHIEVERS
             </span>
           </div>
-          <h2 className="display-3 fw-bold mb-3" style={{ color: '#2E5C8A', fontFamily: '"Poppins", sans-serif' }}>
-            Our Trailblazers
-          </h2>
+         
           <p className="lead" style={{ color: '#666', maxWidth: '700px', margin: '0 auto' }}>
             Celebrating the success stories of our brilliant students who have made us proud
           </p>
@@ -79,29 +77,26 @@ const Trailblazers = () => {
           {achievers.map((achiever) => (
             <div key={achiever.id} className="col-lg-4 col-md-6">
               <div 
-                className="card border-0 h-100"
+                className="card h-100"
                 style={{
                   borderRadius: '20px',
                   overflow: 'hidden',
                   boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
                   transition: 'all 0.3s ease',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  border: '2px solid #D0E4F7'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-10px)';
                   e.currentTarget.style.boxShadow = '0 15px 40px rgba(46, 92, 138, 0.2)';
+                  e.currentTarget.style.borderColor = '#4A90E2';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                  e.currentTarget.style.borderColor = '#D0E4F7';
                 }}
               >
-                <div 
-                  style={{
-                    height: '8px',
-                    background: 'linear-gradient(90deg, #2E5C8A 0%, #4A90E2 100%)'
-                  }}
-                />
                 <div className="card-body p-4">
                   <div className="text-center mb-4">
                     {/* Image Placeholder - will be replaced with actual student images */}

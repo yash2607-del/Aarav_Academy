@@ -93,7 +93,7 @@ function WhyChooseUs() {
                   boxShadow: '0 10px 40px rgba(46, 92, 138, 0.12)',
                   transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                   cursor: 'pointer',
-                  border: '2px solid #E6F3FF'
+                  border: '2px solid #D0E4F7'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-10px)';
@@ -103,19 +103,9 @@ function WhyChooseUs() {
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = '0 10px 40px rgba(46, 92, 138, 0.12)';
-                  e.currentTarget.style.borderColor = '#E6F3FF';
+                  e.currentTarget.style.borderColor = '#D0E4F7';
                 }}
               >
-                {/* Top Gradient Bar */}
-                <div style={{
-                  height: '4px',
-                  background: 'linear-gradient(90deg, #2E5C8A 0%, #4A90E2 100%)',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0
-                }}></div>
-                
                 <div className="card-body text-center p-4 position-relative" style={{ zIndex: 1 }}>
                   {/* Icon Container */}
                   <div 

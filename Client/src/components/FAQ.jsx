@@ -35,7 +35,7 @@ function FAQ() {
   };
 
   return (
-    <section className="py-5" style={{ background: 'white' }}>
+    <section className="py-5" id="faq" style={{ background: 'white' }}>
       <div className="container">
         <div className="text-center mb-5">
           <h2 className="display-5 fw-bold mb-3" style={{color: '#2E5C8A'}}>Frequently Asked Questions</h2>
