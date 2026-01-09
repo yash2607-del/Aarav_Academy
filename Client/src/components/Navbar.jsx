@@ -78,13 +78,14 @@ const Navbar = ({ onNavigate, currentView }) => {
             display: flex;
             align-items: center;
             width: 100%;
-            gap: 8px;
+            gap: 6px;
+            padding: 0 8px;
           }
           .navbar-toggler {
             order: 1;
             margin: 0 !important;
             border: 2px solid #083D77;
-            padding: 0.4rem 0.6rem;
+            padding: 0.3rem 0.5rem;
             flex-shrink: 0;
           }
           .navbar-brand {
@@ -94,10 +95,11 @@ const Navbar = ({ onNavigate, currentView }) => {
             display: flex !important;
             align-items: center;
             min-width: 0;
+            padding-right: 8px;
           }
           .navbar-brand img {
-            height: 50px !important;
-            margin-right: 8px !important;
+            height: 45px !important;
+            margin-right: 6px !important;
             flex-shrink: 0;
           }
           .logo-text {
@@ -105,23 +107,26 @@ const Navbar = ({ onNavigate, currentView }) => {
             flex-direction: column;
             align-items: flex-start;
             min-width: 0;
+            flex: 1;
+          }
+          .logo-text span {
             overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
           }
           .logo-text span:nth-child(1) {
-            font-size: 1.1rem !important;
+            font-size: 1rem !important;
             line-height: 1.2 !important;
-            white-space: nowrap;
           }
           .logo-text span:nth-child(2) {
-            font-size: 0.7rem !important;
-            line-height: 1.2 !important;
-            white-space: nowrap;
+            font-size: 0.65rem !important;
+            line-height: 1.1 !important;
           }
           .logo-text span:nth-child(3) {
-            font-size: 0.65rem !important;
-            letter-spacing: 0.5px !important;
-            line-height: 1.2 !important;
-            white-space: nowrap;
+            font-size: 0.6rem !important;
+            letter-spacing: 0.3px !important;
+            line-height: 1.1 !important;
           }
           .navbar-nav {
             text-align: center;
@@ -147,6 +152,9 @@ const Navbar = ({ onNavigate, currentView }) => {
           }
           .navbar-toggler:focus {
             box-shadow: 0 0 0 0.2rem rgba(8, 61, 119, 0.25);
+          }
+          nav.navbar {
+            padding: 0.5rem 0 !important;
           }
         }
         @media (min-width: 992px) {
