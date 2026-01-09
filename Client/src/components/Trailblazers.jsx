@@ -109,7 +109,7 @@ const Trailblazers = () => {
              MEET OUR ACHIEVERS
             </span>
           </div>
-          <p className="lead text-center" style={{ color: '#3e2bbcff', maxWidth: '700px', margin: '0 auto 1.5rem' }}>
+          <p className="lead text-center" style={{ color: '#2c12dcff', maxWidth: '700px', margin: '0 auto 1.5rem' }}>
             Celebrating the success stories of our brilliant students who have made us proud
           </p>
 
