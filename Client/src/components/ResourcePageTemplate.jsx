@@ -56,8 +56,8 @@ export const ResourcePageTemplate = ({
       minHeight: '100vh',
       position: 'relative',
       overflow: 'hidden',
-      paddingTop: '180px',
-      marginTop: '0px'
+      paddingTop: '150px',
+      marginTop: '80px'
     }}>
       {/* Decorative Background Elements */}
       <div style={{
@@ -153,6 +153,14 @@ export const ResourcePageTemplate = ({
                   onClick={() => {
                     setSelectedClassId(cls.id);
                     setSelectedSubjectId(null);
+                    setTimeout(() => {
+                      const subjectSection = document.getElementById('subject-selection');
+                      if (subjectSection) {
+                        const yOffset = -100; // Offset for navbar
+                        const y = subjectSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                      }
+                    }, 100);
                   }}
                   className="w-100"
                   style={{
@@ -215,7 +223,7 @@ export const ResourcePageTemplate = ({
 
         {/* Step 2: Select Subject */}
         {selectedClass && (
-          <div className="mb-5" style={{
+          <div id="subject-selection" className="mb-5" style={{
             animation: 'fadeIn 0.5s ease-in-out'
           }}>
             <div className="d-flex align-items-center mb-4">
@@ -253,7 +261,17 @@ export const ResourcePageTemplate = ({
                 <div key={subject.id} className="col-6 col-md-4 col-lg-3">
                   <button
                     type="button"
-                    onClick={() => setSelectedSubjectId(subject.id)}
+                    onClick={() => {
+                      setSelectedSubjectId(subject.id);
+                      setTimeout(() => {
+                        const chapterSection = document.getElementById('chapter-selection');
+                        if (chapterSection) {
+                          const yOffset = -100; // Offset for navbar
+                          const y = chapterSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                          window.scrollTo({ top: y, behavior: 'smooth' });
+                        }
+                      }, 100);
+                    }}
                     className="w-100"
                     style={{
                       borderRadius: '20px',
@@ -318,7 +336,7 @@ export const ResourcePageTemplate = ({
 
         {/* Step 3: Chapter Cards */}
         {selectedSubject && (
-          <div className="mt-4" style={{
+          <div id="chapter-selection" className="mt-4" style={{
             animation: 'fadeIn 0.5s ease-in-out'
           }}>
             <div className="d-flex align-items-center mb-4">

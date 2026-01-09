@@ -1,6 +1,6 @@
 import { FaUserGraduate, FaTrophy, FaUsers, FaChartLine, FaClock, FaBook, FaShieldAlt, FaComments } from 'react-icons/fa';
 
-function WhyChooseUs() {
+function WhyChooseUs({ onNavigate }) {
   const features = [
     {
       icon: <FaBook />,
@@ -216,8 +216,15 @@ function WhyChooseUs() {
 
               {/* Right - Button */}
               <div className="col-lg-3 text-center text-lg-center py-4 px-4">
-                <a 
-                  href="#study-notes" 
+                <button
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    if (typeof onNavigate === 'function') {
+                      setTimeout(() => {
+                        onNavigate('study-notes');
+                      }, 300);
+                    }
+                  }}
                   className="btn btn-lg px-4 py-3 fw-semibold"
                   style={{
                     background: '#083D77',
@@ -242,7 +249,7 @@ function WhyChooseUs() {
                   }}
                 >
                   Explore Courses
-                </a>
+                </button>
               </div>
             </div>
           </div>

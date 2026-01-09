@@ -66,7 +66,7 @@ function AboutPage({ onBackToHome }) {
               style={{
                 color: '#1a2332',
                 fontFamily: '"Poppins", sans-serif',
-                fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+                fontSize: 'clamp(2rem, 5vw, 3rem)',
                 fontWeight: 'bolder',
                 lineHeight: '1.3'
               }}
@@ -157,6 +157,14 @@ function AboutPage({ onBackToHome }) {
           </div>
         </div>
 
+        {/* Divider */}
+        <hr style={{ 
+          border: 'none', 
+          height: '2px', 
+          background: 'linear-gradient(to right, transparent, #e5e7eb, transparent)',
+          margin: '4rem 0'
+        }} />
+
         {/* About Aarav Academy Section */}
         <div className="row align-items-center mb-5 py-5">
           <div className="col-lg-5 mb-4 mb-lg-0 order-lg-2">
@@ -241,7 +249,7 @@ function AboutPage({ onBackToHome }) {
 
         {/* Mission Section */}
         <div className="mb-5 py-5">
-          <h2
+          <h1
             className="fw-bold text-center mb-5"
             style={{
               color: '#1a2332',
@@ -250,7 +258,7 @@ function AboutPage({ onBackToHome }) {
             }}
           >
             Our Mission
-          </h2>
+          </h1>
           <div className="row g-4">
             <div className="col-md-6 col-lg-3">
               <div
@@ -485,7 +493,7 @@ function AboutPage({ onBackToHome }) {
 
         {/* Vision Section */}
         <div className="mb-5 py-5">
-          <h2
+          <h1
             className="fw-bold text-center mb-5"
             style={{
               color: '#1a2332',
@@ -494,7 +502,7 @@ function AboutPage({ onBackToHome }) {
             }}
           >
             Our Vision
-          </h2>
+          </h1>
           <div className="row g-4">
             <div className="col-md-6 col-lg-3">
               <div

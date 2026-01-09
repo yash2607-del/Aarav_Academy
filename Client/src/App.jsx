@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar onNavigate={(view) => setCurrentView(view)} />
+      <Navbar onNavigate={(view) => setCurrentView(view)} currentView={currentView} />
       <FloatingButtons />
 
       {currentView === 'home' && (
@@ -32,7 +32,7 @@ function App() {
           <YouTubeVideos />
           <Stats />
           <Trailblazers />
-          <WhyChooseUs />
+          <WhyChooseUs onNavigate={(view) => setCurrentView(view)} />
           <Gallery />
           <FAQ />
           <Contact />

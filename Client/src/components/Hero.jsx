@@ -15,7 +15,7 @@ function Hero() {
       description: "Empowering students from Classes 6th to 12th with quality coaching and personalized attention",
       buttonText: "Get Started",
       backgroundColor: "linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)",
-      image: "https://via.placeholder.com/800x600/4CAF50/FFFFFF?text=Slide+1" // Replace with your image
+      image: "" // Replace with your image
     },
     
     {
@@ -52,17 +52,18 @@ function Hero() {
       id="home" 
       style={{ 
         background: slides[currentSlide].backgroundColor,
-        minHeight: '500px',
-        paddingTop: '0px',
-        paddingBottom: '0px',
+        minHeight: '400px',
+        paddingTop: '80px',
+        paddingBottom: '2rem',
+        marginBottom: '8rem',
         transition: 'background 0.6s ease'
       }}
     >
       <div className="container-fluid px-0">
-        <div className="row g-0 align-items-center" style={{ minHeight: '500px' }}>
+        <div className="row g-0 align-items-center" style={{ minHeight: '400px' }}>
           {/* Left Content */}
-          <div className="col-lg-6 px-5 text-white">
-            <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
+          <div className="col-lg-6 col-12 px-4 px-lg-5 text-white py-4 py-lg-0">
+            <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }} className="text-center text-lg-start">
               <h1 
                 className="fw-bold mb-3" 
                 style={{
@@ -86,15 +87,15 @@ function Hero() {
                 {slides[currentSlide].description}
               </p>
               <button 
-                className="btn btn-lg"
+                className="btn btn-lg w-auto"
                 style={{
                   background: 'white',
                   color: '#333',
                   border: 'none',
                   borderRadius: '8px',
-                  padding: '0.8rem 2.5rem',
+                  padding: '0.8rem 2rem',
                   fontWeight: '600',
-                  fontSize: '1.1rem',
+                  fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
                   transition: 'all 0.3s ease',
                   animation: 'slideInLeft 1s ease'
                 }}
@@ -113,10 +114,10 @@ function Hero() {
           </div>
 
           {/* Right Image */}
-          <div className="col-lg-6 position-relative">
+          <div className="col-lg-6 col-12 position-relative d-none d-lg-block">
             <div style={{
               position: 'relative',
-              height: '500px',
+              height: '400px',
               overflow: 'hidden'
             }}>
               <img 

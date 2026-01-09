@@ -69,9 +69,44 @@
 }
 
 .social-link:hover {
-  background: #4A90E2;
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* YouTube - Red */
+.social-link:has(svg[data-icon="youtube"]),
+.social-link:nth-child(1) {
+  background: #FF0000;
+  color: white;
+}
+
+.social-link:has(svg[data-icon="youtube"]):hover,
+.social-link:nth-child(1):hover {
+  background: #CC0000;
+}
+
+/* Facebook - Blue */
+.social-link:has(svg[data-icon="facebook"]),
+.social-link:nth-child(2) {
+  background: #1877F2;
+  color: white;
+}
+
+.social-link:has(svg[data-icon="facebook"]):hover,
+.social-link:nth-child(2):hover {
+  background: #145DBF;
+}
+
+/* Instagram - Gradient */
+.social-link:has(svg[data-icon="instagram"]),
+.social-link:nth-child(3) {
+  background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+  color: white;
+}
+
+.social-link:has(svg[data-icon="instagram"]):hover,
+.social-link:nth-child(3):hover {
+  background: linear-gradient(45deg, #E1751F, #C91F6B, #6F2A9B, #4149BD);
 }
 
 .footer-links {
@@ -111,7 +146,7 @@
 }
 
 .contact-icon {
-  color: #4A90E2;
+  color: #f0f2f6;
   font-size: 1.2rem;
   margin-top: 2px;
   flex-shrink: 0;

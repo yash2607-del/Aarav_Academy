@@ -26,11 +26,12 @@ const YouTubeVideos = () => {
   ];
 
   return (
-    <section id="youtube-videos" className="py-3" style={{ 
+    <section id="youtube-videos" className="py-5" style={{ 
       background: '#FFFFFF',
-      position: 'relative'
+      position: 'relative',
+      marginTop: '3rem'
     }}>
-      <div className="container py-2">
+      <div className="container py-4">
         {/* Title */}
         <div className="text-center mb-5">
           <h2 className="fw-bold" style={{

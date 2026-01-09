@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaPhone, FaWhatsapp } from 'react-icons/fa';
 import logo from '../assets/logo_nobg.png';
 
-const Navbar = ({ onNavigate }) => {
+const Navbar = ({ onNavigate, currentView }) => {
   const [scrolled, setScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -15,10 +15,17 @@ const Navbar = ({ onNavigate }) => {
   }, []);
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // First scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Then scroll to the section after a short delay
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 300);
+    
     setShowDropdown(false);
   };
 
@@ -35,14 +42,20 @@ const Navbar = ({ onNavigate }) => {
     letterSpacing: '0.2px'
   };
 
-  const handleEnter = (e) => {
-    e.target.style.background = '#083D77';
-    e.target.style.color = 'white';
+  const handleEnter = (e, itemId) => {
+    if (currentView !== itemId) {
+      e.target.style.background = '#0a4d94';
+      e.target.style.color = 'white';
+      e.target.style.transform = 'translateY(-2px)';
+    }
   };
 
-  const handleLeave = (e) => {
-    e.target.style.background = 'transparent';
-    e.target.style.color = '#333';
+  const handleLeave = (e, itemId) => {
+    if (currentView !== itemId) {
+      e.target.style.background = 'transparent';
+      e.target.style.color = '#333';
+      e.target.style.transform = 'translateY(0)';
+    }
   };
 
   const navItems = [
@@ -63,7 +76,28 @@ const Navbar = ({ onNavigate }) => {
   ];
 
   return (
-    <nav 
+    <>
+      <style>{`
+        @media (max-width: 991.98px) {
+          .navbar-nav {
+            text-align: center;
+            padding: 1rem 0;
+          }
+          .navbar-nav .nav-link {
+            display: block;
+            padding: 0.75rem 1rem !important;
+            margin: 0.25rem 0;
+          }
+          .navbar-collapse {
+            background: white;
+            margin-top: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1rem;
+          }
+        }
+      `}</style>
+      <nav 
       className={`navbar navbar-expand-lg navbar-light fixed-top ${scrolled ? 'shadow' : ''}`}
       style={{
         background: 'white',
@@ -138,21 +172,29 @@ const Navbar = ({ onNavigate }) => {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul
-            className="navbar-nav mx-auto align-items-center"
-            style={{ gap: '0.1rem', flexWrap: 'nowrap' }}
+            className="navbar-nav mx-auto align-items-lg-center"
+            style={{ gap: '0.5rem' }}
           >
             {navItems.map((item) => (
               <li className="nav-item" key={item.id}>
                 <a
                   className="nav-link"
                   onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     if (typeof onNavigate === 'function') {
-                      onNavigate(item.id);
+                      setTimeout(() => {
+                        onNavigate(item.id);
+                      }, 300);
                     }
                   }}
-                  style={linkBaseStyle}
-                  onMouseEnter={handleEnter}
-                  onMouseLeave={handleLeave}
+                  style={{
+                    ...linkBaseStyle,
+                    background: currentView === item.id ? '#083D77' : 'transparent',
+                    color: currentView === item.id ? 'white' : '#333',
+                    boxShadow: currentView === item.id ? '0 4px 10px rgba(8, 61, 119, 0.3)' : 'none'
+                  }}
+                  onMouseEnter={(e) => handleEnter(e, item.id)}
+                  onMouseLeave={(e) => handleLeave(e, item.id)}
                 >
                   {item.label}
                 </a>
@@ -165,30 +207,42 @@ const Navbar = ({ onNavigate }) => {
 
           {/* Request Callback Button */}
           <button
-            onClick={() => scrollToSection('contact')}
+            onClick={() => {
+              if (currentView !== 'home') {
+                onNavigate('home');
+                setTimeout(() => {
+                  scrollToSection('contact');
+                }, 500);
+              } else {
+                scrollToSection('contact');
+              }
+            }}
+            className="mt-2 mt-lg-0  mx-auto mx-lg-0 d-block"
             style={{
               background: '#083D77',
               color: 'white',
               border: 'none',
-              padding: '0.6rem 1.5rem',
-              borderRadius: '25px',
-              fontWeight: '600',
+              padding: '0.8rem 0.8rem',
+              fontWeight: '700',
               fontSize: '0.95rem',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
               whiteSpace: 'nowrap',
               fontFamily: '"Inter", sans-serif',
-              boxShadow: '0 4px 12px rgba(8, 61, 119, 0.3)'
+              boxShadow: '0 6px 20px rgba(8, 61, 119, 0.4)',
+              marginBottom: '1rem',
+              textTransform: 'none',
+              letterSpacing: '0.3px'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#0a4d94';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(8, 61, 119, 0.4)';
+              e.currentTarget.style.transform = 'translateY(-3px)';
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(8, 61, 119, 0.5)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = '#083D77';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(8, 61, 119, 0.3)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.4)';
             }}
           >
             Request a Callback
@@ -196,6 +250,7 @@ const Navbar = ({ onNavigate }) => {
         </div>
       </div>
     </nav>
+    </>
   );
 };
 
