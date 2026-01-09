@@ -1,4 +1,4 @@
-import { FaFacebook, FaYoutube, FaInstagram, FaTwitter, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaFacebook, FaYoutube, FaInstagram, FaTwitter, FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowUp } from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = () => {
@@ -80,6 +80,41 @@ const Footer = () => {
           <p>&copy; {currentYear} Aarav Academy. All Rights Reserved.</p>
         </div>
       </div>
+      
+      {/* Scroll to Top Button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        style={{
+          position: 'fixed',
+          bottom: '30px',
+          right: '30px',
+          width: '55px',
+          height: '55px',
+          borderRadius: '50%',
+          background: '#083D77',
+          border: 'none',
+          color: 'white',
+          fontSize: '1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          boxShadow: '0 4px 15px rgba(8, 61, 119, 0.4)',
+          transition: 'all 0.3s ease',
+          zIndex: 1000
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.1) translateY(-3px)';
+          e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.6)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1) translateY(0)';
+          e.currentTarget.style.boxShadow = '0 4px 15px rgba(8, 61, 119, 0.4)';
+        }}
+        title="Back to Top"
+      >
+        <FaArrowUp />
+      </button>
     </footer>
   );
 };

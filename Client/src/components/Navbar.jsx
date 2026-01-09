@@ -74,6 +74,47 @@ const Navbar = ({ onNavigate, currentView }) => {
     <>
       <style>{`
         @media (max-width: 991.98px) {
+          .navbar-container-mobile {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 15px;
+          }
+          .navbar-toggler {
+            order: 1;
+            margin: 0 !important;
+            border: 2px solid #083D77;
+            padding: 0.5rem 0.75rem;
+          }
+          .navbar-brand {
+            order: 2;
+            margin: 0 !important;
+            flex: 1;
+            display: flex !important;
+            align-items: center;
+          }
+          .navbar-brand img {
+            height: 80px !important;
+            margin-right: 12px !important;
+          }
+          .logo-text {
+            display: flex !important;
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .logo-text span:nth-child(1) {
+            font-size: 1.6rem !important;
+            line-height: 1.2 !important;
+          }
+          .logo-text span:nth-child(2) {
+            font-size: 1.05rem !important;
+            line-height: 1.2 !important;
+          }
+          .logo-text span:nth-child(3) {
+            font-size: 1rem !important;
+            letter-spacing: 1px !important;
+            line-height: 1.2 !important;
+          }
           .navbar-nav {
             text-align: center;
             padding: 1rem 0;
@@ -89,24 +130,6 @@ const Navbar = ({ onNavigate, currentView }) => {
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             padding: 1rem;
-          }
-          .navbar-brand img {
-            height: 70px !important;
-            margin-right: 15px !important;
-          }
-          .logo-text span:nth-child(1) {
-            font-size: 1.5rem !important;
-          }
-          .logo-text span:nth-child(2) {
-            font-size: 1rem !important;
-          }
-          .logo-text span:nth-child(3) {
-            font-size: 0.95rem !important;
-            letter-spacing: 1px !important;
-          }
-          .navbar-toggler {
-            border: 2px solid #083D77;
-            padding: 0.5rem 0.75rem;
           }
           .navbar-toggler:focus {
             box-shadow: 0 0 0 0.2rem rgba(8, 61, 119, 0.25);
@@ -127,20 +150,32 @@ const Navbar = ({ onNavigate, currentView }) => {
         borderBottom: '1px solid #e5e5e5'
       }}
     >
-      <div className="container-fluid px-4 d-flex justify-content-between align-items-center">
-        <a 
-          className="navbar-brand d-flex align-items-center" 
-          href="#home"
-          style={{
-            fontFamily: '"Poppins", sans-serif',
-            cursor: 'pointer',
-            marginRight: '2rem'
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('home');
-          }}
-        >
+      <div className="container-fluid px-3">
+        <div className="navbar-container-mobile d-lg-flex d-flex align-items-center justify-content-between w-100">
+          <button 
+            className="navbar-toggler d-lg-none" 
+            type="button" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-controls="navbarNav"
+            aria-expanded={mobileMenuOpen}
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          
+          <a 
+            className="navbar-brand d-flex align-items-center" 
+            href="#home"
+            style={{
+              fontFamily: '"Poppins", sans-serif',
+              cursor: 'pointer',
+              marginRight: '2rem'
+            }}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('home');
+            }}
+          >
           <img 
             src={logo} 
             alt="Aarav Academy Logo" 
@@ -182,17 +217,6 @@ const Navbar = ({ onNavigate, currentView }) => {
           </div>
         </a>
         
-        <button 
-          className="navbar-toggler ms-auto" 
-          type="button" 
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-controls="navbarNav"
-          aria-expanded={mobileMenuOpen}
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
         <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'show' : ''}`} id="navbarNav">
           <ul
             className="navbar-nav mx-auto align-items-lg-center"
@@ -303,6 +327,7 @@ const Navbar = ({ onNavigate, currentView }) => {
           >
             Request a Callback
           </button>
+        </div>
         </div>
       </div>
     </nav>

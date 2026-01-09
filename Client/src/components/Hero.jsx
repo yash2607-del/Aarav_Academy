@@ -35,10 +35,24 @@ function Hero() {
       className="hero-section position-relative overflow-hidden" 
       id="home" 
       style={{ 
-        paddingTop: '80px',
+        paddingTop: '100px',
         width: '100%'
       }}
     >
+      <style>{`
+        @media (max-width: 991.98px) {
+          .hero-section {
+            padding-top: 120px !important;
+          }
+          .carousel-arrow {
+            width: 35px !important;
+            height: 35px !important;
+          }
+          .carousel-arrow svg {
+            font-size: 0.9rem !important;
+          }
+        }
+      `}</style>
       <div className="container-fluid px-0">
         <div className="row g-0">
           <div className="col-12">
@@ -83,6 +97,7 @@ function Hero() {
 
       {/* Navigation Arrows */}
       <button
+        className="carousel-arrow"
         onClick={prevSlide}
         style={{
           position: 'absolute',
@@ -115,6 +130,7 @@ function Hero() {
       </button>
 
       <button
+        className="carousel-arrow"
         onClick={nextSlide}
         style={{
           position: 'absolute',

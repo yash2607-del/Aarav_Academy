@@ -92,6 +92,40 @@ export const ResourcePageTemplate = ({
       paddingTop: '150px',
       marginTop: '80px'
     }}>
+      {/* Back Arrow Button */}
+      <button
+        onClick={onBackToHome}
+        style={{
+          position: 'fixed',
+          top: '120px',
+          left: '20px',
+          width: '50px',
+          height: '50px',
+          borderRadius: '50%',
+          background: '#083D77',
+          border: 'none',
+          color: 'white',
+          fontSize: '1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          boxShadow: '0 4px 15px rgba(8, 61, 119, 0.3)',
+          transition: 'all 0.3s ease',
+          zIndex: 1000
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.1)';
+          e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.5)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1)';
+          e.currentTarget.style.boxShadow = '0 4px 15px rgba(8, 61, 119, 0.3)';
+        }}
+        title="Back to Home"
+      >
+        <FaArrowLeft />
+      </button>
       {/* Decorative Background Elements */}
       <div style={{
         position: 'absolute',
