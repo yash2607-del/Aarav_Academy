@@ -1,5 +1,5 @@
 import './index.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import YouTubeVideos from './components/YouTubeVideos'
@@ -19,7 +19,15 @@ import StudyNotes from './components/StudyNotes'
 import FloatingButtons from './components/FloatingButtons'
 
 function App() {
-  const [currentView, setCurrentView] = useState('home')
+  const [currentView, setCurrentView] = useState(() => {
+    // Get saved view from localStorage or default to 'home'
+    return localStorage.getItem('currentView') || 'home'
+  })
+
+  // Save currentView to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('currentView', currentView)
+  }, [currentView])
 
   return (
     <div className="app">

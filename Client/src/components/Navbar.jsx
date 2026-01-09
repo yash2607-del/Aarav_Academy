@@ -97,10 +97,18 @@ const Navbar = ({ onNavigate, currentView }) => {
             padding: 1rem;
           }
           .navbar-brand img {
-            height: 50px !important;
+            height: 45px !important;
+            margin-right: 10px !important;
           }
-          .logo-text {
-            display: none !important;
+          .logo-text span:nth-child(1) {
+            font-size: 1rem !important;
+          }
+          .logo-text span:nth-child(2) {
+            font-size: 0.65rem !important;
+          }
+          .logo-text span:nth-child(3) {
+            font-size: 0.6rem !important;
+            letter-spacing: 0.5px !important;
           }
           .navbar-toggler {
             border: 2px solid #083D77;
