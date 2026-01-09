@@ -11,15 +11,7 @@ const Gallery = () => {
       <div className="container py-4">
         <div className="text-center mb-5">
           <div className="d-inline-block mb-3">
-            <span className="badge px-4 py-2 fs-6 fw-normal" style={{ 
-              background: '#083D77',
-              color: 'white',
-              borderRadius: '50px',
-              letterSpacing: '1px'
-            }}>
-              <i className="bi bi-images me-2"></i>
-              OUR GALLERY
-            </span>
+          
           </div>
           <h2 className="display-3 fw-bold mb-3" style={{
             color: '#083D77',

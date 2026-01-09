@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { FaPhone, FaWhatsapp } from 'react-icons/fa';
 import logo from '../assets/logo_nobg.png';
 
 const Navbar = ({ onNavigate, currentView }) => {
@@ -19,7 +18,6 @@ const Navbar = ({ onNavigate, currentView }) => {
     // First scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Then scroll to the section after a short delay
     setTimeout(() => {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -45,17 +43,13 @@ const Navbar = ({ onNavigate, currentView }) => {
 
   const handleEnter = (e, itemId) => {
     if (currentView !== itemId) {
-      e.target.style.background = '#0a4d94';
-      e.target.style.color = 'white';
-      e.target.style.transform = 'translateY(-2px)';
+      e.target.style.color = '#000000';
     }
   };
 
   const handleLeave = (e, itemId) => {
     if (currentView !== itemId) {
-      e.target.style.background = 'transparent';
       e.target.style.color = '#333';
-      e.target.style.transform = 'translateY(0)';
     }
   };
 
@@ -97,18 +91,18 @@ const Navbar = ({ onNavigate, currentView }) => {
             padding: 1rem;
           }
           .navbar-brand img {
-            height: 45px !important;
-            margin-right: 10px !important;
+            height: 70px !important;
+            margin-right: 15px !important;
           }
           .logo-text span:nth-child(1) {
-            font-size: 1rem !important;
+            font-size: 1.5rem !important;
           }
           .logo-text span:nth-child(2) {
-            font-size: 0.65rem !important;
+            font-size: 1rem !important;
           }
           .logo-text span:nth-child(3) {
-            font-size: 0.6rem !important;
-            letter-spacing: 0.5px !important;
+            font-size: 0.95rem !important;
+            letter-spacing: 1px !important;
           }
           .navbar-toggler {
             border: 2px solid #083D77;
@@ -151,15 +145,15 @@ const Navbar = ({ onNavigate, currentView }) => {
             src={logo} 
             alt="Aarav Academy Logo" 
             style={{ 
-              height: '65px', 
+              height: '80px', 
               width: 'auto', 
-              marginRight: '15px',
+              marginRight: '20px',
               objectFit: 'contain'
             }} 
           />
           <div className="logo-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
             <span style={{
-              fontSize:'1.5rem',
+              fontSize:'1.8rem',
               fontWeight: '700',
               color: '#083D77',
               letterSpacing: '0.5px',
@@ -168,7 +162,7 @@ const Navbar = ({ onNavigate, currentView }) => {
               Aarav Academy
             </span>
             <span style={{ 
-              fontSize: '0.85rem', 
+              fontSize: '1.05rem', 
               fontWeight: '500',
               color: '#666',
               letterSpacing: '0.5px',
@@ -177,7 +171,7 @@ const Navbar = ({ onNavigate, currentView }) => {
               (A unit of Aarav Student Hub)
             </span>
             <span style={{ 
-              fontSize: '0.8rem', 
+              fontSize: '1rem', 
               fontWeight: '600',
               color: '#083D77',
               letterSpacing: '1.5px',

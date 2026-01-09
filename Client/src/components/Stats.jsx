@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 function Stats() {
   const stats = [
     { 
-      number: 3000, 
+      number: 5000, 
       label: 'Students Enrolled',
       suffix: '+'
     },

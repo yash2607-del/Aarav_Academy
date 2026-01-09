@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaBook, FaUsers, FaLightbulb, FaChartLine, FaTrophy, FaHeart, FaUserGraduate, FaRocket } from 'react-icons/fa';
 import arvind from '../assets/founder/arvind.jpeg';
 import reena from '../assets/founder/reena.jpeg';
-import hero1 from '../assets/hero/hero_1.jpeg';
+import hero1 from '../assets/hero/about_us.png';
 
 function AboutPage({ onBackToHome }) {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -49,6 +49,9 @@ function AboutPage({ onBackToHome }) {
     }
   ];
 
+  const iconColor = '#083D77'; // Regal Navy Blue
+  const iconBgColor = '#E8EFF7'; // Light blue background for icons
+
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
@@ -64,7 +67,7 @@ function AboutPage({ onBackToHome }) {
             <h2
               className="fw-bold mb-4"
               style={{
-                color: '#1a2332',
+                color: '#083D77',
                 fontFamily: '"Poppins", sans-serif',
                 fontSize: 'clamp(2rem, 5vw, 3rem)',
                 fontWeight: 'bolder',
@@ -81,7 +84,7 @@ function AboutPage({ onBackToHome }) {
                 fontFamily: '"Inter", sans-serif'
               }}
             >
-              Unlock success with Aarav Academy! Elevate your academic journey with expert coaching from Class 1st to Class 12th. Led by our experienced founders, we provide personalized guidance to help every student achieve excellence.
+              Unlock success with Aarav Academy! Elevate your academic journey with expert coaching from Class 6th to Class 12th. Led by our experienced founders, we provide personalized guidance to help every student achieve excellence.
             </p>
           </div>
           
@@ -102,12 +105,12 @@ function AboutPage({ onBackToHome }) {
                         position: 'relative',
                         width: '300px',
                         height: '300px',
-                        background: 'linear-gradient(135deg, #a7f3d0 0%, #6ee7b7 50%, #5eead4 100%)',
+                        background: '#083D77',
                         borderRadius: '50%',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        boxShadow: '0 20px 40px rgba(20, 184, 166, 0.2)'
+                        boxShadow: '0 20px 40px rgba(8, 61, 119, 0.3)'
                       }}
                     >
                       <img
@@ -132,7 +135,7 @@ function AboutPage({ onBackToHome }) {
                     <h4
                       className="fw-bold mb-1"
                       style={{
-                        color: '#1a2332',
+                        color: '#083D77',
                         fontFamily: '"Poppins", sans-serif',
                         fontSize: '1.3rem'
                       }}
@@ -200,7 +203,7 @@ function AboutPage({ onBackToHome }) {
             <h2
               className="fw-bold mb-4"
               style={{
-                color: '#1a2332',
+                color: '#083D77',
                 fontFamily: '"Poppins", sans-serif',
                 fontSize: 'clamp(2.5rem, 5vw, 3rem)',
                 lineHeight: '1.2',
@@ -252,9 +255,10 @@ function AboutPage({ onBackToHome }) {
           <h1
             className="fw-bold text-center mb-5"
             style={{
-              color: '#1a2332',
+              color: '#083D77',
               fontFamily: '"Poppins", sans-serif',
-              fontSize: 'clamp(1.8rem, 4vw, 2.3rem)'
+              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+              letterSpacing: '-0.02em'
             }}
           >
             Our Mission
@@ -284,7 +288,7 @@ function AboutPage({ onBackToHome }) {
                   style={{
                     width: '60px',
                     height: '60px',
-                    background: '#ccfbf1',
+                    background: iconBgColor,
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
@@ -292,7 +296,7 @@ function AboutPage({ onBackToHome }) {
                     marginBottom: '1.5rem'
                   }}
                 >
-                  <FaBook style={{ fontSize: '1.8rem', color: '#14b8a6' }} />
+                  <FaBook style={{ fontSize: '1.8rem', color: iconColor }} />
                 </div>
                 <h5
                   className="fw-bold mb-3"
@@ -341,7 +345,7 @@ function AboutPage({ onBackToHome }) {
                   style={{
                     width: '60px',
                     height: '60px',
-                    background: '#ccfbf1',
+                    background: iconBgColor,
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
@@ -349,7 +353,7 @@ function AboutPage({ onBackToHome }) {
                     marginBottom: '1.5rem'
                   }}
                 >
-                  <FaUsers style={{ fontSize: '1.8rem', color: '#14b8a6' }} />
+                  <FaUsers style={{ fontSize: '1.8rem', color: iconColor }} />
                 </div>
                 <h5
                   className="fw-bold mb-3"
@@ -398,7 +402,7 @@ function AboutPage({ onBackToHome }) {
                   style={{
                     width: '60px',
                     height: '60px',
-                    background: '#ccfbf1',
+                    background: iconBgColor,
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
@@ -406,7 +410,7 @@ function AboutPage({ onBackToHome }) {
                     marginBottom: '1.5rem'
                   }}
                 >
-                  <FaLightbulb style={{ fontSize: '1.8rem', color: '#14b8a6' }} />
+                  <FaLightbulb style={{ fontSize: '1.8rem', color: iconColor }} />
                 </div>
                 <h5
                   className="fw-bold mb-3"
@@ -455,7 +459,7 @@ function AboutPage({ onBackToHome }) {
                   style={{
                     width: '60px',
                     height: '60px',
-                    background: '#ccfbf1',
+                    background: iconBgColor,
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
@@ -463,7 +467,7 @@ function AboutPage({ onBackToHome }) {
                     marginBottom: '1.5rem'
                   }}
                 >
-                  <FaChartLine style={{ fontSize: '1.8rem', color: '#14b8a6' }} />
+                  <FaChartLine style={{ fontSize: '1.8rem', color: iconColor }} />
                 </div>
                 <h5
                   className="fw-bold mb-3"
@@ -496,9 +500,10 @@ function AboutPage({ onBackToHome }) {
           <h1
             className="fw-bold text-center mb-5"
             style={{
-              color: '#1a2332',
+              color: '#083D77',
               fontFamily: '"Poppins", sans-serif',
-              fontSize: 'clamp(1.8rem, 4vw, 2.3rem)'
+              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+              letterSpacing: '-0.02em'
             }}
           >
             Our Vision
@@ -528,7 +533,7 @@ function AboutPage({ onBackToHome }) {
                   style={{
                     width: '60px',
                     height: '60px',
-                    background: '#ccfbf1',
+                    background: iconBgColor,
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
@@ -536,7 +541,7 @@ function AboutPage({ onBackToHome }) {
                     marginBottom: '1.5rem'
                   }}
                 >
-                  <FaTrophy style={{ fontSize: '1.8rem', color: '#14b8a6' }} />
+                  <FaTrophy style={{ fontSize: '1.8rem', color: iconColor }} />
                 </div>
                 <h5
                   className="fw-bold mb-3"
@@ -585,7 +590,7 @@ function AboutPage({ onBackToHome }) {
                   style={{
                     width: '60px',
                     height: '60px',
-                    background: '#ccfbf1',
+                    background: iconBgColor,
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
@@ -593,7 +598,7 @@ function AboutPage({ onBackToHome }) {
                     marginBottom: '1.5rem'
                   }}
                 >
-                  <FaHeart style={{ fontSize: '1.8rem', color: '#14b8a6' }} />
+                  <FaHeart style={{ fontSize: '1.8rem', color: iconColor }} />
                 </div>
                 <h5
                   className="fw-bold mb-3"
@@ -642,7 +647,7 @@ function AboutPage({ onBackToHome }) {
                   style={{
                     width: '60px',
                     height: '60px',
-                    background: '#ccfbf1',
+                    background: iconBgColor,
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
@@ -650,7 +655,7 @@ function AboutPage({ onBackToHome }) {
                     marginBottom: '1.5rem'
                   }}
                 >
-                  <FaUserGraduate style={{ fontSize: '1.8rem', color: '#14b8a6' }} />
+                  <FaUserGraduate style={{ fontSize: '1.8rem', color: iconColor }} />
                 </div>
                 <h5
                   className="fw-bold mb-3"
@@ -699,7 +704,7 @@ function AboutPage({ onBackToHome }) {
                   style={{
                     width: '60px',
                     height: '60px',
-                    background: '#ccfbf1',
+                    background: iconBgColor,
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
@@ -707,7 +712,7 @@ function AboutPage({ onBackToHome }) {
                     marginBottom: '1.5rem'
                   }}
                 >
-                  <FaRocket style={{ fontSize: '1.8rem', color: '#14b8a6' }} />
+                  <FaRocket style={{ fontSize: '1.8rem', color: iconColor }} />
                 </div>
                 <h5
                   className="fw-bold mb-3"
@@ -747,8 +752,8 @@ function AboutPage({ onBackToHome }) {
               <h2 
                 className="fw-bold mb-3" 
                 style={{
-                  color: '#1a2332',
-                  fontSize: 'clamp(2rem, 5vw, 3rem)',
+                  color: '#083D77',
+                  fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
                   fontFamily: '"Poppins", "Segoe UI", system-ui, sans-serif',
                   letterSpacing: '-0.02em'
                 }}

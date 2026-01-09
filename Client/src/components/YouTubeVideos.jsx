@@ -11,17 +11,17 @@ const YouTubeVideos = () => {
     {
       id: 1,
       thumbnail: Thumbnail_1, // Replace with actual video ID
-      videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // Replace with actual video URL
+      videoUrl: "https://youtube.com/live/zGfSk21uXOI?feature=share" // Replace with actual video URL
     },
     {
       id: 2,
       thumbnail: Thumbnail_2, // Replace with actual video ID
-      videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // Replace with actual video URL
+      videoUrl: "https://youtu.be/19BMQekIinE" // Replace with actual video URL
     },
     {
       id: 3,
       thumbnail: Thumbnail_3, // Replace with actual video ID
-      videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // Replace with actual video URL
+      videoUrl: "https://youtube.com/live/_0oh0Id5fOo?feature=share" // Replace with actual video URL
     }
   ];
 
@@ -29,7 +29,8 @@ const YouTubeVideos = () => {
     <section id="youtube-videos" className="py-5" style={{ 
       background: '#FFFFFF',
       position: 'relative',
-      marginTop: '3rem'
+      marginTop: '6rem',
+      paddingTop: '4rem'
     }}>
       <div className="container py-4">
         {/* Title */}

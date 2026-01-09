@@ -1,32 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-
-
-
+import hero1 from '../assets/hero/hero_1.png';
+import hero2 from '../assets/hero/hero_2.png';
+import hero3 from '../assets/hero/hero_3.png';
 
 function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-    {
-      id: 1,
-      title: "Excellence in Education",
-      subtitle: "Transform Your Future",
-      description: "Empowering students from Classes 6th to 12th with quality coaching and personalized attention",
-      buttonText: "Get Started",
-      backgroundColor: "linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)",
-      image: "" // Replace with your image
-    },
-    
-    {
-      id: 3,
-      title: "Proven Results",
-      subtitle: "95% Success Rate",
-      description: "Join thousands of successful students who have achieved their dreams with Aarav Academy",
-      buttonText: "View Results",
-      backgroundColor: "linear-gradient(135deg, #FF9800 0%, #F57C00 100%)",
-      image: "hero" // Replace with your image
-    }
+    { id: 1, image: hero1, alt: "Aarav Academy - Excellence in Education" },
+    { id: 2, image: hero2, alt: "Aarav Academy - Quality Coaching" },
+    { id: 3, image: hero3, alt: "Aarav Academy - Student Success" }
   ];
 
   const nextSlide = () => {
@@ -37,11 +21,11 @@ function Hero() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  // Auto-play carousel
+  // Auto-scroll carousel every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000); // Change slide every 5 seconds
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -51,95 +35,47 @@ function Hero() {
       className="hero-section position-relative overflow-hidden" 
       id="home" 
       style={{ 
-        background: slides[currentSlide].backgroundColor,
-        minHeight: '400px',
         paddingTop: '80px',
-        paddingBottom: '2rem',
-        marginBottom: '8rem',
-        transition: 'background 0.6s ease'
+        width: '100%'
       }}
     >
       <div className="container-fluid px-0">
-        <div className="row g-0 align-items-center" style={{ minHeight: '400px' }}>
-          {/* Left Content */}
-          <div className="col-lg-6 col-12 px-4 px-lg-5 text-white py-4 py-lg-0">
-            <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }} className="text-center text-lg-start">
-              <h1 
-                className="fw-bold mb-3" 
-                style={{
-                  fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-                  fontFamily: '"Poppins", sans-serif',
-                  lineHeight: '1.2',
-                  animation: 'slideInLeft 0.6s ease'
-                }}
-              >
-                {slides[currentSlide].title}
-              </h1>
-              <p 
-                className="mb-4" 
-                style={{
-                  fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-                  color: 'rgba(255, 255, 255, 0.95)',
-                  lineHeight: '1.6',
-                  animation: 'slideInLeft 0.8s ease'
-                }}
-              >
-                {slides[currentSlide].description}
-              </p>
-              <button 
-                className="btn btn-lg w-auto"
-                style={{
-                  background: 'white',
-                  color: '#333',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: '0.8rem 2rem',
-                  fontWeight: '600',
-                  fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
-                  transition: 'all 0.3s ease',
-                  animation: 'slideInLeft 1s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                  e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                {slides[currentSlide].buttonText}
-              </button>
-            </div>
-          </div>
-
-          {/* Right Image */}
-          <div className="col-lg-6 col-12 position-relative d-none d-lg-block">
+        <div className="row g-0">
+          <div className="col-12">
             <div style={{
               position: 'relative',
-              height: '400px',
+              width: '100%',
+              height: '70vh',
+              minHeight: '500px',
               overflow: 'hidden'
             }}>
-              <img 
-                src={slides[currentSlide].image}
-                alt={slides[currentSlide].title}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  animation: 'fadeIn 0.6s ease'
-                }}
-              />
-              {/* Decorative diagonal overlay */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                background: 'linear-gradient(45deg, rgba(0,0,0,0.1) 0%, transparent 50%)',
-                pointerEvents: 'none'
-              }}></div>
+              {slides.map((slide, index) => (
+                <div
+                  key={slide.id}
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    opacity: currentSlide === index ? 1 : 0,
+                    transition: 'opacity 0.6s ease-in-out',
+                    pointerEvents: currentSlide === index ? 'auto' : 'none'
+                  }}
+                >
+                  <img 
+                    src={slide.image}
+                    alt={slide.alt}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                      display: 'block'
+                    }}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -153,7 +89,7 @@ function Hero() {
           left: '20px',
           top: '50%',
           transform: 'translateY(-50%)',
-          background: 'white',
+          background: 'rgba(255, 255, 255, 0.9)',
           border: 'none',
           borderRadius: '50%',
           width: '50px',
@@ -162,18 +98,20 @@ function Hero() {
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
           transition: 'all 0.3s ease',
           zIndex: 10
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+          e.currentTarget.style.background = 'white';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
         }}
       >
-        <FaChevronLeft style={{ fontSize: '1.2rem', color: '#333' }} />
+        <FaChevronLeft style={{ fontSize: '1.2rem', color: '#083D77' }} />
       </button>
 
       <button
@@ -183,7 +121,7 @@ function Hero() {
           right: '20px',
           top: '50%',
           transform: 'translateY(-50%)',
-          background: 'white',
+          background: 'rgba(255, 255, 255, 0.9)',
           border: 'none',
           borderRadius: '50%',
           width: '50px',
@@ -192,18 +130,20 @@ function Hero() {
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
           transition: 'all 0.3s ease',
           zIndex: 10
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+          e.currentTarget.style.background = 'white';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
         }}
       >
-        <FaChevronRight style={{ fontSize: '1.2rem', color: '#333' }} />
+        <FaChevronRight style={{ fontSize: '1.2rem', color: '#083D77' }} />
       </button>
 
       {/* Slide Indicators */}
@@ -225,35 +165,14 @@ function Hero() {
               height: '12px',
               borderRadius: '6px',
               border: 'none',
-              background: currentSlide === index ? 'white' : 'rgba(255, 255, 255, 0.5)',
+              background: currentSlide === index ? '#083D77' : 'rgba(8, 61, 119, 0.4)',
               cursor: 'pointer',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              boxShadow: currentSlide === index ? '0 2px 8px rgba(8, 61, 119, 0.4)' : 'none'
             }}
           />
         ))}
       </div>
-
-      <style>{`
-        @keyframes slideInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
     </section>
   );
 }

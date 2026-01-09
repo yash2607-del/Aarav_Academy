@@ -1,4 +1,5 @@
 import { FaUserGraduate, FaTrophy, FaUsers, FaChartLine, FaClock, FaBook, FaShieldAlt, FaComments } from 'react-icons/fa';
+import aboutUs from '../assets/hero/about_us.png';
 
 function WhyChooseUs({ onNavigate }) {
   const features = [
@@ -172,7 +173,7 @@ function WhyChooseUs({ onNavigate }) {
           style={{
             background: 'linear-gradient(90deg, #2a5f7e 0%, #2E5C8A 100%)',
             borderRadius: '0',
-            minHeight: '280px',
+            minHeight: '400px',
             boxShadow: '0 10px 40px rgba(46, 92, 138, 0.2)',
             marginLeft: '-50vw',
             marginRight: '-50vw',
@@ -183,11 +184,11 @@ function WhyChooseUs({ onNavigate }) {
           }}
         >
           <div className="container-fluid px-0">
-            <div className="row align-items-center g-0" style={{ minHeight: '280px' }}>
+            <div className="row align-items-center g-0" style={{ minHeight: '400px' }}>
               {/* Left - Student Image */}
-              <div className="col-lg-3 d-none d-lg-block" style={{ height: '280px', overflow: 'hidden' }}>
+              <div className="col-lg-3 d-none d-lg-block" style={{ height: '400px', overflow: 'hidden' }}>
                 <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop" 
+                  src={aboutUs} 
                   alt="Student"
                   style={{
                     width: '100%',
@@ -199,12 +200,12 @@ function WhyChooseUs({ onNavigate }) {
               </div>
 
               {/* Center - Heading */}
-              <div className="col-lg-6 text-center py-4 px-4">
+              <div className="col-lg-6 text-center py-5 px-5">
                 <h2 
                   className="fw-bold mb-0"
                   style={{
                     color: 'white',
-                    fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+                    fontSize: 'clamp(2rem, 5vw, 3.5rem)',
                     fontFamily: '"Poppins", sans-serif',
                     letterSpacing: '-0.02em',
                     lineHeight: '1.2'
@@ -215,7 +216,7 @@ function WhyChooseUs({ onNavigate }) {
               </div>
 
               {/* Right - Button */}
-              <div className="col-lg-3 text-center text-lg-center py-4 px-4">
+              <div className="col-lg-3 text-center text-lg-center py-5 px-5">
                 <button
                   onClick={() => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -225,26 +226,26 @@ function WhyChooseUs({ onNavigate }) {
                       }, 300);
                     }
                   }}
-                  className="btn btn-lg px-4 py-3 fw-semibold"
+                  className="btn btn-lg px-5 py-4 fw-semibold"
                   style={{
                     background: '#083D77',
                     border: 'none',
                     color: 'white',
-                    borderRadius: '8px',
-                    boxShadow: '0 4px 15px rgba(8, 61, 119, 0.4)',
+                    borderRadius: '12px',
+                    boxShadow: '0 6px 20px rgba(8, 61, 119, 0.5)',
                     transition: 'all 0.3s ease',
-                    fontSize: '1.05rem',
+                    fontSize: '1.25rem',
                     fontFamily: '"Inter", sans-serif',
                     whiteSpace: 'nowrap'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.6)';
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(8, 61, 119, 0.7)';
                     e.currentTarget.style.background = '#0a4d94';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(8, 61, 119, 0.4)';
+                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.5)';
                     e.currentTarget.style.background = '#083D77';
                   }}
                 >

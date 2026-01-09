@@ -1,4 +1,5 @@
 ﻿import { ResourcePageTemplate } from './ResourcePageTemplate';
+import { SAMPLE_PAPERS_STRUCTURE } from '../data/classStructure';
 import { FaFileAlt } from 'react-icons/fa';
 
 const SamplePapers = ({ onBackToHome }) => {
@@ -11,6 +12,7 @@ buttonText="Download Paper"
 pdfPathPrefix="sample-papers"
 iconGradient="linear-gradient(135deg, #FA8BFF 0%, #2BD2FF 50%, #2BFF88 100%)"
 onBackToHome={onBackToHome}
+classesData={SAMPLE_PAPERS_STRUCTURE}
 />
 );
 };

@@ -7,92 +7,180 @@ const Trailblazers = () => {
   const achievers = [
     {
       id: 1,
-      name: "Aditya Patel",
-      achievement: "CBSE 12th - 98.2%",
-      percentage: 98.2,
-      year: "2024",
+      name: "Aayushi",
+      achievement: "CBSE 12th - 97%",
+      percentage: 97,
+      year: "2025",
       class: "12",
       image: null,
-      testimonial: "Outstanding teaching methodology and regular practice tests helped me score exceptionally in Class 12 boards."
+      testimonial: "Outstanding teaching methodology and regular practice tests helped me score exceptionally."
     },
     {
       id: 2,
-      name: "Arjun Singh",
-      achievement: "CBSE 10th - 99.4%",
-      percentage: 99.4,
-      year: "2024",
+      name: "Sambhavi",
+      achievement: "CBSE 10th - 97%",
+      percentage: 97,
+      year: "2025",
       class: "10",
       image: null,
-      testimonial: "The personalized attention and excellent study material helped me achieve top marks in my Class 10 board exams."
+      testimonial: "The personalized attention and excellent study material helped me achieve top marks."
     },
     {
       id: 3,
-      name: "Priya Sharma",
-      achievement: "CBSE 12th - 97.6%",
-      percentage: 97.6,
-      year: "2024",
+      name: "Nandani",
+      achievement: "CBSE 12th - 97%",
+      percentage: 97,
+      year: "2025",
       class: "12",
       image: null,
-      testimonial: "Aarav Academy's dedicated faculty and comprehensive curriculum helped me excel in my Class 12 boards."
+      testimonial: "Aarav Academy's dedicated faculty and comprehensive curriculum helped me excel."
     },
     {
       id: 4,
-      name: "Rohan Gupta",
-      achievement: "CBSE 10th - 98.8%",
-      percentage: 98.8,
-      year: "2023",
+      name: "Laxmi",
+      achievement: "CBSE 10th - 97%",
+      percentage: 97,
+      year: "2025",
       class: "10",
       image: null,
-      testimonial: "The structured approach and regular assessments at Aarav Academy built my strong foundation for Class 10 success."
+      testimonial: "The structured approach and regular assessments built my strong foundation for success."
     },
     {
       id: 5,
-      name: "Kavya Mehta",
-      achievement: "CBSE 9th - 96.4%",
-      percentage: 96.4,
-      year: "2023",
-      class: "9",
+      name: "Amnish",
+      achievement: "CBSE 12th - 97%",
+      percentage: 97,
+      year: "2025",
+      class: "12",
       image: null,
-      testimonial: "Expert faculty and regular mock tests prepared me well for examinations. Highly recommend Aarav Academy!"
+      testimonial: "Expert faculty and regular mock tests prepared me well for examinations."
     },
     {
       id: 6,
-      name: "Rahul Singh",
-      achievement: "CBSE 10th - 97.2%",
-      percentage: 97.2,
-      year: "2023",
-      class: "10",
+      name: "Arun",
+      achievement: "CBSE 12th - 92%",
+      percentage: 92,
+      year: "2025",
+      class: "12",
       image: null,
-      testimonial: "The interactive teaching methods and doubt-clearing sessions helped me achieve excellent results in Class 10 boards."
+      testimonial: "The interactive teaching methods helped me achieve excellent results."
     },
     {
       id: 7,
-      name: "Simran Kaur",
-      achievement: "CBSE 9th - 95.8%",
-      percentage: 95.8,
-      year: "2024",
-      class: "9",
+      name: "Siya",
+      achievement: "CBSE 12th - 96%",
+      percentage: 96,
+      year: "2025",
+      class: "12",
       image: null,
-      testimonial: "The supportive environment and excellent teaching at Aarav Academy helped me build a strong academic foundation."
+      testimonial: "The supportive environment and excellent teaching helped me build strong foundation."
     },
     {
       id: 8,
-      name: "Vikram Rao",
-      achievement: "CBSE 12th - 96.8%",
-      percentage: 96.8,
-      year: "2023",
+      name: "Dishtant",
+      achievement: "CBSE 10th - 97%",
+      percentage: 97,
+      year: "2025",
+      class: "10",
+      image: null,
+      testimonial: "The comprehensive study material was instrumental in my board exam success."
+    },
+    {
+      id: 9,
+      name: "Vikas",
+      achievement: "CBSE 12th - 97%",
+      percentage: 97,
+      year: "2025",
       class: "12",
       image: null,
-      testimonial: "The comprehensive study material and regular assessments were instrumental in my board exam success."
+      testimonial: "Outstanding guidance and support from faculty helped me achieve my goals."
+    },
+    {
+      id: 10,
+      name: "Tanya",
+      achievement: "CBSE 12th - 97%",
+      percentage: 97,
+      year: "2025",
+      class: "12",
+      image: null,
+      testimonial: "Regular assessments and doubt sessions were key to my success."
+    },
+    {
+      id: 11,
+      name: "Garima",
+      achievement: "CBSE 10th - 97%",
+      percentage: 97,
+      year: "2025",
+      class: "10",
+      image: null,
+      testimonial: "The structured teaching approach helped me excel in my board exams."
+    },
+    {
+      id: 12,
+      name: "Aditya",
+      achievement: "CBSE 10th - 97%",
+      percentage: 97,
+      year: "2025",
+      class: "10",
+      image: null,
+      testimonial: "Excellent faculty and comprehensive study material ensured my success."
+    },
+    {
+      id: 13,
+      name: "Simran",
+      achievement: "CBSE 12th - 92%",
+      percentage: 92,
+      year: "2025",
+      class: "12",
+      image: null,
+      testimonial: "The personalized attention helped me achieve excellent results."
+    },
+    {
+      id: 14,
+      name: "Karishma",
+      achievement: "CBSE 12th - 96%",
+      percentage: 96,
+      year: "2025",
+      class: "12",
+      image: null,
+      testimonial: "Interactive teaching methods made learning enjoyable and effective."
+    },
+    {
+      id: 15,
+      name: "Rajat",
+      achievement: "CBSE 10th - 97%",
+      percentage: 97,
+      year: "2025",
+      class: "10",
+      image: null,
+      testimonial: "Regular mock tests and practice sessions helped me score well."
+    },
+    {
+      id: 16,
+      name: "Aryan",
+      achievement: "CBSE 10th - 97%",
+      percentage: 97,
+      year: "2025",
+      class: "10",
+      image: null,
+      testimonial: "The comprehensive curriculum and dedicated faculty ensured my success."
     }
   ];
 
-  const filters = ['ALL', 'Class 9', 'Class 10', 'Class 12'];
+  const filters = ['ALL', 'Class 10', 'Class 12'];
 
   const filteredAchievers = (activeFilter === 'ALL' 
-    ? achievers 
+    ? achievers.sort((a, b) => {
+        // Sort by class first (10 before 12)
+        if (a.class !== b.class) {
+          return parseInt(a.class) - parseInt(b.class);
+        }
+        // Then by percentage (highest first)
+        return b.percentage - a.percentage;
+      })
     : achievers.filter(achiever => achiever.class === activeFilter.split(' ')[1])
-  ).sort((a, b) => b.percentage - a.percentage);
+        .sort((a, b) => b.percentage - a.percentage)
+  );
 
   return (
     <section className="py-5" id="trailblazers" style={{ background: 'white', overflow: 'hidden' }}>
@@ -109,7 +197,7 @@ const Trailblazers = () => {
              MEET OUR ACHIEVERS
             </span>
           </div>
-          <p className="lead text-center" style={{ color: '#2c12dcff', maxWidth: '700px', margin: '0 auto 1.5rem' }}>
+          <p className="lead text-center " style={{ color: '#2811bdff', maxWidth: '700px', margin: '0 auto 1.5rem' }}>
             Celebrating the success stories of our brilliant students who have made us proud
           </p>
 
@@ -170,8 +258,8 @@ const Trailblazers = () => {
               <div 
                 key={`${achiever.id}-${index}`}
                 style={{
-                  minWidth: '320px',
-                  maxWidth: '320px'
+                  minWidth: '340px',
+                  maxWidth: '340px'
                 }}
               >
                 <div 
@@ -194,31 +282,31 @@ const Trailblazers = () => {
                   }}
                 >
                   <div className="card-body p-3">
-                    <div className="text-center mb-3">
-                      {/* Avatar */}
+                    <div className="text-center mb-2">
+                      {/* Avatar - Rectangular shape with more height */}
                       <div 
-                        className="rounded-circle mx-auto mb-2 position-relative overflow-hidden"
+                        className="mx-auto mb-3 position-relative overflow-hidden"
                         style={{
-                          width: '80px',
-                          height: '80px',
+                          width: '100%',
+                          height: '200px',
                           background: '#083D77',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           boxShadow: '0 8px 25px rgba(8, 61, 119, 0.3)',
-                          border: '3px solid white'
+                          borderRadius: '15px'
                         }}
                       >
                         <div style={{ 
-                          fontSize: '2rem', 
+                          fontSize: '4rem', 
                           color: '#fff',
                           fontWeight: 'bold',
                           fontFamily: '"Poppins", sans-serif'
                         }}>
-                          {achiever.name.charAt(0)}
+                          {achiever.name.split(' ')[0].charAt(0)}{achiever.name.split(' ')[1]?.charAt(0) || ''}
                         </div>
                       </div>
-                      <h5 className="fw-bold mb-2" style={{ color: '#083D77', fontFamily: '"Poppins", sans-serif', fontSize: '1.1rem' }}>
+                      <h5 className="fw-bold mb-2" style={{ color: '#083D77', fontFamily: '"Poppins", sans-serif', fontSize: '1.15rem' }}>
                         {achiever.name}
                       </h5>
                       <div className="mb-2">
@@ -249,26 +337,15 @@ const Trailblazers = () => {
                         Year: {achiever.year}
                       </span>
                     </div>
-                    <div className="position-relative pt-2" style={{ borderTop: '2px solid #E6F3FF' }}>
-                      <FaQuoteLeft 
-                        className="position-absolute" 
-                        style={{
-                          top: '-5px', 
-                          left: '5px', 
-                          color: '#4A90E2',
-                          opacity: '0.3',
-                          fontSize: '1.2rem'
-                        }} 
-                      />
+                    <div className="position-relative pt-3" style={{ borderTop: '2px solid #E6F3FF' }}>
                       <p 
                         className="fst-italic mb-0"
                         style={{ 
-                          color: '#666',
-                          fontSize: '0.85rem',
-                          lineHeight: '1.6',
-                          paddingLeft: '5px',
-                          paddingRight: '5px',
-                          textAlign: 'center'
+                          color: '#000000',
+                          fontSize: '0.95rem',
+                          lineHeight: '1.7',
+                          textAlign: 'center',
+                          padding: '0.5rem 0'
                         }}
                       >
                         {achiever.testimonial}
@@ -292,7 +369,7 @@ const Trailblazers = () => {
             transform: translateX(calc(-320px * ${filteredAchievers.length} - ${filteredAchievers.length * 1.5}rem));
           }
         }
-      `}</style>
+      `}</style>4
     </section>
   );
 };
