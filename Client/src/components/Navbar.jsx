@@ -5,6 +5,7 @@ import logo from '../assets/logo_nobg.png';
 const Navbar = ({ onNavigate, currentView }) => {
   const [scrolled, setScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,7 +99,7 @@ const Navbar = ({ onNavigate, currentView }) => {
           .navbar-brand img {
             height: 50px !important;
           }
-          .navbar-brand > div {
+          .logo-text {
             display: none !important;
           }
           .navbar-toggler {
@@ -107,6 +108,11 @@ const Navbar = ({ onNavigate, currentView }) => {
           }
           .navbar-toggler:focus {
             box-shadow: 0 0 0 0.2rem rgba(8, 61, 119, 0.25);
+          }
+        }
+        @media (min-width: 992px) {
+          .logo-text {
+            display: flex !important;
           }
         }
       `}</style>
@@ -143,7 +149,7 @@ const Navbar = ({ onNavigate, currentView }) => {
               objectFit: 'contain'
             }} 
           />
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div className="logo-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
             <span style={{
               fontSize:'1.5rem',
               fontWeight: '700',
@@ -177,16 +183,15 @@ const Navbar = ({ onNavigate, currentView }) => {
         <button 
           className="navbar-toggler ms-auto" 
           type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={mobileMenuOpen}
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'show' : ''}`} id="navbarNav">
           <ul
             className="navbar-nav mx-auto align-items-lg-center"
             style={{ gap: '0.5rem' }}
@@ -196,6 +201,7 @@ const Navbar = ({ onNavigate, currentView }) => {
                 <a
                   className="nav-link"
                   onClick={() => {
+                    setMobileMenuOpen(false);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     if (typeof onNavigate === 'function') {
                       setTimeout(() => {
@@ -223,6 +229,7 @@ const Navbar = ({ onNavigate, currentView }) => {
             <li className="nav-item d-lg-none mt-3">
               <button
                 onClick={() => {
+                  setMobileMenuOpen(false);
                   if (currentView !== 'home') {
                     onNavigate('home');
                     setTimeout(() => {
@@ -230,11 +237,6 @@ const Navbar = ({ onNavigate, currentView }) => {
                     }, 500);
                   } else {
                     scrollToSection('contact');
-                  }
-                  // Close menu after click
-                  const navCollapse = document.getElementById('navbarNav');
-                  if (navCollapse && navCollapse.classList.contains('show')) {
-                    navCollapse.classList.remove('show');
                   }
                 }}
                 className="btn w-100"
