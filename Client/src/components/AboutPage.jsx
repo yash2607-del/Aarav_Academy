@@ -219,7 +219,7 @@ function AboutPage({ onBackToHome }) {
                 textAlign: 'left'
               }}
             >
-              Aarav Academy is a well-established and trusted educational institute dedicated to providing high-quality academic coaching for students from Classes 1st to 12th across all subjects. We believe that strong fundamentals built at an early stage play a vital role in shaping a student's future.
+              Aarav Academy is a well-established and trusted educational institute dedicated to providing high-quality academic coaching for students from Classes 6th to 12th across all subjects. We believe that strong fundamentals built at an early stage play a vital role in shaping a student's future.
             </p>
             <p
               style={{
