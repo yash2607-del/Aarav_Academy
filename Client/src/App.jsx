@@ -30,9 +30,9 @@ function App() {
         <>
           <Hero />
           <YouTubeVideos />
-          <WhyChooseUs />
-          <Trailblazers />
           <Stats />
+          <Trailblazers />
+          <WhyChooseUs />
           <Gallery />
           <FAQ />
           <Contact />

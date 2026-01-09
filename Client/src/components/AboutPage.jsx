@@ -67,6 +67,7 @@ function AboutPage({ onBackToHome }) {
                 color: '#1a2332',
                 fontFamily: '"Poppins", sans-serif',
                 fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+                fontWeight: 'bolder',
                 lineHeight: '1.3'
               }}
             >
@@ -74,7 +75,7 @@ function AboutPage({ onBackToHome }) {
             </h2>
             <p
               style={{
-                color: '#6b7280',
+                color: '#090a0cff',
                 fontSize: '1.05rem',
                 lineHeight: '1.8',
                 fontFamily: '"Inter", sans-serif'
@@ -207,7 +208,7 @@ function AboutPage({ onBackToHome }) {
                 lineHeight: '1.9',
                 marginBottom: '1.5rem',
                 fontFamily: '"Inter", sans-serif',
-                textAlign: 'justify'
+                textAlign: 'left'
               }}
             >
               Aarav Academy is a well-established and trusted educational institute dedicated to providing high-quality academic coaching for students from Classes 1st to 12th across all subjects. We believe that strong fundamentals built at an early stage play a vital role in shaping a student's future.
@@ -219,7 +220,7 @@ function AboutPage({ onBackToHome }) {
                 lineHeight: '1.9',
                 marginBottom: '1.5rem',
                 fontFamily: '"Inter", sans-serif',
-                textAlign: 'justify'
+                textAlign: 'left'
               }}
             >
               Our academy focuses on nurturing young minds by providing personalized attention and a disciplined yet encouraging environment. We understand that every student has a unique learning style and pace. Our experienced faculty members adopt interactive and student-centered teaching methods to help students clarify concepts rather than relying on rote learning.
@@ -230,7 +231,7 @@ function AboutPage({ onBackToHome }) {
                 fontSize: '1.05rem',
                 lineHeight: '1.9',
                 fontFamily: '"Inter", sans-serif',
-                textAlign: 'justify'
+                textAlign: 'left'
               }}
             >
               Regular assessments, doubt clearing sessions, revision classes, and performance tracking help students gain confidence and improve consistently. We aim not only to help students excel in school and board examinations but also to develop critical thinking, problem-solving skills, and self-discipline. With years of experience and a strong record of academic improvement, Aarav Academy has earned the trust of parents and students alike.

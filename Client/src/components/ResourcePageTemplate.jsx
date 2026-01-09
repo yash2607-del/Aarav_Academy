@@ -56,7 +56,8 @@ export const ResourcePageTemplate = ({
       minHeight: '100vh',
       position: 'relative',
       overflow: 'hidden',
-      paddingTop: '120px'
+      paddingTop: '180px',
+      marginTop: '0px'
     }}>
       {/* Decorative Background Elements */}
       <div style={{
