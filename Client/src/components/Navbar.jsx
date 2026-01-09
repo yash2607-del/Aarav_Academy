@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaPhone, FaWhatsapp } from 'react-icons/fa';
 import logo from '../assets/logo_nobg.png';
 
-const Navbar = () => {
+const Navbar = ({ onNavigate }) => {
   const [scrolled, setScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -36,8 +36,8 @@ const Navbar = () => {
   };
 
   const handleEnter = (e) => {
-    e.target.style.background = '#f0f7ff';
-    e.target.style.color = '#2E5C8A';
+    e.target.style.background = '#083D77';
+    e.target.style.color = 'white';
   };
 
   const handleLeave = (e) => {
@@ -46,17 +46,18 @@ const Navbar = () => {
   };
 
   const navItems = [
-    {label: 'Home', id: "home"},
+    { label: 'Home', id: 'home' },
+    { label: 'About Us', id: 'about' },
     { label: 'Study Notes', id: 'study-notes' },
-    { label: 'NCERT Solution', id: 'ncert-solution' },
+    { label: 'NCERT Solution', id: 'ncert-solutions' },
     { label: 'Assignments', id: 'assignments' },
     { label: 'Sample Papers', id: 'sample-papers' },
-    { label: ' Test Series', id: 'test-papers' }
+    { label: ' Test Series', id: 'test-series' }
 
   ];
 
   const dropdownItems = [
-    { label: 'About Us', id: 'about' },
+    
     { label: 'FAQ', id: 'faq' },
     { label: 'Contact', id: 'contact' }
   ];
@@ -85,33 +86,43 @@ const Navbar = () => {
             scrollToSection('home');
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <img 
+            src={logo} 
+            alt="Aarav Academy Logo" 
+            style={{ 
+              height: '65px', 
+              width: 'auto', 
+              marginRight: '15px',
+              objectFit: 'contain'
+            }} 
+          />
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
             <span style={{
               fontSize:'1.5rem',
               fontWeight: '700',
-              color: '#2E5C8A',
+              color: '#083D77',
               letterSpacing: '0.5px',
               lineHeight: '1.2'
             }}>
               Aarav Academy
             </span>
             <span style={{ 
-              fontSize: '0.7rem', 
+              fontSize: '0.85rem', 
               fontWeight: '500',
               color: '#666',
               letterSpacing: '0.5px',
-              lineHeight: '1.2'
+              lineHeight: '1.3'
             }}>
               (A unit of Aarav Student Hub)
             </span>
             <span style={{ 
-              fontSize: '0.65rem', 
+              fontSize: '0.8rem', 
               fontWeight: '600',
-              color: '#4A90E2',
+              color: '#083D77',
               letterSpacing: '1.5px',
-              lineHeight: '1.2'
+              lineHeight: '1.3'
             }}>
-              VI | VII | VIII | IX | X
+              VI | VII | VIII | IX | X | XI | XII 
             </span>
           </div>
         </a>
@@ -127,14 +138,18 @@ const Navbar = () => {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul
-            className="navbar-nav align-items-center"
+            className="navbar-nav mx-auto align-items-center"
             style={{ gap: '0.1rem', flexWrap: 'nowrap' }}
           >
             {navItems.map((item) => (
               <li className="nav-item" key={item.id}>
                 <a
                   className="nav-link"
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => {
+                    if (typeof onNavigate === 'function') {
+                      onNavigate(item.id);
+                    }
+                  }}
                   style={linkBaseStyle}
                   onMouseEnter={handleEnter}
                   onMouseLeave={handleLeave}
@@ -145,131 +160,39 @@ const Navbar = () => {
             ))}
             
             {/* More Dropdown */}
-            <li className="nav-item dropdown position-relative">
-              <a
-                className="nav-link d-flex align-items-center"
-                onClick={() => setShowDropdown(!showDropdown)}
-                style={linkBaseStyle}
-                onMouseEnter={handleEnter}
-                onMouseLeave={handleLeave}
-              >
-                More
-                <i className={`bi bi-chevron-${showDropdown ? 'up' : 'down'} ms-1`} style={{ fontSize: '0.8rem' }}></i>
-              </a>
-              
-              {showDropdown && (
-                <div
-                  className="dropdown-menu show position-absolute"
-                  style={{
-                    top: '100%',
-                    right: '0',
-                    marginTop: '0.5rem',
-                    background: 'white',
-                    borderRadius: '12px',
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                    border: '1px solid rgba(0,0,0,0.08)',
-                    minWidth: '180px',
-                    padding: '0.5rem',
-                    zIndex: 1000
-                  }}
-                >
-                  {dropdownItems.map((item) => (
-                    <a
-                      key={item.id}
-                      className="dropdown-item"
-                      onClick={() => scrollToSection(item.id)}
-                      style={{
-                        padding: '0.6rem 1rem',
-                        cursor: 'pointer',
-                        borderRadius: '8px',
-                        fontSize: '0.95rem',
-                        fontFamily: '"Inter", sans-serif',
-                        color: '#2E5C8A',
-                        fontWeight: '500',
-                        transition: 'all 0.2s ease'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = '#E6F3FF';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = 'transparent';
-                      }}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </li>
+           
           </ul>
 
-          {/* Right Side Buttons */}
-          <div className="ms-auto d-flex align-items-center" style={{ gap: '1rem' }}>
-            {/* Call Button */}
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="btn d-flex align-items-center"
-              style={{
-                background: '#2E5C8A',
-                color: 'white',
-                border: 'none',
-                borderRadius: '25px',
-                padding: '0.6rem 1.2rem',
-                fontSize: '0.9rem',
-                fontWeight: '600',
-                fontFamily: '"Inter", sans-serif',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 2px 8px rgba(46, 92, 138, 0.3)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#4A90E2';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(46, 92, 138, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#2E5C8A';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(46, 92, 138, 0.3)';
-              }}
-            >
-              <FaPhone style={{ marginRight: '0.5rem', fontSize: '0.9rem' }} />
-              Call Now
-            </button>
-
-            {/* WhatsApp Button */}
-            <a
-              href="https://wa.me/919540772241"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn d-flex align-items-center"
-              style={{
-                background: '#25D366',
-                color: 'white',
-                border: 'none',
-                borderRadius: '25px',
-                padding: '0.6rem 1.2rem',
-                fontSize: '0.9rem',
-                fontWeight: '600',
-                fontFamily: '"Inter", sans-serif',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 2px 8px rgba(37, 211, 102, 0.3)',
-                textDecoration: 'none'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#1fb855';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(37, 211, 102, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#25D366';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(37, 211, 102, 0.3)';
-              }}
-            >
-              <FaWhatsapp style={{ marginRight: '0.5rem', fontSize: '1.1rem' }} />
-              WhatsApp
-            </a>
-          </div>
+          {/* Request Callback Button */}
+          <button
+            onClick={() => scrollToSection('contact')}
+            style={{
+              background: '#083D77',
+              color: 'white',
+              border: 'none',
+              padding: '0.6rem 1.5rem',
+              borderRadius: '25px',
+              fontWeight: '600',
+              fontSize: '0.95rem',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              whiteSpace: 'nowrap',
+              fontFamily: '"Inter", sans-serif',
+              boxShadow: '0 4px 12px rgba(8, 61, 119, 0.3)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#0a4d94';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(8, 61, 119, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#083D77';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(8, 61, 119, 0.3)';
+            }}
+          >
+            Request a Callback
+          </button>
         </div>
       </div>
     </nav>

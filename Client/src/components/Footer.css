@@ -1,9 +1,11 @@
 .footer {
-  background: linear-gradient(135deg, #2E5C8A 0%, #1a3a5a 100%);
+  background: #083D77;
   color: white;
-  padding: 60px 50px 30px;
+  padding: 40px 50px 20px;
   margin: 0;
   width: 100%;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .footer-container {
@@ -14,17 +16,17 @@
 .footer-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  margin-bottom: 40px;
+  gap: 30px;
+  margin-bottom: 25px;
 }
 
 .footer-section h3 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
   font-weight: 700;
   color: #fff;
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 .footer-section h3::after {
@@ -124,8 +126,10 @@
 
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
+  margin-bottom: 0;
 }
 
 .footer-bottom p {

@@ -1,10 +1,133 @@
-import { FaBook, FaUsers, FaChartLine, FaTrophy, FaGraduationCap, FaHeart, FaLightbulb, FaGlobe } from 'react-icons/fa';
+import React from 'react';
+import { FaBook, FaUsers, FaGraduationCap, FaChartLine, FaTrophy, FaHeart, FaLightbulb, FaGlobe } from 'react-icons/fa';
 
 function About() {
   return (
-    <section className="py-5" id="about" style={{ 
-      background: 'linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%)'
-    }}>
+    <section id="about" className="py-5" style={{ background: 'white' }}>
+      <div className="container">
+        <div className="row align-items-center g-5">
+          <div className="col-lg-6">
+            <div style={{
+              background: '#083D77',
+              borderRadius: '20px',
+              padding: '3rem',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '-50px',
+                right: '-50px',
+                width: '200px',
+                height: '200px',
+                background: 'rgba(255, 255, 255, 0.1)',
+                borderRadius: '50%'
+              }}></div>
+              <h2 className="fw-bold mb-4" style={{ 
+                fontSize: '2.5rem',
+                color: 'white',
+                position: 'relative',
+                zIndex: 1
+              }}>
+                About Aarav Academy
+              </h2>
+              <p className="lead" style={{ 
+                fontSize: '1.1rem',
+                lineHeight: '1.8',
+                color: 'white',
+                opacity: 0.9,
+                position: 'relative',
+                zIndex: 1
+              }}>
+                Established with a vision to provide quality education, Aarav Academy has been a trusted name in coaching for over 15 years. We specialize in preparing students from Classes 1st to 12th for academic excellence and competitive examinations.
+              </p>
+            </div>
+          </div>
+          
+          <div className="col-lg-6">
+            <div className="row g-4">
+              <div className="col-12">
+                <div className="p-4" style={{
+                  background: 'white',
+                  border: '2px solid #083D77',
+                  borderRadius: '15px',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#083D77';
+                  const h4 = e.currentTarget.querySelector('h4');
+                  const p = e.currentTarget.querySelector('p');
+                  if (h4) h4.style.color = 'white';
+                  if (p) p.style.color = 'white';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'white';
+                  const h4 = e.currentTarget.querySelector('h4');
+                  const p = e.currentTarget.querySelector('p');
+                  if (h4) h4.style.color = '#083D77';
+                  if (p) p.style.color = '#666';
+                }}>
+                  <h4 className="fw-bold mb-3" style={{ color: '#083D77', transition: 'all 0.3s ease' }}>🎯 Our Mission</h4>
+                  <p className="mb-0" style={{ color: '#666', transition: 'all 0.3s ease' }}>To empower students with knowledge, skills, and confidence to excel in their academic journey and beyond.</p>
+                </div>
+              </div>
+              
+              <div className="col-12">
+                <div className="p-4" style={{
+                  background: 'white',
+                  border: '2px solid #083D77',
+                  borderRadius: '15px',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#083D77';
+                  const h4 = e.currentTarget.querySelector('h4');
+                  const p = e.currentTarget.querySelector('p');
+                  if (h4) h4.style.color = 'white';
+                  if (p) p.style.color = 'white';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'white';
+                  const h4 = e.currentTarget.querySelector('h4');
+                  const p = e.currentTarget.querySelector('p');
+                  if (h4) h4.style.color = '#083D77';
+                  if (p) p.style.color = '#666';
+                }}>
+                  <h4 className="fw-bold mb-3" style={{ color: '#083D77', transition: 'all 0.3s ease' }}>👁️ Our Vision</h4>
+                  <p className="mb-0" style={{ color: '#666', transition: 'all 0.3s ease' }}>To be the most trusted and innovative educational institution, nurturing future leaders and achievers.</p>
+                </div>
+              </div>
+              
+              <div className="col-12">
+                <div className="p-4" style={{
+                  background: 'white',
+                  border: '2px solid #083D77',
+                  borderRadius: '15px',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#083D77';
+                  const h4 = e.currentTarget.querySelector('h4');
+                  const p = e.currentTarget.querySelector('p');
+                  if (h4) h4.style.color = 'white';
+                  if (p) p.style.color = 'white';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'white';
+                  const h4 = e.currentTarget.querySelector('h4');
+                  const p = e.currentTarget.querySelector('p');
+                  if (h4) h4.style.color = '#083D77';
+                  if (p) p.style.color = '#666';
+                }}>
+                  <h4 className="fw-bold mb-3" style={{ color: '#083D77', transition: 'all 0.3s ease' }}>💎 Our Values</h4>
+                  <p className="mb-0" style={{ color: '#666', transition: 'all 0.3s ease' }}>Excellence, integrity, innovation, and student-centric approach form the core of everything we do.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="container py-4">
         {/* Section Header */}
         <div className="text-center mb-5">

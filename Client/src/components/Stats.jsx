@@ -1,101 +1,119 @@
-import { useEffect, useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 function Stats() {
-  const [counts, setCounts] = useState({
-    students: 0,
-    faculty: 0,
-    courses: 0,
-    success: 0
-  });
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const statsRef = useRef(null);
+  const stats = [
+    { 
+      number: 3000, 
+      label: 'Students Enrolled',
+      suffix: '+'
+    },
+    { 
+      number: 20, 
+      label: 'Expert Faculty',
+      suffix: '+'
+    },
+    { 
+      number: 10, 
+      label: 'Courses Offered',
+      suffix: '+'
+    },
+    { 
+      number: 95, 
+      label: 'Success Rate',
+      suffix: '%'
+    },
+  ];
 
-  const finalStats = {
-    students: 3000,
-    faculty: 20,
-    courses: 10,
-    success: 95
-  };
+  const [counters, setCounters] = useState(stats.map(() => 0));
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !hasAnimated) {
-          animateCounters();
           setHasAnimated(true);
+          stats.forEach((stat, index) => {
+            animateCounter(index, stat.number);
+          });
         }
       },
       { threshold: 0.3 }
     );
 
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
 
     return () => {
-      if (statsRef.current) {
-        observer.unobserve(statsRef.current);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
       }
     };
   }, [hasAnimated]);
 
-  const animateCounters = () => {
+  const animateCounter = (index, target) => {
     const duration = 2000;
     const steps = 60;
-    const stepDuration = duration / steps;
-
-    let currentStep = 0;
-
-    const interval = setInterval(() => {
-      currentStep++;
-      const progress = currentStep / steps;
-
-      setCounts({
-        students: Math.floor(finalStats.students * progress),
-        faculty: Math.floor(finalStats.faculty * progress),
-        courses: Math.floor(finalStats.courses * progress),
-        success: Math.floor(finalStats.success * progress)
-      });
-
-      if (currentStep >= steps) {
-        clearInterval(interval);
-        setCounts(finalStats);
+    const increment = target / steps;
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
       }
-    }, stepDuration);
+      setCounters((prev) => {
+        const newCounters = [...prev];
+        newCounters[index] = Math.floor(current);
+        return newCounters;
+      });
+    }, duration / steps);
   };
 
   return (
-    <section className="py-5" ref={statsRef} style={{ background: 'linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%)' }}>
+    <section 
+      ref={sectionRef}
+      className="py-5" 
+      style={{ 
+        background: '#083D77',
+        borderTop: '1px solid #dee2e6',
+        borderBottom: '1px solid #dee2e6'
+      }}
+    >
       <div className="container">
-        <div className="row text-center g-4">
-          <div className="col-md-3 col-6">
-            <div className="stat-card p-4">
-              <i className="bi bi-people-fill fs-1 mb-3" style={{color: '#4A90E2'}}></i>
-              <h2 className="display-4 fw-bold mb-0" style={{color: '#2E5C8A'}}>{counts.students.toLocaleString()}+</h2>
-              <p className="mb-0 fs-5 text-muted">Students Enrolled</p>
+        <div className="row text-center">
+          {stats.map((stat, index) => (
+            <div key={index} className="col-lg-3 col-md-6 col-6 mb-4 mb-lg-0">
+              <div className="stat-item">
+                <h2 
+                  className="stat-number"
+                  style={{
+                    fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                    fontWeight: '700',
+                    color: '#f2f2f2ff',
+                    marginBottom: '0.5rem',
+                    fontFamily: '"Poppins", "Segoe UI", system-ui, sans-serif',
+                    letterSpacing: '-0.02em'
+                  }}
+                >
+                  {counters[index].toLocaleString()}{stat.suffix}
+                </h2>
+                <p 
+                  className="stat-label"
+                  style={{
+                    fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+                    color: '#f8fafbff',
+                    margin: 0,
+                    fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
+                    fontWeight: '500'
+                  }}
+                >
+                  {stat.label}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="col-md-3 col-6">
-            <div className="stat-card p-4">
-              <i className="bi bi-person-workspace fs-1 mb-3" style={{color: '#4A90E2'}}></i>
-              <h2 className="display-4 fw-bold mb-0" style={{color: '#2E5C8A'}}>{counts.faculty}+</h2>
-              <p className="mb-0 fs-5 text-muted">Expert Faculty</p>
-            </div>
-          </div>
-          <div className="col-md-3 col-6">
-            <div className="stat-card p-4">
-              <i className="bi bi-book-fill fs-1 mb-3" style={{color: '#4A90E2'}}></i>
-              <h2 className="display-4 fw-bold mb-0" style={{color: '#2E5C8A'}}>{counts.courses}+</h2>
-              <p className="mb-0 fs-5 text-muted">Courses Offered</p>
-            </div>
-          </div>
-          <div className="col-md-3 col-6">
-            <div className="stat-card p-4">
-              <i className="bi bi-trophy-fill fs-1 mb-3" style={{color: '#4A90E2'}}></i>
-              <h2 className="display-4 fw-bold mb-0" style={{color: '#2E5C8A'}}>{counts.success}%</h2>
-              <p className="mb-0 fs-5 text-muted">Success Rate</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

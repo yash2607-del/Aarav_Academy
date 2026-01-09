@@ -1,5 +1,5 @@
 .contact {
-  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+  background: white;
   padding: 100px 50px;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .office-hours {
-  background: linear-gradient(135deg, #4A90E2, #2E5C8A);
+  background: #083D77;
   padding: 20px;
   border-radius: 15px;
   color: white;
@@ -103,21 +103,21 @@
 .form-group textarea {
   width: 100%;
   padding: 15px 20px;
-  border: 2px solid #E6F3FF;
+  border: 2px solid #083D77;
   border-radius: 10px;
   font-size: 1rem;
   transition: all 0.3s ease;
   font-family: inherit;
-  background: #F0F8FF;
+  background: white;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #4A90E2;
+  border-color: #083D77;
   background: white;
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  box-shadow: 0 0 0 3px rgba(8, 61, 119, 0.1);
 }
 
 .form-group textarea {
@@ -128,7 +128,7 @@
 .form-group select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234A90E2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23083D77' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 15px center;
   background-size: 20px;
@@ -136,7 +136,7 @@
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #4A90E2, #2E5C8A);
+  background: #083D77;
   color: white;
   padding: 15px 40px;
   border: none;
@@ -150,12 +150,12 @@
   gap: 10px;
   width: 100%;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+  box-shadow: 0 4px 15px rgba(8, 61, 119, 0.3);
 }
 
 .submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+  box-shadow: 0 6px 20px rgba(8, 61, 119, 0.5);
 }
 
 .btn-icon {

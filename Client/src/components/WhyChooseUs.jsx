@@ -46,37 +46,27 @@ function WhyChooseUs() {
 
   return (
     <section className="py-5" style={{ 
-      background: 'linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%)',
+      background: 'white',
       position: 'relative'
     }}>
       <div className="container py-4">
         <div className="text-center mb-5">
           <div className="d-inline-block mb-3">
-            <span className="badge px-4 py-2 fs-6 fw-normal" style={{ 
-              background: 'linear-gradient(135deg, #2E5C8A 0%, #4A90E2 100%)',
-              color: 'white',
-              borderRadius: '50px',
-              letterSpacing: '1px'
-            }}>
-              <i className="bi bi-star-fill me-2"></i>
-              WHY CHOOSE US
-            </span>
+          
           </div>
           <h2 className="display-3 fw-bold mb-4" style={{
-            background: 'linear-gradient(135deg, #2E5C8A 0%, #4A90E2 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
+            color: '#083D77',
             fontFamily: '"Poppins", "Segoe UI", system-ui, sans-serif',
             letterSpacing: '-0.02em'
           }}>
             What Makes Us Different
           </h2>
-          <p className="lead text-muted mx-auto" style={{ 
+          <p className="lead mx-auto" style={{ 
             maxWidth: '650px',
             fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
             fontSize: '1.15rem',
-            lineHeight: '1.7'
+            lineHeight: '1.7',
+            color: '#083D77'
           }}>
             Experience excellence in education with our unique approach and commitment to student success
           </p>
@@ -88,22 +78,22 @@ function WhyChooseUs() {
               <div 
                 className="card h-100 border-0 position-relative overflow-hidden"
                 style={{
-                  background: 'white',
+                  background: '#083D77',
                   borderRadius: '20px',
-                  boxShadow: '0 10px 40px rgba(46, 92, 138, 0.12)',
+                  boxShadow: '0 10px 40px rgba(8, 61, 119, 0.3)',
                   transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                   cursor: 'pointer',
-                  border: '2px solid #D0E4F7'
+                  border: '2px solid rgba(8, 61, 119, 0.5)'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-10px)';
-                  e.currentTarget.style.boxShadow = '0 20px 60px rgba(46, 92, 138, 0.2)';
-                  e.currentTarget.style.borderColor = '#4A90E2';
+                  e.currentTarget.style.boxShadow = '0 20px 60px rgba(8, 61, 119, 0.5)';
+                  e.currentTarget.style.borderColor = '#EBEBD3';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 10px 40px rgba(46, 92, 138, 0.12)';
-                  e.currentTarget.style.borderColor = '#D0E4F7';
+                  e.currentTarget.style.boxShadow = '0 10px 40px rgba(8, 61, 119, 0.3)';
+                  e.currentTarget.style.borderColor = 'rgba(8, 61, 119, 0.5)';
                 }}
               >
                 <div className="card-body text-center p-4 position-relative" style={{ zIndex: 1 }}>
@@ -113,9 +103,9 @@ function WhyChooseUs() {
                     style={{
                       width: '60px',
                       height: '60px',
-                      background: 'linear-gradient(135deg, #2E5C8A 0%, #4A90E2 100%)',
+                      background: 'white',
                       borderRadius: '15px',
-                      boxShadow: '0 8px 25px rgba(46, 92, 138, 0.25)',
+                      boxShadow: '0 8px 25px rgba(255, 255, 255, 0.3)',
                       transition: 'transform 0.3s ease'
                     }}
                     onMouseEnter={(e) => {
@@ -128,7 +118,7 @@ function WhyChooseUs() {
                     <div 
                       style={{
                         fontSize: '1.6rem',
-                        color: 'white',
+                        color: '#083D77',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center'
@@ -140,17 +130,19 @@ function WhyChooseUs() {
                   
                   <h5 className="card-title fw-bold mb-3" style={{
                     fontSize: '1.25rem',
-                    color: '#2E5C8A',
+                    color: 'white',
                     fontFamily: '"Poppins", sans-serif',
                     letterSpacing: '-0.01em'
                   }}>
                     {feature.title}
                   </h5>
                   
-                  <p className="card-text text-muted mb-0" style={{
+                  <p className="card-text mb-0" style={{
                     fontSize: '0.9rem',
                     lineHeight: '1.7',
-                    fontFamily: '"Inter", sans-serif'
+                    fontFamily: '"Inter", sans-serif',
+                    color: 'white',
+                    opacity: '0.9'
                   }}>
                     {feature.description}
                   </p>
@@ -164,7 +156,7 @@ function WhyChooseUs() {
                     left: '-50%',
                     width: '200%',
                     height: '200%',
-                    background: 'linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent)',
+                    background: 'linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)',
                     transform: 'rotate(45deg)',
                     transition: 'all 0.6s ease'
                   }}
@@ -174,32 +166,86 @@ function WhyChooseUs() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-5 pt-5">
-          <p className="text-muted mb-4" style={{ fontFamily: '"Inter", sans-serif', fontSize: '1.05rem' }}>Ready to start your journey to success?</p>
-          <a 
-            href="#contact" 
-            className="btn btn-lg px-5 py-3 fw-semibold"
-            style={{
-              background: 'linear-gradient(135deg, #2E5C8A 0%, #4A90E2 100%)',
-              border: 'none',
-              color: 'white',
-              borderRadius: '50px',
-              boxShadow: '0 10px 30px rgba(46, 92, 138, 0.4)',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 15px 40px rgba(46, 92, 138, 0.5)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 10px 30px rgba(46, 92, 138, 0.4)';
-            }}
-          >
-            <i className="bi bi-rocket-takeoff-fill me-2"></i>
-            JOIN AARAV ACADEMY TODAY
-          </a>
+        {/* Bottom CTA Banner */}
+        <div 
+          className="mt-5 position-relative overflow-hidden"
+          style={{
+            background: 'linear-gradient(90deg, #2a5f7e 0%, #2E5C8A 100%)',
+            borderRadius: '0',
+            minHeight: '280px',
+            boxShadow: '0 10px 40px rgba(46, 92, 138, 0.2)',
+            marginLeft: '-50vw',
+            marginRight: '-50vw',
+            left: '50%',
+            right: '50%',
+            width: '100vw',
+            position: 'relative'
+          }}
+        >
+          <div className="container-fluid px-0">
+            <div className="row align-items-center g-0" style={{ minHeight: '280px' }}>
+              {/* Left - Student Image */}
+              <div className="col-lg-3 d-none d-lg-block" style={{ height: '280px', overflow: 'hidden' }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop" 
+                  alt="Student"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center top'
+                  }}
+                />
+              </div>
+
+              {/* Center - Heading */}
+              <div className="col-lg-6 text-center py-4 px-4">
+                <h2 
+                  className="fw-bold mb-0"
+                  style={{
+                    color: 'white',
+                    fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+                    fontFamily: '"Poppins", sans-serif',
+                    letterSpacing: '-0.02em',
+                    lineHeight: '1.2'
+                  }}
+                >
+                  Unlock Your Potential with Aarav Academy!
+                </h2>
+              </div>
+
+              {/* Right - Button */}
+              <div className="col-lg-3 text-center text-lg-center py-4 px-4">
+                <a 
+                  href="#study-notes" 
+                  className="btn btn-lg px-4 py-3 fw-semibold"
+                  style={{
+                    background: '#083D77',
+                    border: 'none',
+                    color: 'white',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 15px rgba(8, 61, 119, 0.4)',
+                    transition: 'all 0.3s ease',
+                    fontSize: '1.05rem',
+                    fontFamily: '"Inter", sans-serif',
+                    whiteSpace: 'nowrap'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.6)';
+                    e.currentTarget.style.background = '#0a4d94';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(8, 61, 119, 0.4)';
+                    e.currentTarget.style.background = '#083D77';
+                  }}
+                >
+                  Explore Courses
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
