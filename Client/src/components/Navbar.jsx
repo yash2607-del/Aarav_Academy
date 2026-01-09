@@ -78,13 +78,14 @@ const Navbar = ({ onNavigate, currentView }) => {
             display: flex;
             align-items: center;
             width: 100%;
-            gap: 15px;
+            gap: 8px;
           }
           .navbar-toggler {
             order: 1;
             margin: 0 !important;
             border: 2px solid #083D77;
-            padding: 0.5rem 0.75rem;
+            padding: 0.4rem 0.6rem;
+            flex-shrink: 0;
           }
           .navbar-brand {
             order: 2;
@@ -92,28 +93,35 @@ const Navbar = ({ onNavigate, currentView }) => {
             flex: 1;
             display: flex !important;
             align-items: center;
+            min-width: 0;
           }
           .navbar-brand img {
-            height: 80px !important;
-            margin-right: 12px !important;
+            height: 50px !important;
+            margin-right: 8px !important;
+            flex-shrink: 0;
           }
           .logo-text {
             display: flex !important;
             flex-direction: column;
             align-items: flex-start;
+            min-width: 0;
+            overflow: hidden;
           }
           .logo-text span:nth-child(1) {
-            font-size: 1.6rem !important;
+            font-size: 1.1rem !important;
             line-height: 1.2 !important;
+            white-space: nowrap;
           }
           .logo-text span:nth-child(2) {
-            font-size: 1.05rem !important;
+            font-size: 0.7rem !important;
             line-height: 1.2 !important;
+            white-space: nowrap;
           }
           .logo-text span:nth-child(3) {
-            font-size: 1rem !important;
-            letter-spacing: 1px !important;
+            font-size: 0.65rem !important;
+            letter-spacing: 0.5px !important;
             line-height: 1.2 !important;
+            white-space: nowrap;
           }
           .navbar-nav {
             text-align: center;
@@ -130,6 +138,12 @@ const Navbar = ({ onNavigate, currentView }) => {
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             padding: 1rem;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
           }
           .navbar-toggler:focus {
             box-shadow: 0 0 0 0.2rem rgba(8, 61, 119, 0.25);
