@@ -95,6 +95,19 @@ const Navbar = ({ onNavigate, currentView }) => {
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             padding: 1rem;
           }
+          .navbar-brand img {
+            height: 50px !important;
+          }
+          .navbar-brand > div {
+            display: none !important;
+          }
+          .navbar-toggler {
+            border: 2px solid #083D77;
+            padding: 0.5rem 0.75rem;
+          }
+          .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(8, 61, 119, 0.25);
+          }
         }
       `}</style>
       <nav 
@@ -106,7 +119,7 @@ const Navbar = ({ onNavigate, currentView }) => {
         borderBottom: '1px solid #e5e5e5'
       }}
     >
-      <div className="container-fluid px-4">
+      <div className="container-fluid px-4 d-flex justify-content-between align-items-center">
         <a 
           className="navbar-brand d-flex align-items-center" 
           href="#home"
@@ -162,10 +175,13 @@ const Navbar = ({ onNavigate, currentView }) => {
         </a>
         
         <button 
-          className="navbar-toggler" 
+          className="navbar-toggler ms-auto" 
           type="button" 
           data-bs-toggle="collapse" 
           data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -202,10 +218,46 @@ const Navbar = ({ onNavigate, currentView }) => {
             ))}
             
             {/* More Dropdown */}
-           
+            
+            {/* Request Callback Button - Inside Menu for Mobile */}
+            <li className="nav-item d-lg-none mt-3">
+              <button
+                onClick={() => {
+                  if (currentView !== 'home') {
+                    onNavigate('home');
+                    setTimeout(() => {
+                      scrollToSection('contact');
+                    }, 500);
+                  } else {
+                    scrollToSection('contact');
+                  }
+                  // Close menu after click
+                  const navCollapse = document.getElementById('navbarNav');
+                  if (navCollapse && navCollapse.classList.contains('show')) {
+                    navCollapse.classList.remove('show');
+                  }
+                }}
+                className="btn w-100"
+                style={{
+                  background: '#083D77',
+                  color: 'white',
+                  border: 'none',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '50px',
+                  fontWeight: '700',
+                  fontSize: '0.95rem',
+                  fontFamily: '"Inter", sans-serif',
+                  boxShadow: '0 6px 20px rgba(8, 61, 119, 0.4)',
+                  textTransform: 'none',
+                  letterSpacing: '0.3px'
+                }}
+              >
+                Request a Callback
+              </button>
+            </li>
           </ul>
 
-          {/* Request Callback Button */}
+          {/* Request Callback Button - Desktop Only */}
           <button
             onClick={() => {
               if (currentView !== 'home') {
@@ -217,7 +269,7 @@ const Navbar = ({ onNavigate, currentView }) => {
                 scrollToSection('contact');
               }
             }}
-            className="mt-2 mt-lg-0  mx-auto mx-lg-0 d-block"
+            className="mt-2 mt-lg-0 mx-auto mx-lg-0 d-none d-lg-block"
             style={{
               background: '#083D77',
               color: 'white',
