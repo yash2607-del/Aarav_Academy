@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaBook, FaUsers, FaLightbulb, FaChartLine, FaTrophy, FaHeart, FaUserGraduate, FaRocket } from 'react-icons/fa';
+import { FaBook, FaUsers, FaLightbulb, FaChartLine, FaTrophy, FaHeart, FaUserGraduate, FaRocket, FaArrowLeft } from 'react-icons/fa';
 import arvind from '../assets/founder/arvind.jpeg';
 import reena from '../assets/founder/reena.jpeg';
 import hero1 from '../assets/hero/about_us.png';
@@ -58,6 +58,40 @@ function AboutPage({ onBackToHome }) {
 
   return (
     <div style={{ paddingTop: '100px', minHeight: '100vh', background: '#ffffff' }}>
+      {/* Back Arrow Button */}
+      <button
+        onClick={onBackToHome}
+        style={{
+          position: 'absolute',
+          top: '120px',
+          left: '30px',
+          width: '50px',
+          height: '50px',
+          borderRadius: '50%',
+          background: '#083D77',
+          border: 'none',
+          color: 'white',
+          fontSize: '1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          boxShadow: '0 4px 15px rgba(8, 61, 119, 0.3)',
+          transition: 'all 0.3s ease',
+          zIndex: 1000
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.1)';
+          e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.5)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1)';
+          e.currentTarget.style.boxShadow = '0 4px 15px rgba(8, 61, 119, 0.3)';
+        }}
+        title="Back to Home"
+      >
+        <FaArrowLeft />
+      </button>
       <div className="container py-4">
 
         {/* Founder Introduction Section */}

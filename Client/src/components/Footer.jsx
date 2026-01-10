@@ -12,7 +12,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="footer">
+    <footer className="footer" style={{ position: 'relative' }}>
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-section">
@@ -85,15 +85,15 @@ const Footer = () => {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         style={{
-          position: 'fixed',
-          bottom: '30px',
+          position: 'absolute',
+          bottom: '100px',
           right: '30px',
           width: '55px',
           height: '55px',
           borderRadius: '50%',
-          background: '#083D77',
-          border: 'none',
-          color: 'white',
+          background: 'white',
+          border: '2px solid #083D77',
+          color: '#083D77',
           fontSize: '1.5rem',
           display: 'flex',
           alignItems: 'center',

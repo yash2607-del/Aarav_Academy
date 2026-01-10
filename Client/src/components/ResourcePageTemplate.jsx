@@ -96,9 +96,9 @@ export const ResourcePageTemplate = ({
       <button
         onClick={onBackToHome}
         style={{
-          position: 'fixed',
+          position: 'absolute',
           top: '120px',
-          left: '20px',
+          left: '30px',
           width: '50px',
           height: '50px',
           borderRadius: '50%',
