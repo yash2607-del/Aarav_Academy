@@ -1,22 +1,22 @@
 import './index.css'
 import { useState, useEffect } from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import YouTubeVideos from './components/YouTubeVideos'
-import AboutPage from './components/AboutPage'
-import Stats from './components/Stats'
-import WhyChooseUs from './components/WhyChooseUs'
-import Trailblazers from './components/Trailblazers'
-import Gallery from './components/Gallery'
-import FAQ from './components/FAQ'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import NcertSolutions from './components/NcertSolutions'
-import Assignments from './components/Assignments'
-import SamplePapers from './components/SamplePapers'
-import TestSeries from './components/TestSeries'
-import StudyNotes from './components/StudyNotes'
-import FloatingButtons from './components/FloatingButtons'
+import Navbar from './components/Navbar/Navbar'
+import Hero from './pages/Hero/Hero'
+import YouTubeVideos from './pages/Youtube/YouTubeVideos'
+import AboutPage from './pages/About/AboutPage'
+import Stats from './pages/Stats/Stats'
+import WhyChooseUs from './pages/WhyChoseUs/WhyChooseUs'
+import Trailblazers from './pages/Achievers/Achievers'
+import Gallery from './pages/Gallery/Gallery'
+import FAQ from './pages/Faq/FAQ'
+import Contact from './pages/contact/Contact'
+import Footer from './components/Footer/Footer'
+import NcertSolutions from './pages/Resources/NcertSolutions'
+import Assignments from './pages/Resources/Assignments'
+import SamplePapers from './pages/Resources/SamplePapers'
+import TestSeries from './pages/Resources/TestSeries'
+import StudyNotes from './pages/Resources/StudyNotes'
+import PWAInstallPrompt from './components/PWAInstallPrompt'
 
 function App() {
   const [currentView, setCurrentView] = useState(() => {
@@ -32,11 +32,10 @@ function App() {
   return (
     <div className="app">
       <Navbar onNavigate={(view) => setCurrentView(view)} currentView={currentView} />
-      <FloatingButtons />
 
       {currentView === 'home' && (
         <>
-          <Hero />
+          <Hero onNavigate={(view) => setCurrentView(view)} />
           <YouTubeVideos />
           <Stats />
           <Trailblazers />
@@ -72,6 +71,7 @@ function App() {
       )}
 
       <Footer />
+      <PWAInstallPrompt />
     </div>
   )
 }
