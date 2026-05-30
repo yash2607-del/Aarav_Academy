@@ -20,6 +20,8 @@
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 5px 20px rgba(74, 144, 226, 0.1);
+  border: 1px solid rgba(39, 110, 185, 0.08);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
 
 .contact-info h3 {
@@ -85,6 +87,15 @@
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 5px 20px rgba(74, 144, 226, 0.1);
+  border: 1px solid rgba(39, 110, 185, 0.08);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.contact-info:hover,
+.contact-form-wrapper:hover {
+  border-color: rgba(39, 110, 185, 0.16);
+  box-shadow: 0 8px 30px rgba(74, 144, 226, 0.12);
+  transform: translateY(-2px);
 }
 
 .contact-form h3 {
