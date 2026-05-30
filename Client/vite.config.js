@@ -100,7 +100,9 @@ export default defineConfig({
         ],
       },
       devOptions: {
-        enabled: true,
+        // Disable PWA runtime behavior during development to avoid
+        // the plugin looking for production service-worker files (dev-dist/sw.js).
+        enabled: false,
       },
     }),
   ],

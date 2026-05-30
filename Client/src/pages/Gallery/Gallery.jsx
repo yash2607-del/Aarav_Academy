@@ -15,7 +15,7 @@ const Gallery = () => {
           
           </div>
           <h2 className="display-3 fw-bold mb-3" style={{
-            color: '#083D77',
+            color: '#276eb9',
             fontFamily: '"Poppins", "Segoe UI", system-ui, sans-serif',
             letterSpacing: '-0.02em'
           }}>
@@ -31,20 +31,20 @@ const Gallery = () => {
                 style={{
                   borderRadius: '20px',
                   overflow: 'hidden',
-                  boxShadow: '0 10px 30px rgba(8, 61, 119, 0.2)',
+                  boxShadow: '0 10px 30px rgba(39, 110, 185, 0.2)',
                   transition: 'all 0.3s ease',
                   cursor: 'pointer',
                   background: '#f5f5f5',
-                  border: '3px solid #083D77',
+                  border: '3px solid #276eb9',
                   aspectRatio: '1 / 1'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-10px)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(8, 61, 119, 0.4)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(39, 110, 185, 0.4)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(8, 61, 119, 0.2)';
+                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(39, 110, 185, 0.2)';
                 }}
               >
                 <div 

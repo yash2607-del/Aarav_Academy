@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Thumbnail_1 from '../../assets/youtube-thumbnail/thumbnail_1.png';
 import Thumbnail_2 from '../../assets/youtube-thumbnail/thumbnail_2.png';
 import Thumbnail_3 from '../../assets/youtube-thumbnail/thumbnail_3.png';
@@ -7,6 +7,8 @@ import Thumbnail_3 from '../../assets/youtube-thumbnail/thumbnail_3.png';
 
 
 const YouTubeVideos = () => {
+  const cardRefs = useRef([]);
+
   const videos = [
     {
       id: 1,
@@ -25,6 +27,30 @@ const YouTubeVideos = () => {
     }
   ];
 
+  useEffect(() => {
+    const cards = cardRefs.current.filter(Boolean);
+    if (!cards.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.22,
+        rootMargin: '0px 0px -10% 0px'
+      }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+
+    return () => {
+      cards.forEach((card) => observer.unobserve(card));
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <section id="youtube-videos" className="py-5" style={{ 
       background: '#FFFFFF',
@@ -36,7 +62,7 @@ const YouTubeVideos = () => {
         {/* Title */}
         <div className="text-center mb-5">
           <h2 className="fw-bold" style={{
-            color: '#083D77',
+            color: '#276eb9',
             fontFamily: '"Playfair Display", "Georgia", serif',
             fontSize: '3rem',
             letterSpacing: '-0.02em',
@@ -46,6 +72,28 @@ const YouTubeVideos = () => {
             Our YouTube Videos
           </h2>
         </div>
+
+        <style>{`
+          .video-card-reveal {
+            opacity: 0;
+            transform: translateY(32px) scale(0.96);
+            transition: opacity 700ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+          }
+
+          .video-card-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .video-card-reveal {
+              opacity: 1;
+              transform: none;
+              transition: none;
+            }
+          }
+        `}</style>
         
         {/* Video Thumbnails */}
         <div className="row g-5 justify-content-center mb-5">
@@ -58,21 +106,14 @@ const YouTubeVideos = () => {
                 style={{ textDecoration: 'none' }}
               >
                 <div 
-                  className="position-relative overflow-hidden"
+                  ref={(node) => { cardRefs.current[video.id - 1] = node; }}
+                  className="video-card-reveal position-relative overflow-hidden"
                   style={{
                     borderRadius: '20px',
                     boxShadow: '0 10px 40px rgba(46, 92, 138, 0.15)',
-                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                    cursor: 'pointer',
-                    height: '400px'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-10px) scale(1.03)';
-                    e.currentTarget.style.boxShadow = '0 20px 60px rgba(46, 92, 138, 0.25)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                    e.currentTarget.style.boxShadow = '0 10px 40px rgba(46, 92, 138, 0.15)';
+                    cursor: 'default',
+                    aspectRatio: '16 / 9',
+                    transitionDelay: `${video.id * 90}ms`
                   }}
                 >
                   <img 
@@ -81,14 +122,9 @@ const YouTubeVideos = () => {
                     style={{
                       width: '100%',
                       height: '100%',
-                      objectFit: 'contain',
-                      transition: 'transform 0.3s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'scale(1.05)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'scale(1)';
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      display: 'block'
                     }}
                   />
                 </div>
@@ -105,11 +141,10 @@ const YouTubeVideos = () => {
             rel="noopener noreferrer"
             className="btn btn-lg px-5 py-3 fw-semibold"
             style={{
-              background: '#083D77',
+              background: '#276eb9',
               border: 'none',
               color: 'white',
-              borderRadius: '50px',
-              boxShadow: '0 8px 25px rgba(8, 61, 119, 0.4)',
+              boxShadow: '0 8px 25px rgba(39, 110, 185, 0.4)',
               transition: 'all 0.3s ease',
               fontSize: '1.1rem',
               fontFamily: '"Inter", sans-serif',
@@ -118,13 +153,13 @@ const YouTubeVideos = () => {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 12px 35px rgba(8, 61, 119, 0.5)';
-              e.currentTarget.style.background = '#0a4d94';
+              e.currentTarget.style.boxShadow = '0 12px 35px rgba(39, 110, 185, 0.5)';
+              e.currentTarget.style.background = '#1f5f9f';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 25px rgba(8, 61, 119, 0.4)';
-              e.currentTarget.style.background = '#083D77';
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(39, 110, 185, 0.4)';
+              e.currentTarget.style.background = '#276eb9';
             }}
           >
             Visit the Channel

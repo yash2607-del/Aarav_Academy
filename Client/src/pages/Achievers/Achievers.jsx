@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   images,
 } from '../../../data';
+import { Collapse } from 'bootstrap';
+// Animations removed: GSAP/ScrollTrigger not used
 
-const Trailblazers = () => {
+const Achievers = () => {
   const [activeFilter, setActiveFilter] = useState('ALL');
 
   const achievers = [
@@ -213,34 +215,68 @@ const Trailblazers = () => {
   const filters = ['ALL', 'Class 10', 'Class 12'];
 
   const filteredAchievers = (activeFilter === 'ALL' 
-    ? achievers.sort((a, b) => {
-        // Sort by class first (10 before 12)
-        if (a.class !== b.class) {
-          return parseInt(a.class) - parseInt(b.class);
-        }
-        // Then by percentage (highest first)
-        return b.percentage - a.percentage;
-      })
+    ? achievers
+        .slice()
+        .sort((a, b) => b.percentage - a.percentage)
     : achievers.filter(achiever => achiever.class === activeFilter.split(' ')[1])
         .sort((a, b) => b.percentage - a.percentage)
   );
 
+  // Simple autoplay carousel: smooth RAF loop translating the track
+  const containerRef = useRef(null)
+  const innerRef = useRef(null)
+  const pausedRef = useRef(false)
+
+  useEffect(() => {
+    const container = containerRef.current
+    const inner = innerRef.current
+    if (!container || !inner) return
+
+    let rafId = null
+    let lastTime = null
+    const speed = 0.05 // pixels per ms (50px/sec)
+
+    function step(time) {
+      if (pausedRef.current) {
+        lastTime = time
+        rafId = requestAnimationFrame(step)
+        return
+      }
+
+      if (lastTime == null) lastTime = time
+      const delta = time - lastTime
+      lastTime = time
+
+      const currentOffset = Number(inner.dataset.offset || '0')
+      const nextOffset = currentOffset + speed * delta
+
+      // reset when we've scrolled half (since items duplicated)
+      const halfWidth = inner.scrollWidth / 2
+      const wrappedOffset = halfWidth > 0 ? nextOffset % halfWidth : nextOffset
+      inner.dataset.offset = String(wrappedOffset)
+      inner.style.transform = `translateX(-${wrappedOffset}px)`
+
+      if (nextOffset >= halfWidth && halfWidth > 0) {
+        inner.dataset.offset = '0'
+        inner.style.transform = 'translateX(0px)'
+      }
+
+      rafId = requestAnimationFrame(step)
+    }
+
+    rafId = requestAnimationFrame(step)
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+    }
+  }, [/* run once or when filtered content changes */ filteredAchievers.length, activeFilter])
+
   return (
-    <section className="py-5" id="trailblazers" style={{ background: 'white', overflow: 'hidden' }}>
+    <section className="py-5" id="achievers" style={{ background: 'white', overflow: 'hidden' }}>
       <div className="container">
         <div className="mb-5 text-center">
-          <div 
-            className="d-inline-block px-4 py-2 rounded-pill mb-3"
-            style={{
-              background: '#083D77',
-              boxShadow: '0 4px 15px rgba(8, 61, 119, 0.3)'
-            }}
-          >
-            <span style={{ color: 'white', fontWeight: '600', fontSize: '1.5rem', letterSpacing: '1px' }}>
-             MEET OUR ACHIEVERS
-            </span>
-          </div>
-          <p className="lead text-center " style={{ color: '#2811bdff', maxWidth: '700px', margin: '0 auto 1.5rem' }}>
+         <h1 style={{color: '#276eb9'}}>MEET OUR ACHIEVERS</h1>
+          <p className="lead text-center " style={{ color: 'rgb(21, 78, 124)', maxWidth: '700px', margin: '0 auto 1.5rem', fontWeight:'300px' }}>
             Celebrating the success stories of our brilliant students who have made us proud
           </p>
 
@@ -253,8 +289,8 @@ const Trailblazers = () => {
                 style={{
                   padding: '0.6rem 1.8rem',
                   borderRadius: '30px',
-                  border: `2px solid ${activeFilter === filter ? '#083D77' : '#ddd'}`,
-                  background: activeFilter === filter ? '#083D77' : 'white',
+                  border: `2px solid ${activeFilter === filter ? '#276eb9' : '#ddd'}`,
+                  background: activeFilter === filter ? '#276eb9' : 'white',
                   color: activeFilter === filter ? 'white' : '#666',
                   fontWeight: '600',
                   fontSize: '1rem',
@@ -265,7 +301,7 @@ const Trailblazers = () => {
                 }}
                 onMouseEnter={(e) => {
                   if (activeFilter !== filter) {
-                    e.currentTarget.style.borderColor = '#083D77';
+                    e.currentTarget.style.borderColor = '#276eb9';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                   }
                 }}
@@ -283,17 +319,22 @@ const Trailblazers = () => {
         </div>
         
         {/* Horizontal Scrolling Carousel */}
-        <div style={{ 
-          position: 'relative',
-          width: '100%',
-          overflow: 'hidden'
-        }}>
+        <div
+          ref={containerRef}
+          onMouseEnter={() => { pausedRef.current = true }}
+          onMouseLeave={() => { pausedRef.current = false }}
+          style={{
+            position: 'relative',
+            width: '100%',
+            overflow: 'hidden'
+          }}>
           <div 
+            ref={innerRef}
             style={{
               display: 'flex',
               gap: '1.5rem',
-              animation: `scroll ${filteredAchievers.length * 8}s linear infinite`,
-              width: 'max-content'
+              width: 'max-content',
+              willChange: 'transform'
             }}
           >
             {/* Duplicate cards for seamless loop */}
@@ -310,43 +351,25 @@ const Trailblazers = () => {
                   style={{
                     borderRadius: '20px',
                     overflow: 'hidden',
-                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer',
-                    border: '2px solid #083D77'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-10px)';
-                    e.currentTarget.style.boxShadow = '0 15px 40px rgba(8, 61, 119, 0.3)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(8, 61, 119, 0.15)';
+                    background: 'white',
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+                    cursor: 'default',
+                    border: '2px solid #276eb9'
                   }}
                 >
-                  <div className="card-body p-3">
-                    <div className="text-center mb-2">
-                      {/* Avatar - Rectangular shape with more height */}
-                      <div 
-                        className="mx-auto mb-3 position-relative overflow-hidden"
-                        style={{
-                          width: '100%',
-                          height: '280px',
-                          background: '#EAF6FF',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          boxShadow: '0 8px 25px rgba(8, 61, 119, 0.3)',
-                          borderRadius: '15px'
-                        }}
-                      >
-                        {achiever.image ? (
+                  <div className="card-body p-0">
+                    <div className="text-center px-3 pt-3 pb-3">
+                      {/* Avatar - plain image to keep the photo's own border */}
+                      <div className="mx-auto mb-3" style={{ maxWidth: '100%' }}>
+                          {achiever.image ? (
                           <img
                             src={achiever.image}
                             alt={achiever.name}
+                            loading="lazy"
                             style={{
                               width: '100%',
-                              height: '100%',
+                              height: 'auto',
+                              maxHeight: '210px',
                               objectFit: 'contain',
                               objectPosition: 'center center',
                               display: 'block'
@@ -363,46 +386,48 @@ const Trailblazers = () => {
                           </div>
                         )}
                       </div>
-                      <h5 className="fw-bold mb-2" style={{ color: '#083D77', fontFamily: '"Poppins", sans-serif', fontSize: '1.15rem' }}>
+                      <h5 className="fw-bold mb-2" style={{ color: '#111827', fontFamily: '"Poppins", sans-serif', fontSize: '1.25rem' }}>
                         {achiever.name}
                       </h5>
                       <div className="mb-2">
                         <span 
-                          className="badge px-3 py-2"
+                          className="d-inline-block px-3 py-2"
                           style={{
-                            background: '#083D77',
-                            fontSize: '0.9rem',
-                            fontWeight: '600',
-                            borderRadius: '10px',
-                            color: 'white'
+                            background: '#276eb9',
+                            fontSize: '0.95rem',
+                            fontWeight: '700',
+                            borderRadius: '14px',
+                            color: 'white',
+                            lineHeight: 1.15
                           }}
                         >
                           {achiever.achievement}
                         </span>
                       </div>
                       <span 
-                        className="badge px-2 py-1"
+                        className="d-inline-block px-3 py-2"
                         style={{
                           background: 'white',
-                          color: '#083D77',
-                          fontSize: '0.75rem',
+                          color: '#276eb9',
+                            fontSize: '0.85rem',
                           fontWeight: '600',
-                          borderRadius: '8px',
-                          border: '1px solid #083D77'
+                          borderRadius: '12px',
+                          border: '1px solid #9cc4ee'
                         }}
                       >
                         Year: {achiever.year}
                       </span>
                     </div>
-                    <div className="position-relative pt-3" style={{ borderTop: '2px solid #E6F3FF' }}>
+                    <div className="position-relative px-4 pb-3 pt-3" style={{ borderTop: '1px solid #E5EEF9' }}>
                       <p 
                         className="fst-italic mb-0"
                         style={{ 
-                          color: '#000000',
+                          color: '#444444',
                           fontSize: '0.95rem',
-                          lineHeight: '1.7',
+                          lineHeight: '1.6',
                           textAlign: 'center',
-                          padding: '0.5rem 0'
+                          padding: '0.25rem 0',
+                          fontWeight: '400'
                         }}
                       >
                         {achiever.testimonial}
@@ -416,19 +441,9 @@ const Trailblazers = () => {
         </div>
       </div>
 
-      {/* CSS Animation */}
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(calc(-320px * ${filteredAchievers.length} - ${filteredAchievers.length * 1.5}rem));
-          }
-        }
-      `}</style>4
+      {/* Animations removed for static display */}
     </section>
   );
 };
 
-export default Trailblazers;
+export default Achievers;

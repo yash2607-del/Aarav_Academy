@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FaUserGraduate, FaTrophy, FaUsers, FaChartLine, FaClock, FaBook, FaShieldAlt, FaComments } from 'react-icons/fa';
 import aboutUs from '../../assets/hero/about_us.png';
 
 function WhyChooseUs({ onNavigate }) {
+  const cardRefs = useRef([]);
+  const sectionRef = useRef(null);
+
   const features = [
     {
       icon: <FaBook />,
@@ -46,29 +49,109 @@ function WhyChooseUs({ onNavigate }) {
     }
   ];
 
+  useEffect(() => {
+    const cards = cardRefs.current.filter(Boolean);
+    if (!cards.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: '0px 0px -8% 0px'
+      }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+
+    return () => {
+      cards.forEach((card) => observer.unobserve(card));
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section className="py-5" style={{ 
+    <section ref={sectionRef} id="programs" className="py-5" style={{ 
       background: 'white',
       position: 'relative'
     }}>
       <div className="container py-4">
+        <style>{`
+          .feature-card-reveal {
+            opacity: 0;
+            transform: translateY(34px) scale(0.96) rotateX(8deg);
+            filter: blur(6px);
+            transition:
+              opacity 700ms ease,
+              transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              filter 700ms ease,
+              box-shadow 250ms ease,
+              border-color 250ms ease;
+            transform-origin: center bottom;
+            will-change: opacity, transform, filter;
+          }
+
+          .feature-card-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1) rotateX(0deg);
+            filter: blur(0);
+          }
+
+          .feature-card-reveal:hover {
+            animation: featureCardFloat 1.1s ease-in-out infinite;
+          }
+
+          .feature-card-shine {
+            opacity: 0;
+            transition: opacity 250ms ease;
+          }
+
+          .feature-card-reveal:hover .feature-card-shine {
+            opacity: 1;
+            animation: featureShineSweep 1.3s ease forwards;
+          }
+
+          @keyframes featureCardFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.01); }
+          }
+
+          @keyframes featureShineSweep {
+            0% { transform: translateX(-40%) rotate(45deg); }
+            100% { transform: translateX(40%) rotate(45deg); }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .feature-card-reveal,
+            .feature-card-reveal.is-visible,
+            .feature-card-reveal:hover,
+            .feature-card-reveal:hover .feature-card-shine {
+              opacity: 1;
+              transform: none;
+              filter: none;
+              animation: none;
+              transition: none;
+            }
+          }
+        `}</style>
         <div className="text-center mb-5">
-          <div className="d-inline-block mb-3">
-          
-          </div>
-          <h2 className="display-3 fw-bold mb-4" style={{
-            color: '#083D77',
+          <h1 className="display-3 fw-bold mb-4" style={{
+            color: '#276eb9',
             fontFamily: '"Poppins", "Segoe UI", system-ui, sans-serif',
             letterSpacing: '-0.02em'
           }}>
             What Makes Us Different
-          </h2>
+          </h1>
           <p className="lead mx-auto" style={{ 
             maxWidth: '650px',
             fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif',
-            fontSize: '1.15rem',
+            fontSize: '1.40rem',
+            fontWeight: '100px',
             lineHeight: '1.7',
-            color: '#083D77'
+            color: '#276eb9'
           }}>
             Experience excellence in education with our unique approach and commitment to student success
           </p>
@@ -78,14 +161,16 @@ function WhyChooseUs({ onNavigate }) {
           {features.map((feature, index) => (
             <div key={index} className="col-lg-3 col-md-6">
               <div 
-                className="card h-100 border-0 position-relative overflow-hidden"
+                ref={(node) => { cardRefs.current[index] = node; }}
+                className="card h-100 border-0 position-relative overflow-hidden feature-card-reveal"
                 style={{
                   background: '#276eb9',
-                  borderRadius: '20px',
+                  borderRadius: '0',
                   boxShadow: '0 10px 40px rgba(8, 61, 119, 0.3)',
                   transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                   cursor: 'pointer',
-                  border: '2px solid rgba(8, 61, 119, 0.5)'
+                  border: '2px solid rgba(8, 61, 119, 0.5)',
+                  transitionDelay: `${index * 90}ms`
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-10px)';
@@ -120,7 +205,7 @@ function WhyChooseUs({ onNavigate }) {
                     <div 
                       style={{
                         fontSize: '1.6rem',
-                        color: '#083D77',
+                        color: '#276eb9',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center'
@@ -152,7 +237,7 @@ function WhyChooseUs({ onNavigate }) {
 
                 {/* Shine Effect */}
                 <div 
-                  className="position-absolute"
+                  className="feature-card-shine position-absolute"
                   style={{
                     top: '-50%',
                     left: '-50%',
@@ -166,96 +251,7 @@ function WhyChooseUs({ onNavigate }) {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Bottom CTA Banner */}
-        <div 
-          className="mt-5 position-relative overflow-hidden"
-          style={{
-            background: 'linear-gradient(90deg, #2a5f7e 0%, #2E5C8A 100%)',
-            borderRadius: '0',
-            minHeight: '400px',
-            boxShadow: '0 10px 40px rgba(46, 92, 138, 0.2)',
-            marginLeft: '-50vw',
-            marginRight: '-50vw',
-            left: '50%',
-            right: '50%',
-            width: '100vw',
-            position: 'relative'
-          }}
-        >
-          <div className="container-fluid px-0">
-            <div className="row align-items-center g-0" style={{ minHeight: '400px' }}>
-              {/* Left - Student Image */}
-              <div className="col-lg-3 d-none d-lg-block" style={{ height: '400px', overflow: 'hidden' }}>
-                <img 
-                  src={aboutUs} 
-                  alt="Student"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center top'
-                  }}
-                />
-              </div>
-
-              {/* Center - Heading */}
-              <div className="col-lg-6 text-center py-5 px-5">
-                <h2 
-                  className="fw-bold mb-0"
-                  style={{
-                    color: 'white',
-                    fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-                    fontFamily: '"Poppins", sans-serif',
-                    letterSpacing: '-0.02em',
-                    lineHeight: '1.2'
-                  }}
-                >
-                  Unlock Your Potential with Aarav Academy!
-                </h2>
-              </div>
-
-              {/* Right - Button */}
-              <div className="col-lg-3 text-center text-lg-center py-5 px-5">
-                <button
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    if (typeof onNavigate === 'function') {
-                      setTimeout(() => {
-                        onNavigate('study-notes');
-                      }, 300);
-                    }
-                  }}
-                  className="btn btn-lg px-5 py-4 fw-semibold"
-                  style={{
-                    background: '#083D77',
-                    border: 'none',
-                    color: 'white',
-                    borderRadius: '12px',
-                    boxShadow: '0 6px 20px rgba(8, 61, 119, 0.5)',
-                    transition: 'all 0.3s ease',
-                    fontSize: '1.25rem',
-                    fontFamily: '"Inter", sans-serif',
-                    whiteSpace: 'nowrap'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(8, 61, 119, 0.7)';
-                    e.currentTarget.style.background = '#0a4d94';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.5)';
-                    e.currentTarget.style.background = '#083D77';
-                  }}
-                >
-                  Explore Courses
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        </div>        
       </div>
     </section>
   );

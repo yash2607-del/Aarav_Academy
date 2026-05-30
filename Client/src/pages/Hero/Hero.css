@@ -22,7 +22,7 @@
 
 .hero-title {
   font-size: 3.5rem;
-  color: #2E5C8A;
+  color: #276eb9;
   margin-bottom: 1rem;
   font-weight: 800;
   line-height: 1.2;
@@ -72,7 +72,7 @@
 
 .feature-item h3 {
   font-size: 1.2rem;
-  color: #2E5C8A;
+  color: #276eb9;
   margin-bottom: 8px;
   font-weight: 600;
 }
@@ -88,7 +88,7 @@
 }
 
 .image-placeholder {
-  background: linear-gradient(135deg, #4A90E2 0%, #2E5C8A 100%);
+  background: linear-gradient(135deg, #4A90E2 0%, #276eb9 100%);
   border-radius: 20px;
   height: 500px;
   display: flex;
@@ -178,7 +178,7 @@
 
 /* Result Button */
 .hero-result-btn {
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #276eb9 0%, #4A90E2 100%);
   color: white;
   border: none;
   padding: 0.875rem 2rem;
@@ -186,7 +186,7 @@
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(30, 58, 138, 0.4);
+  box-shadow: 0 4px 20px rgba(39, 110, 185, 0.4);
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -196,8 +196,8 @@
 
 .hero-result-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(30, 58, 138, 0.5);
-  background: linear-gradient(135deg, #1e40af 0%, #60a5fa 100%);
+  box-shadow: 0 8px 30px rgba(39, 110, 185, 0.5);
+  background: linear-gradient(135deg, #276eb9 0%, #60a5fa 100%);
 }
 
 /* Animated Sparkles - Oval with Sharp Points */

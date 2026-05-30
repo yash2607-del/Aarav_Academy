@@ -22,13 +22,12 @@ function Hero({ onNavigate }) {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  // Auto-scroll carousel every 4 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
+    const intervalId = window.setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 4000);
 
-    return () => clearInterval(interval);
+    return () => window.clearInterval(intervalId);
   }, []);
 
   return (
@@ -36,14 +35,14 @@ function Hero({ onNavigate }) {
       className="hero-section position-relative overflow-hidden" 
       id="home" 
       style={{ 
-        paddingTop: '100px',
+        paddingTop: '12px',
         width: '100%'
       }}
     >
       <style>{`
         @media (max-width: 991.98px) {
           .hero-section {
-            padding-top: 120px !important;
+            padding-top: 32px !important;
           }
           .carousel-arrow {
             width: 35px !important;
@@ -68,15 +67,14 @@ function Hero({ onNavigate }) {
                 <div
                   key={slide.id}
                   style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    opacity: currentSlide === index ? 1 : 0,
-                    transition: 'opacity 0.6s ease-in-out',
-                    pointerEvents: currentSlide === index ? 'auto' : 'none'
-                  }}
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      opacity: currentSlide === index ? 1 : 0,
+                      pointerEvents: currentSlide === index ? 'auto' : 'none'
+                    }}
                 >
                   <img 
                     src={slide.image}
@@ -115,19 +113,11 @@ function Hero({ onNavigate }) {
           justifyContent: 'center',
           cursor: 'pointer',
           boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
-          transition: 'all 0.3s ease',
           zIndex: 10
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-          e.currentTarget.style.background = 'white';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-        }}
+       
       >
-        <FaChevronLeft style={{ fontSize: '1.2rem', color: '#083D77' }} />
+        <FaChevronLeft style={{ fontSize: '1.2rem', color: '#276eb9' }} />
       </button>
 
       <button
@@ -148,19 +138,11 @@ function Hero({ onNavigate }) {
           justifyContent: 'center',
           cursor: 'pointer',
           boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
-          transition: 'all 0.3s ease',
           zIndex: 10
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-          e.currentTarget.style.background = 'white';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-        }}
+       
       >
-        <FaChevronRight style={{ fontSize: '1.2rem', color: '#083D77' }} />
+        <FaChevronRight style={{ fontSize: '1.2rem', color: '#276eb9' }} />
       </button>
 
       {/* Slide Indicators */}
@@ -177,21 +159,17 @@ function Hero({ onNavigate }) {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            style={{
+              style={{
               width: currentSlide === index ? '40px' : '12px',
               height: '12px',
               borderRadius: '6px',
               border: 'none',
-              background: currentSlide === index ? '#083D77' : 'rgba(8, 61, 119, 0.4)',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              boxShadow: currentSlide === index ? '0 2px 8px rgba(8, 61, 119, 0.4)' : 'none'
+              background: currentSlide === index ? '#276eb9' : 'rgba(39, 110, 185, 0.4)',
+              cursor: 'pointer'
             }}
           />
         ))}
       </div>
-
-    
     </section>
   );
 }

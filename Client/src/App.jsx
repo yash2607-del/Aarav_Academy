@@ -6,7 +6,7 @@ import YouTubeVideos from './pages/Youtube/YouTubeVideos'
 import AboutPage from './pages/About/AboutPage'
 import Stats from './pages/Stats/Stats'
 import WhyChooseUs from './pages/WhyChoseUs/WhyChooseUs'
-import Trailblazers from './pages/Achievers/Achievers'
+import Achievers from './pages/Achievers/Achievers'
 import Gallery from './pages/Gallery/Gallery'
 import FAQ from './pages/Faq/FAQ'
 import Contact from './pages/contact/Contact'
@@ -16,7 +16,7 @@ import Assignments from './pages/Resources/Assignments'
 import SamplePapers from './pages/Resources/SamplePapers'
 import TestSeries from './pages/Resources/TestSeries'
 import StudyNotes from './pages/Resources/StudyNotes'
-import PWAInstallPrompt from './components/PWAInstallPrompt'
+// Removed Lenis/GSAP to disable smooth-scrolling/scroll-trigger animations
 
 function App() {
   const [currentView, setCurrentView] = useState(() => {
@@ -29,6 +29,8 @@ function App() {
     localStorage.setItem('currentView', currentView)
   }, [currentView])
 
+  // Lenis/GSAP removed — no global smooth-scroll or scroll-trigger behavior
+
   return (
     <div className="app">
       <Navbar onNavigate={(view) => setCurrentView(view)} currentView={currentView} />
@@ -38,7 +40,7 @@ function App() {
           <Hero onNavigate={(view) => setCurrentView(view)} />
           <YouTubeVideos />
           <Stats />
-          <Trailblazers />
+          <Achievers />
           <WhyChooseUs onNavigate={(view) => setCurrentView(view)} />
           <Gallery />
           <FAQ />
@@ -70,8 +72,7 @@ function App() {
         <TestSeries onBackToHome={() => setCurrentView('home')} />
       )}
 
-      <Footer />
-      <PWAInstallPrompt />
+      <Footer onNavigate={(view) => setCurrentView(view)} compact={currentView === 'home'} />
     </div>
   )
 }

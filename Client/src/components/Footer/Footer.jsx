@@ -1,7 +1,7 @@
 import { FaFacebook, FaYoutube, FaInstagram, FaTwitter, FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowUp } from 'react-icons/fa';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ onNavigate }) => {
   const currentYear = new Date().getFullYear();
 
   const scrollToSection = (sectionId) => {
@@ -13,13 +13,20 @@ const Footer = () => {
 
   return (
     <footer className="footer" style={{ position: 'relative' }}>
+      <div className="footer-bg footer-bg-one" />
+      <div className="footer-bg footer-bg-two" />
       <div className="footer-container">
         <div className="footer-content">
-          <div className="footer-section">
+          <div className="footer-section footer-brand-section">
             <h3>Aarav Academy</h3>
             <p className="footer-about">
               Dedicated to providing quality education and shaping the future of students from Nursery to 12th grade with CBSE curriculum.
             </p>
+            <div className="footer-pill-row">
+              <span>Nursery - XII</span>
+              <span>CBSE</span>
+              <span>IIT Foundation</span>
+            </div>
             <div className="social-links" style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
               <a href="https://www.youtube.com/@aaravacademy9551" target="_blank" rel="noopener noreferrer" className="social-link">
                 <FaYoutube />
@@ -36,11 +43,36 @@ const Footer = () => {
           <div className="footer-section">
             <h3>Quick Links</h3>
             <ul className="footer-links">
-              <li><a onClick={() => scrollToSection('home')}>Home</a></li>
-              <li><a onClick={() => scrollToSection('programs')}>Our Programs</a></li>
-              <li><a onClick={() => scrollToSection('Trailblazers')}>Trailblazers</a></li>
-              <li><a onClick={() => scrollToSection('team')}>Our Team</a></li>
-              <li><a onClick={() => scrollToSection('contact')}>Contact Us</a></li>
+              <li>
+                <a href="#home" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('home'); else scrollToSection('home'); }}>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#study-notes" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('study-notes'); }}>
+                  Study Notes
+                </a>
+              </li>
+              <li>
+                <a href="#ncert-solutions" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('ncert-solutions'); }}>
+                  NCERT Solutions
+                </a>
+              </li>
+              <li>
+                <a href="#assignments" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('assignments'); }}>
+                  Assignments
+                </a>
+              </li>
+              <li>
+                <a href="#sample-papers" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('sample-papers'); }}>
+                  Sample Papers
+                </a>
+              </li>
+              <li>
+                <a href="#about" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('about'); }}>
+                  About Us
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -55,7 +87,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="footer-section">
+          <div className="footer-section footer-contact-section">
             <h3>Contact Info</h3>
             <div className="footer-contact">
               <div className="contact-item">
@@ -65,7 +97,7 @@ const Footer = () => {
               <div className="contact-item">
                 <FaPhone className="contact-icon" style={{ transform: 'scaleX(-1)' }} />
                 <div>
-                  <p>Arvind Kumar: +91 9540772241</p>
+                  <p> +91 9540772241</p>
                 </div>
               </div>
               <div className="contact-item">
@@ -77,7 +109,8 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {currentYear} Aarav Academy. All Rights Reserved.</p>
+          <div className="footer-bottom-line" />
+          <p>&copy; {currentYear} Aarav Academy. All Rights Reserved. | Made by Yash Raj</p>
         </div>
       </div>
       
@@ -92,24 +125,24 @@ const Footer = () => {
           height: '55px',
           borderRadius: '50%',
           background: 'white',
-          border: '2px solid #083D77',
-          color: '#083D77',
+          border: '2px solid #276eb9',
+          color: '#276eb9',
           fontSize: '1.5rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          boxShadow: '0 4px 15px rgba(8, 61, 119, 0.4)',
+          boxShadow: '0 4px 15px rgba(39, 110, 185, 0.4)',
           transition: 'all 0.3s ease',
           zIndex: 1000
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'scale(1.1) translateY(-3px)';
-          e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.6)';
+          e.currentTarget.style.boxShadow = '0 6px 20px rgba(39, 110, 185, 0.6)';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'scale(1) translateY(0)';
-          e.currentTarget.style.boxShadow = '0 4px 15px rgba(8, 61, 119, 0.4)';
+          e.currentTarget.style.boxShadow = '0 4px 15px rgba(39, 110, 185, 0.4)';
         }}
         title="Back to Top"
       >

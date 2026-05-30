@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-import logo from '../../assets/logo/logo_nobg.png'
 
 
 const Navbar = ({ onNavigate, currentView }) => {
   const [scrolled, setScrolled] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -16,7 +14,6 @@ const Navbar = ({ onNavigate, currentView }) => {
   }, []);
 
   const scrollToSection = (sectionId) => {
-    // First scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     setTimeout(() => {
@@ -25,8 +22,6 @@ const Navbar = ({ onNavigate, currentView }) => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }, 300);
-    
-    setShowDropdown(false);
   };
 
   const linkBaseStyle = {
@@ -44,13 +39,13 @@ const Navbar = ({ onNavigate, currentView }) => {
 
   const handleEnter = (e, itemId) => {
     if (currentView !== itemId) {
-      e.target.style.color = '#000000';
+      e.currentTarget.style.color = '#000000';
     }
   };
 
   const handleLeave = (e, itemId) => {
     if (currentView !== itemId) {
-      e.target.style.color = '#333';
+      e.currentTarget.style.color = '#333';
     }
   };
 
@@ -60,7 +55,7 @@ const Navbar = ({ onNavigate, currentView }) => {
     { label: 'NCERT Solution', id: 'ncert-solutions' },
     { label: 'Assignments', id: 'assignments' },
     { label: 'Sample Papers', id: 'sample-papers' },
-    { label: ' Test Series', id: 'test-series' },
+    { label: 'Test Series', id: 'test-series' },
     { label: 'About Us', id: 'about' }
   ];
 
@@ -79,7 +74,7 @@ const Navbar = ({ onNavigate, currentView }) => {
           .navbar-toggler {
             order: 1;
             margin: 0 !important;
-            border: 2px solid #083D77;
+            border: 2px solid #276eb9;
             padding: 0.3rem 0.5rem;
             flex-shrink: 0;
           }
@@ -146,7 +141,7 @@ const Navbar = ({ onNavigate, currentView }) => {
             z-index: 1000;
           }
           .navbar-toggler:focus {
-            box-shadow: 0 0 0 0.2rem rgba(8, 61, 119, 0.25);
+            box-shadow: 0 0 0 0.2rem rgba(39, 110, 185, 0.25);
           }
           nav.navbar {
             padding: 0.5rem 0 !important;
@@ -162,9 +157,10 @@ const Navbar = ({ onNavigate, currentView }) => {
       className={`navbar navbar-expand-lg navbar-light fixed-top ${scrolled ? 'shadow' : ''}`}
       style={{
         background: 'white',
-        transition: 'all 0.3s ease',
-        padding: '0.75rem 0',
-        borderBottom: '1px solid #e5e5e5'
+        transition: 'all 0.22s ease',
+        padding: '0.35rem 0',
+        borderBottom: '1px solid #eaeaea',
+        minHeight: '64px'
       }}
     >
       <div className="container-fluid px-3">
@@ -193,37 +189,27 @@ const Navbar = ({ onNavigate, currentView }) => {
               scrollToSection('home');
             }}
           >
-          
-          <div className="logo-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-            <span style={{
-              fontSize:'1.8rem',
-              fontWeight: '700',
-              color: '#083D77',
-              letterSpacing: '0.5px',
-              lineHeight: '1.2'
-            }}>
-              Aarav Academy
-            </span>
-            <span style={{ 
-              fontSize: '1.05rem', 
-              fontWeight: '500',
-              color: '#666',
-              letterSpacing: '0.5px',
-              lineHeight: '1.3'
-            }}>
-              (A unit of Aarav Student Hub)
-            </span>
-            <span style={{ 
-              fontSize: '1rem', 
-              fontWeight: '600',
-              color: '#083D77',
-              letterSpacing: '1.5px',
-              lineHeight: '1.3'
-            }}>
-              VI | VII | VIII | IX | X | XI | XII 
-            </span>
-          </div>
-        </a>
+            <div className="logo-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: '1' }}>
+              <span style={{
+                fontSize: '1.15rem',
+                fontWeight: '700',
+                color: '#276eb9',
+                letterSpacing: '0.3px',
+                lineHeight: '1'
+              }}>
+                Aarav Academy
+              </span>
+              <span style={{ 
+                fontSize: '0.75rem', 
+                fontWeight: '500',
+                color: '#666',
+                letterSpacing: '0.2px',
+                lineHeight: '1'
+              }}>
+                (A unit of Aarav Student Hub)
+              </span>
+            </div>
+          </a>
         
         <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'show' : ''}`} id="navbarNav">
           <ul
@@ -245,9 +231,9 @@ const Navbar = ({ onNavigate, currentView }) => {
                   }}
                   style={{
                     ...linkBaseStyle,
-                    background: currentView === item.id ? '#083D77' : 'transparent',
+                    background: currentView === item.id ? '#276eb9' : 'transparent',
                     color: currentView === item.id ? 'white' : '#333',
-                    boxShadow: currentView === item.id ? '0 4px 10px rgba(8, 61, 119, 0.3)' : 'none'
+                    boxShadow: currentView === item.id ? '0 4px 10px rgba(39, 110, 185, 0.3)' : 'none'
                   }}
                   onMouseEnter={(e) => handleEnter(e, item.id)}
                   onMouseLeave={(e) => handleLeave(e, item.id)}
@@ -275,15 +261,15 @@ const Navbar = ({ onNavigate, currentView }) => {
                 }}
                 className="btn w-100"
                 style={{
-                  background: '#083D77',
+                  background: '#276eb9',
                   color: 'white',
                   border: 'none',
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '50px',
+                  padding: '0.5rem 0.9rem',
+                  borderRadius: '28px',
                   fontWeight: '700',
-                  fontSize: '0.95rem',
+                  fontSize: '0.88rem',
                   fontFamily: '"Inter", sans-serif',
-                  boxShadow: '0 6px 20px rgba(8, 61, 119, 0.4)',
+                  boxShadow: '0 6px 20px rgba(39, 110, 185, 0.4)',
                   textTransform: 'none',
                   letterSpacing: '0.3px'
                 }}
@@ -307,30 +293,30 @@ const Navbar = ({ onNavigate, currentView }) => {
             }}
             className="mt-2 mt-lg-0 mx-auto mx-lg-0 d-none d-lg-block"
             style={{
-              background: '#083D77',
+              background: '#276eb9',
               color: 'white',
               border: 'none',
-              padding: '0.8rem 0.8rem',
+              padding: '0.5rem 0.95rem',
               fontWeight: '700',
-              fontSize: '0.95rem',
+              fontSize: '0.9rem',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
               whiteSpace: 'nowrap',
               fontFamily: '"Inter", sans-serif',
-              boxShadow: '0 6px 20px rgba(8, 61, 119, 0.4)',
-              marginBottom: '1rem',
+              boxShadow: '0 6px 14px rgba(39, 110, 185, 0.32)',
+              marginBottom: '0',
               textTransform: 'none',
               letterSpacing: '0.3px'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#0a4d94';
+              e.currentTarget.style.background = '#1f5f9f';
               e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 8px 25px rgba(8, 61, 119, 0.5)';
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(39, 110, 185, 0.5)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#083D77';
+              e.currentTarget.style.background = '#276eb9';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.4)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(39, 110, 185, 0.4)';
             }}
           >
             Request a Callback

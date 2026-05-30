@@ -75,8 +75,8 @@ const Contact = () => {
     <section className="contact" id="contact">
       <div className="contact-container">
         <div className="section-header text-center">
-          <h1 className="section-title fw-bold" style= {{color: '#083D77' }}>Get In Touch</h1>
-          <h6 className="section-description" style= {{color: '#083D77' }} >
+          <h1 className="section-title fw-bold" style= {{color: '#276eb9' }}>Get In Touch</h1>
+          <h6 className="section-description" style= {{color: '#276eb9' }} >
             Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
           </h6>
         </div>

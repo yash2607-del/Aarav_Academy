@@ -1,9 +1,9 @@
-.trailblazers {
+.achievers {
   background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
   padding: 100px 50px;
 }
 
-.trailblazers-container {
+.achievers-container {
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -19,7 +19,6 @@
   padding: 35px 30px;
   border-radius: 20px;
   box-shadow: 0 5px 20px rgba(74, 144, 226, 0.15);
-  transition: all 0.4s ease;
   text-align: center;
   border: 2px solid transparent;
   position: relative;
@@ -37,9 +36,7 @@
 }
 
 .achiever-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 35px rgba(74, 144, 226, 0.25);
-  border-color: #4A90E2;
+  /* hover animation removed */
 }
 
 .achiever-icon {
@@ -53,7 +50,7 @@
 
 .achiever-name {
   font-size: 1.6rem;
-  color: #2E5C8A;
+  color: #276eb9;
   margin-bottom: 10px;
   font-weight: 700;
 }
@@ -67,7 +64,7 @@
 
 .achiever-year {
   display: inline-block;
-  background: linear-gradient(135deg, #4A90E2, #2E5C8A);
+  background: linear-gradient(135deg, #4A90E2, #276eb9);
   color: white;
   padding: 5px 20px;
   border-radius: 20px;
@@ -87,7 +84,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .trailblazers {
+  .achievers {
     padding: 60px 20px;
   }
 

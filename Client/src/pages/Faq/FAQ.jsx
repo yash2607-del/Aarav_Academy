@@ -39,7 +39,7 @@ function FAQ() {
       className="py-5" 
       id="faq" 
       style={{ 
-        background: 'linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%)',
+        background: 'linear-gradient(135deg, #eef6ff 0%, #e1f0ff 100%)',
         position: 'relative',
         overflow: 'hidden'
       }}
@@ -71,7 +71,7 @@ function FAQ() {
           <h2 
             className="fw-bold mb-3" 
             style={{
-              color: 'white',
+              color: '#114b8a',
               fontSize: 'clamp(2rem, 5vw, 3rem)',
               fontFamily: '"Poppins", "Segoe UI", system-ui, sans-serif',
               letterSpacing: '-0.02em'
@@ -82,7 +82,7 @@ function FAQ() {
           <p 
             className="mb-0" 
             style={{
-              color: 'rgba(255, 255, 255, 0.85)',
+              color: '#276eb9',
               fontSize: 'clamp(1rem, 2vw, 1.2rem)',
               fontFamily: '"Inter", "Segoe UI", system-ui, sans-serif'
             }}

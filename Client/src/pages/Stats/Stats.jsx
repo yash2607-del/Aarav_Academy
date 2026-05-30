@@ -76,7 +76,7 @@ function Stats() {
       ref={sectionRef}
       className="py-5"
       style={{
-        background: "#083D77",
+        background: "#276eb9",
         borderTop: "1px solid #dee2e6",
         borderBottom: "1px solid #dee2e6",
       }}

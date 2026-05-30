@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { FaBook, FaUsers, FaLightbulb, FaChartLine, FaTrophy, FaHeart, FaUserGraduate, FaRocket, FaArrowLeft } from 'react-icons/fa';
 import arvind from '../../assets/founder/arvind.jpeg';
 import reena from '../../assets/founder/reena.jpeg';
@@ -51,7 +51,7 @@ function AboutPage({ onBackToHome }) {
     }
   ];
 
-  const iconColor = '#083D77'; // Regal Navy Blue
+  const iconColor = '#276eb9'; // Brand Blue
   const iconBgColor = '#E8EFF7'; // Light blue background for icons
 
   const toggleAccordion = (index) => {
@@ -70,7 +70,7 @@ function AboutPage({ onBackToHome }) {
           width: '50px',
           height: '50px',
           borderRadius: '50%',
-          background: '#083D77',
+          background: '#276eb9',
           border: 'none',
           color: 'white',
           fontSize: '1.5rem',
@@ -78,17 +78,17 @@ function AboutPage({ onBackToHome }) {
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          boxShadow: '0 4px 15px rgba(8, 61, 119, 0.3)',
+          boxShadow: '0 4px 15px rgba(39, 110, 185, 0.3)',
           transition: 'all 0.3s ease',
           zIndex: 1000
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'scale(1.1)';
-          e.currentTarget.style.boxShadow = '0 6px 20px rgba(8, 61, 119, 0.5)';
+          e.currentTarget.style.boxShadow = '0 6px 20px rgba(39, 110, 185, 0.5)';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'scale(1)';
-          e.currentTarget.style.boxShadow = '0 4px 15px rgba(8, 61, 119, 0.3)';
+          e.currentTarget.style.boxShadow = '0 4px 15px rgba(39, 110, 185, 0.3)';
         }}
         title="Back to Home"
       >
@@ -97,13 +97,13 @@ function AboutPage({ onBackToHome }) {
       <div className="container py-4">
 
         {/* Founder Introduction Section */}
-        <div className="row align-items-center mb-5 py-4">
+        <div id="team" className="row align-items-center mb-5 py-4">
           {/* Left Content Section */}
           <div className="col-lg-5 mb-4 mb-lg-0">
             <h2
               className="fw-bold mb-4"
               style={{
-                color: '#083D77',
+                color: '#276eb9',
                 fontFamily: '"Poppins", sans-serif',
                 fontSize: 'clamp(2rem, 5vw, 3rem)',
                 fontWeight: 'bolder',
@@ -141,12 +141,12 @@ function AboutPage({ onBackToHome }) {
                         position: 'relative',
                         width: '300px',
                         height: '300px',
-                        background: '#083D77',
+                        background: '#276eb9',
                         borderRadius: '50%',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        boxShadow: '0 20px 40px rgba(8, 61, 119, 0.3)'
+                        boxShadow: '0 20px 40px rgba(39, 110, 185, 0.3)'
                       }}
                     >
                       <img
@@ -161,17 +161,17 @@ function AboutPage({ onBackToHome }) {
                         }}
                       />
                       {/* Decorative elements */}
-                      <div style={{ position: 'absolute', top: '5px', right: '15px', fontSize: '1.5rem' }}>📚</div>
-                      <div style={{ position: 'absolute', bottom: '20px', left: '5px', fontSize: '1.5rem' }}>✨</div>
-                      <div style={{ position: 'absolute', top: '50px', right: '-5px', fontSize: '1.5rem' }}>✈️</div>
-                      <div style={{ position: 'absolute', bottom: '60px', right: '-10px', fontSize: '1.5rem' }}>✖️</div>
+                      <div style={{ position: 'absolute', top: '5px', right: '15px', fontSize: '1.5rem' }}>ðŸ“š</div>
+                      <div style={{ position: 'absolute', bottom: '20px', left: '5px', fontSize: '1.5rem' }}>âœ¨</div>
+                      <div style={{ position: 'absolute', top: '50px', right: '-5px', fontSize: '1.5rem' }}>âœˆï¸</div>
+                      <div style={{ position: 'absolute', bottom: '60px', right: '-10px', fontSize: '1.5rem' }}>âœ–ï¸</div>
                     </div>
                   </div>
                   <div className="text-center mt-3">
                     <h4
                       className="fw-bold mb-1"
                       style={{
-                        color: '#083D77',
+                        color: '#276eb9',
                         fontFamily: '"Poppins", sans-serif',
                         fontSize: '1.3rem'
                       }}
@@ -211,17 +211,17 @@ function AboutPage({ onBackToHome }) {
               style={{
                 borderRadius: '25px',
                 overflow: 'hidden',
-                boxShadow: '0 15px 50px rgba(8, 61, 119, 0.2)',
-                border: '5px solid #083D77',
+                boxShadow: '0 15px 50px rgba(39, 110, 185, 0.2)',
+                border: '5px solid #276eb9',
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-10px)';
-                e.currentTarget.style.boxShadow = '0 20px 60px rgba(8, 61, 119, 0.3)';
+                e.currentTarget.style.boxShadow = '0 20px 60px rgba(39, 110, 185, 0.3)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 15px 50px rgba(8, 61, 119, 0.2)';
+                e.currentTarget.style.boxShadow = '0 15px 50px rgba(39, 110, 185, 0.2)';
               }}
             >
               <img
@@ -239,7 +239,7 @@ function AboutPage({ onBackToHome }) {
             <h2
               className="fw-bold mb-4"
               style={{
-                color: '#083D77',
+                color: '#276eb9',
                 fontFamily: '"Poppins", sans-serif',
                 fontSize: 'clamp(2.5rem, 5vw, 3rem)',
                 lineHeight: '1.2',
@@ -291,7 +291,7 @@ function AboutPage({ onBackToHome }) {
           <h1
             className="fw-bold text-center mb-5"
             style={{
-              color: '#083D77',
+              color: '#276eb9',
               fontFamily: '"Poppins", sans-serif',
               fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
               letterSpacing: '-0.02em'
@@ -536,7 +536,7 @@ function AboutPage({ onBackToHome }) {
           <h1
             className="fw-bold text-center mb-5"
             style={{
-              color: '#083D77',
+              color: '#276eb9',
               fontFamily: '"Poppins", sans-serif',
               fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
               letterSpacing: '-0.02em'
@@ -783,3 +783,4 @@ function AboutPage({ onBackToHome }) {
 }
 
 export default AboutPage;
+

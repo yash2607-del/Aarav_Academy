@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { CLASSES_STRUCTURE } from "../../data/classStructure";
 import {
   FaBook,
@@ -48,21 +48,21 @@ export const ResourcePageTemplate = ({
 
   const getSubjectGradient = (subjectId) => {
     const gradients = {
-      maths: "#083D77",
-      science: "#083D77",
-      physics: "#083D77",
-      chemistry: "#083D77",
-      sst: "#083D77",
-      english: "#083D77",
-      accounts: "#083D77",
-      economics: "#083D77",
-      business: "#083D77",
-      polity: "#083D77",
-      history: "#083D77",
-      geography: "#083D77",
-      biology: "#083D77",
+      maths: "#276eb9",
+      science: "#276eb9",
+      physics: "#276eb9",
+      chemistry: "#276eb9",
+      sst: "#276eb9",
+      english: "#276eb9",
+      accounts: "#276eb9",
+      economics: "#276eb9",
+      business: "#276eb9",
+      polity: "#276eb9",
+      history: "#276eb9",
+      geography: "#276eb9",
+      biology: "#276eb9",
     };
-    return gradients[subjectId] || "#083D77";
+    return gradients[subjectId] || "#276eb9";
   };
 
   const classes = classesData.map((cls) => ({
@@ -133,7 +133,7 @@ export const ResourcePageTemplate = ({
           width: "50px",
           height: "50px",
           borderRadius: "50%",
-          background: "#083D77",
+          background: "#276eb9",
           border: "none",
           color: "white",
           fontSize: "1.5rem",
@@ -141,17 +141,17 @@ export const ResourcePageTemplate = ({
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
-          boxShadow: "0 4px 15px rgba(8, 61, 119, 0.3)",
+          boxShadow: "0 4px 15px rgba(39, 110, 185, 0.3)",
           transition: "all 0.3s ease",
           zIndex: 1000,
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = "scale(1.1)";
-          e.currentTarget.style.boxShadow = "0 6px 20px rgba(8, 61, 119, 0.5)";
+          e.currentTarget.style.boxShadow = "0 6px 20px rgba(39, 110, 185, 0.5)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "0 4px 15px rgba(8, 61, 119, 0.3)";
+          e.currentTarget.style.boxShadow = "0 4px 15px rgba(39, 110, 185, 0.3)";
         }}
         title="Back to Home"
       >
@@ -166,7 +166,7 @@ export const ResourcePageTemplate = ({
           width: "400px",
           height: "400px",
           background:
-            "radial-gradient(circle, rgba(8, 61, 119, 0.1) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(39, 110, 185, 0.1) 0%, transparent 70%)",
           borderRadius: "50%",
           pointerEvents: "none",
         }}
@@ -179,7 +179,7 @@ export const ResourcePageTemplate = ({
           width: "500px",
           height: "500px",
           background:
-            "radial-gradient(circle, rgba(8, 61, 119, 0.08) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(39, 110, 185, 0.08) 0%, transparent 70%)",
           borderRadius: "50%",
           pointerEvents: "none",
         }}
@@ -194,11 +194,11 @@ export const ResourcePageTemplate = ({
           <div
             className="d-inline-flex align-items-center justify-content-center mb-3"
             style={{
-              background: "#083D77",
+              background: "#276eb9",
               width: "80px",
               height: "80px",
               borderRadius: "20px",
-              boxShadow: "0 10px 30px rgba(8, 61, 119, 0.3)",
+              boxShadow: "0 10px 30px rgba(39, 110, 185, 0.3)",
               animation: "float 3s ease-in-out infinite",
             }}
           >
@@ -207,7 +207,7 @@ export const ResourcePageTemplate = ({
           <h1
             className="fw-bold mb-2"
             style={{
-              color: "#083D77",
+              color: "#276eb9",
               fontFamily: '"Poppins", sans-serif',
               fontSize: "2.8rem",
               letterSpacing: "-0.5px",
@@ -233,7 +233,7 @@ export const ResourcePageTemplate = ({
           <div className="d-flex align-items-center mb-4">
             <div
               style={{
-                background: "#083D77",
+                background: "#276eb9",
                 width: "40px",
                 height: "40px",
                 borderRadius: "10px",
@@ -244,7 +244,7 @@ export const ResourcePageTemplate = ({
                 fontWeight: "bold",
                 fontSize: "1.2rem",
                 marginRight: "1rem",
-                boxShadow: "0 4px 15px rgba(8, 61, 119, 0.3)",
+                boxShadow: "0 4px 15px rgba(39, 110, 185, 0.3)",
               }}
             >
               1
@@ -254,7 +254,7 @@ export const ResourcePageTemplate = ({
                 className="fw-bold mb-0"
                 style={{
                   fontFamily: '"Poppins", sans-serif',
-                  color: "#083D77",
+                  color: "#276eb9",
                   fontSize: "1.5rem",
                 }}
               >
@@ -294,15 +294,15 @@ export const ResourcePageTemplate = ({
                     border: "none",
                     padding: "1.5rem 1rem",
                     background:
-                      selectedClassId === cls.id ? "#083D77" : "white",
+                      selectedClassId === cls.id ? "#276eb9" : "white",
                     boxShadow:
                       selectedClassId === cls.id
-                        ? "0 10px 30px rgba(8, 61, 119, 0.4)"
-                        : "0 5px 20px rgba(8, 61, 119, 0.15)",
+                        ? "0 10px 30px rgba(39, 110, 185, 0.4)"
+                        : "0 5px 20px rgba(39, 110, 185, 0.15)",
                     cursor: "pointer",
                     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                     border:
-                      selectedClassId === cls.id ? "none" : "2px solid #083D77",
+                      selectedClassId === cls.id ? "none" : "2px solid #276eb9",
                     transform:
                       selectedClassId === cls.id
                         ? "translateY(-5px) scale(1.02)"
@@ -328,7 +328,7 @@ export const ResourcePageTemplate = ({
                   <FaGraduationCap
                     style={{
                       fontSize: "2rem",
-                      color: selectedClassId === cls.id ? "white" : "#083D77",
+                      color: selectedClassId === cls.id ? "white" : "#276eb9",
                       marginBottom: "0.5rem",
                     }}
                   />
@@ -337,7 +337,7 @@ export const ResourcePageTemplate = ({
                       fontFamily: '"Poppins", sans-serif',
                       fontWeight: 700,
                       fontSize: "1.3rem",
-                      color: selectedClassId === cls.id ? "white" : "#083D77",
+                      color: selectedClassId === cls.id ? "white" : "#276eb9",
                       marginBottom: "0.2rem",
                     }}
                   >
@@ -376,7 +376,7 @@ export const ResourcePageTemplate = ({
             <div className="d-flex align-items-center mb-4">
               <div
                 style={{
-                  background: "#083D77",
+                  background: "#276eb9",
                   width: "40px",
                   height: "40px",
                   borderRadius: "10px",
@@ -387,7 +387,7 @@ export const ResourcePageTemplate = ({
                   fontWeight: "bold",
                   fontSize: "1.2rem",
                   marginRight: "1rem",
-                  boxShadow: "0 4px 15px rgba(8, 61, 119, 0.3)",
+                  boxShadow: "0 4px 15px rgba(39, 110, 185, 0.3)",
                 }}
               >
                 2
@@ -397,14 +397,14 @@ export const ResourcePageTemplate = ({
                   className="fw-bold mb-0"
                   style={{
                     fontFamily: '"Poppins", sans-serif',
-                    color: "#083D77",
+                    color: "#276eb9",
                     fontSize: "1.5rem",
                   }}
                 >
                   Choose Stream
                 </h4>
                 <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
-                  Class {selectedClass.id} • Select your stream
+                  Class {selectedClass.id} â€¢ Select your stream
                 </p>
               </div>
             </div>
@@ -435,17 +435,17 @@ export const ResourcePageTemplate = ({
                       border: "none",
                       padding: "1.5rem 1rem",
                       background:
-                        selectedStreamId === stream.id ? "#083D77" : "white",
+                        selectedStreamId === stream.id ? "#276eb9" : "white",
                       boxShadow:
                         selectedStreamId === stream.id
-                          ? "0 10px 30px rgba(8, 61, 119, 0.4)"
-                          : "0 5px 20px rgba(8, 61, 119, 0.15)",
+                          ? "0 10px 30px rgba(39, 110, 185, 0.4)"
+                          : "0 5px 20px rgba(39, 110, 185, 0.15)",
                       cursor: "pointer",
                       transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                       border:
                         selectedStreamId === stream.id
                           ? "none"
-                          : "2px solid #083D77",
+                          : "2px solid #276eb9",
                       transform:
                         selectedStreamId === stream.id
                           ? "translateY(-5px) scale(1.02)"
@@ -470,7 +470,7 @@ export const ResourcePageTemplate = ({
                       style={{
                         fontSize: "2rem",
                         color:
-                          selectedStreamId === stream.id ? "white" : "#083D77",
+                          selectedStreamId === stream.id ? "white" : "#276eb9",
                         marginBottom: "0.5rem",
                       }}
                     />
@@ -480,7 +480,7 @@ export const ResourcePageTemplate = ({
                         fontWeight: 700,
                         fontSize: "1.3rem",
                         color:
-                          selectedStreamId === stream.id ? "white" : "#083D77",
+                          selectedStreamId === stream.id ? "white" : "#276eb9",
                         marginBottom: "0.2rem",
                       }}
                     >
@@ -518,7 +518,7 @@ export const ResourcePageTemplate = ({
             <div className="d-flex align-items-center mb-4">
               <div
                 style={{
-                  background: "#083D77",
+                  background: "#276eb9",
                   width: "40px",
                   height: "40px",
                   borderRadius: "10px",
@@ -529,7 +529,7 @@ export const ResourcePageTemplate = ({
                   fontWeight: "bold",
                   fontSize: "1.2rem",
                   marginRight: "1rem",
-                  boxShadow: "0 4px 15px rgba(8, 61, 119, 0.3)",
+                  boxShadow: "0 4px 15px rgba(39, 110, 185, 0.3)",
                 }}
               >
                 2
@@ -539,14 +539,14 @@ export const ResourcePageTemplate = ({
                   className="fw-bold mb-0"
                   style={{
                     fontFamily: '"Poppins", sans-serif',
-                    color: "#083D77",
+                    color: "#276eb9",
                     fontSize: "1.5rem",
                   }}
                 >
                   Choose Subject
                 </h4>
                 <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
-                  Class {selectedClass.id} • Pick your subject
+                  Class {selectedClass.id} â€¢ Pick your subject
                 </p>
               </div>
             </div>
@@ -576,17 +576,17 @@ export const ResourcePageTemplate = ({
                       border: "none",
                       padding: "1.5rem 1rem",
                       background:
-                        selectedSubjectId === subject.id ? "#083D77" : "white",
+                        selectedSubjectId === subject.id ? "#276eb9" : "white",
                       boxShadow:
                         selectedSubjectId === subject.id
-                          ? "0 10px 30px rgba(8, 61, 119, 0.4)"
-                          : "0 5px 20px rgba(8, 61, 119, 0.15)",
+                          ? "0 10px 30px rgba(39, 110, 185, 0.4)"
+                          : "0 5px 20px rgba(39, 110, 185, 0.15)",
                       cursor: "pointer",
                       transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                       border:
                         selectedSubjectId === subject.id
                           ? "none"
-                          : "2px solid #083D77",
+                          : "2px solid #276eb9",
                       transform:
                         selectedSubjectId === subject.id
                           ? "translateY(-5px) scale(1.02)"
@@ -615,7 +615,7 @@ export const ResourcePageTemplate = ({
                         color:
                           selectedSubjectId === subject.id
                             ? "white"
-                            : "#083D77",
+                            : "#276eb9",
                         marginBottom: "0.5rem",
                       }}
                     >
@@ -629,7 +629,7 @@ export const ResourcePageTemplate = ({
                         color:
                           selectedSubjectId === subject.id
                             ? "white"
-                            : "#083D77",
+                            : "#276eb9",
                         marginBottom: "0.2rem",
                       }}
                     >
@@ -667,7 +667,7 @@ export const ResourcePageTemplate = ({
             <div className="d-flex align-items-center mb-4">
               <div
                 style={{
-                  background: "#083D77",
+                  background: "#276eb9",
                   width: "40px",
                   height: "40px",
                   borderRadius: "10px",
@@ -678,7 +678,7 @@ export const ResourcePageTemplate = ({
                   fontWeight: "bold",
                   fontSize: "1.2rem",
                   marginRight: "1rem",
-                  boxShadow: "0 4px 15px rgba(8, 61, 119, 0.3)",
+                  boxShadow: "0 4px 15px rgba(39, 110, 185, 0.3)",
                 }}
               >
                 3
@@ -688,14 +688,14 @@ export const ResourcePageTemplate = ({
                   className="fw-bold mb-0"
                   style={{
                     fontFamily: '"Poppins", sans-serif',
-                    color: "#083D77",
+                    color: "#276eb9",
                     fontSize: "1.5rem",
                   }}
                 >
                   Choose Subject
                 </h4>
                 <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
-                  Class {selectedClass.id} • {selectedStream.name} • Pick your
+                  Class {selectedClass.id} â€¢ {selectedStream.name} â€¢ Pick your
                   subject
                 </p>
               </div>
@@ -726,17 +726,17 @@ export const ResourcePageTemplate = ({
                       border: "none",
                       padding: "1.5rem 1rem",
                       background:
-                        selectedSubjectId === subject.id ? "#083D77" : "white",
+                        selectedSubjectId === subject.id ? "#276eb9" : "white",
                       boxShadow:
                         selectedSubjectId === subject.id
-                          ? "0 10px 30px rgba(8, 61, 119, 0.4)"
-                          : "0 5px 20px rgba(8, 61, 119, 0.15)",
+                          ? "0 10px 30px rgba(39, 110, 185, 0.4)"
+                          : "0 5px 20px rgba(39, 110, 185, 0.15)",
                       cursor: "pointer",
                       transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                       border:
                         selectedSubjectId === subject.id
                           ? "none"
-                          : "2px solid #083D77",
+                          : "2px solid #276eb9",
                       transform:
                         selectedSubjectId === subject.id
                           ? "translateY(-5px) scale(1.02)"
@@ -763,7 +763,7 @@ export const ResourcePageTemplate = ({
                         color:
                           selectedSubjectId === subject.id
                             ? "white"
-                            : "#083D77",
+                            : "#276eb9",
                         marginBottom: "0.5rem",
                       }}
                     >
@@ -777,7 +777,7 @@ export const ResourcePageTemplate = ({
                         color:
                           selectedSubjectId === subject.id
                             ? "white"
-                            : "#083D77",
+                            : "#276eb9",
                         marginBottom: "0.2rem",
                       }}
                     >
@@ -815,7 +815,7 @@ export const ResourcePageTemplate = ({
             <div className="d-flex align-items-center mb-4">
               <div
                 style={{
-                  background: "#083D77",
+                  background: "#276eb9",
                   width: "40px",
                   height: "40px",
                   borderRadius: "10px",
@@ -826,7 +826,7 @@ export const ResourcePageTemplate = ({
                   fontWeight: "bold",
                   fontSize: "1.2rem",
                   marginRight: "1rem",
-                  boxShadow: "0 4px 15px rgba(8, 61, 119, 0.3)",
+                  boxShadow: "0 4px 15px rgba(39, 110, 185, 0.3)",
                 }}
               >
                 {selectedStream ? "4" : "3"}
@@ -836,7 +836,7 @@ export const ResourcePageTemplate = ({
                   className="fw-bold mb-0"
                   style={{
                     fontFamily: '"Poppins", sans-serif',
-                    color: "#083D77",
+                    color: "#276eb9",
                     fontSize: "1.5rem",
                   }}
                 >
@@ -844,7 +844,7 @@ export const ResourcePageTemplate = ({
                 </h4>
                 <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
                   Class {selectedClass.id}
-                  {selectedStream ? ` • ${selectedStream.name}` : ""} •{" "}
+                  {selectedStream ? ` â€¢ ${selectedStream.name}` : ""} â€¢{" "}
                   {selectedSubject.name}
                 </p>
               </div>
@@ -858,9 +858,9 @@ export const ResourcePageTemplate = ({
                       background: "white",
                       borderRadius: "20px",
                       padding: "1.5rem",
-                      boxShadow: "0 5px 20px rgba(8, 61, 119, 0.15)",
+                      boxShadow: "0 5px 20px rgba(39, 110, 185, 0.15)",
                       transition: "all 0.3s ease",
-                      border: "2px solid #083D77",
+                      border: "2px solid #276eb9",
                       height: "100%",
                       display: "flex",
                       flexDirection: "column",
@@ -868,20 +868,20 @@ export const ResourcePageTemplate = ({
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = "translateY(-5px)";
                       e.currentTarget.style.boxShadow =
-                        "0 10px 30px rgba(8, 61, 119, 0.25)";
-                      e.currentTarget.style.borderColor = "#083D77";
+                        "0 10px 30px rgba(39, 110, 185, 0.25)";
+                      e.currentTarget.style.borderColor = "#276eb9";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = "translateY(0)";
                       e.currentTarget.style.boxShadow =
-                        "0 5px 20px rgba(8, 61, 119, 0.15)";
-                      e.currentTarget.style.borderColor = "#083D77";
+                        "0 5px 20px rgba(39, 110, 185, 0.15)";
+                      e.currentTarget.style.borderColor = "#276eb9";
                     }}
                   >
                     <div className="d-flex align-items-start mb-3">
                       <div
                         style={{
-                          background: "#083D77",
+                          background: "#276eb9",
                           width: "45px",
                           height: "45px",
                           borderRadius: "12px",
@@ -893,7 +893,7 @@ export const ResourcePageTemplate = ({
                           fontSize: "1rem",
                           marginRight: "1rem",
                           flexShrink: 0,
-                          boxShadow: "0 4px 15px rgba(8, 61, 119, 0.3)",
+                          boxShadow: "0 4px 15px rgba(39, 110, 185, 0.3)",
                         }}
                       >
                         {index + 1}
@@ -903,7 +903,7 @@ export const ResourcePageTemplate = ({
                           style={{
                             fontFamily: '"Poppins", sans-serif',
                             fontWeight: 600,
-                            color: "#083D77",
+                            color: "#276eb9",
                             fontSize: "1.1rem",
                             marginBottom: "0.3rem",
                           }}
@@ -928,7 +928,7 @@ export const ResourcePageTemplate = ({
                       rel="noopener noreferrer"
                       className="btn w-100 d-flex align-items-center justify-content-center"
                       style={{
-                        background: "#083D77",
+                        background: "#276eb9",
                         color: "white",
                         border: "none",
                         borderRadius: "15px",
@@ -937,20 +937,20 @@ export const ResourcePageTemplate = ({
                         fontWeight: 600,
                         fontFamily: '"Inter", sans-serif',
                         marginTop: "auto",
-                        boxShadow: "0 4px 15px rgba(8, 61, 119, 0.3)",
+                        boxShadow: "0 4px 15px rgba(39, 110, 185, 0.3)",
                         transition: "all 0.3s ease",
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.boxShadow =
-                          "0 6px 20px rgba(8, 61, 119, 0.5)";
+                          "0 6px 20px rgba(39, 110, 185, 0.5)";
                         e.currentTarget.style.transform = "scale(1.02)";
                         e.currentTarget.style.background = "#0a4d8f";
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.boxShadow =
-                          "0 4px 15px rgba(8, 61, 119, 0.3)";
+                          "0 4px 15px rgba(39, 110, 185, 0.3)";
                         e.currentTarget.style.transform = "scale(1)";
-                        e.currentTarget.style.background = "#083D77";
+                        e.currentTarget.style.background = "#276eb9";
                       }}
                     >
                       <FaDownload style={{ marginRight: "0.5rem" }} />
@@ -966,3 +966,4 @@ export const ResourcePageTemplate = ({
     </section>
   );
 };
+
