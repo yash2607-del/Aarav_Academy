@@ -302,7 +302,9 @@ export const ResourcePageTemplate = ({
                     cursor: "pointer",
                     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                     border:
-                      selectedClassId === cls.id ? "none" : "2px solid #276eb9",
+                      selectedClassId === cls.id
+                        ? "none"
+                        : "2px solid #276eb9",
                     transform:
                       selectedClassId === cls.id
                         ? "translateY(-5px) scale(1.02)"
@@ -561,7 +563,7 @@ export const ResourcePageTemplate = ({
                         const chapterSection =
                           document.getElementById("chapter-selection");
                         if (chapterSection) {
-                          const yOffset = -100; // Offset for navbar
+                          const yOffset = -100;
                           const y =
                             chapterSection.getBoundingClientRect().top +
                             window.pageYOffset +
@@ -591,8 +593,6 @@ export const ResourcePageTemplate = ({
                         selectedSubjectId === subject.id
                           ? "translateY(-5px) scale(1.02)"
                           : "translateY(0)",
-                      position: "relative",
-                      overflow: "hidden",
                     }}
                     onMouseEnter={(e) => {
                       if (selectedSubjectId !== subject.id) {
