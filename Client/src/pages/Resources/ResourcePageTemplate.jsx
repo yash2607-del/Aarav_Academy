@@ -34,7 +34,6 @@ export const ResourcePageTemplate = ({
       physics: <FaAtom />,
       chemistry: <FaFlask />,
       sst: <FaGlobe />,
-      english: <FaBook />,
       accounts: <FaMoneyBillWave />,
       economics: <FaBalanceScale />,
       business: <FaBriefcase />,
@@ -53,7 +52,6 @@ export const ResourcePageTemplate = ({
       physics: "#276eb9",
       chemistry: "#276eb9",
       sst: "#276eb9",
-      english: "#276eb9",
       accounts: "#276eb9",
       economics: "#276eb9",
       business: "#276eb9",
@@ -291,7 +289,6 @@ export const ResourcePageTemplate = ({
                   className="w-100"
                   style={{
                     borderRadius: "20px",
-                    border: "none",
                     padding: "1.5rem 1rem",
                     background:
                       selectedClassId === cls.id ? "#276eb9" : "white",
@@ -434,7 +431,6 @@ export const ResourcePageTemplate = ({
                     className="w-100"
                     style={{
                       borderRadius: "20px",
-                      border: "none",
                       padding: "1.5rem 1rem",
                       background:
                         selectedStreamId === stream.id ? "#276eb9" : "white",

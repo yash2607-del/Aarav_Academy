@@ -20,9 +20,8 @@ export const images = {
 		gallery18: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780060968/g18_tbstvu.jpg',
 		gallery19: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780060968/g19_qwnmek.jpg',
 		gallery20: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780060968/g20_zumged.jpg',
-
-
 	},
+
 	Toppers12: {
 		Simran: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056307/Simran_ta0ezc.jpg',
 		Aditya: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056306/Aditya_dabgat.jpg',
@@ -33,7 +32,6 @@ export const images = {
 		Tanya: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056302/Tanya_qgjo1p.jpg',
 		Karishma: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056301/Karishma_mpgfyn.jpg',
 		Ayushi: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056300/Ayushi_b73ibm.jpg',
-
 	},
 	Toppers10: {
 		Garima: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056276/Garima_sr5wh7.jpg',
@@ -46,8 +44,7 @@ export const images = {
 		Aryan: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056270/Aryan_xuyup8.jpg',
 		Laxmi: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056269/Laxmi_igh3db.jpg',
 		Rajat: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056269/Rajat_fndr4q.jpg',
-		Raman: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056269/Raman_tibwmq.jpg',
-        
+		Raman: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1780056269/Raman_tibwmq.jpg', 
     },
 	aboutTeam: {
 		Reena: 'https://res.cloudinary.com/dxx3suwae/image/upload/v1771403599/chairman_rgzmo8.png',
