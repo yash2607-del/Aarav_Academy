@@ -55,8 +55,8 @@ const YouTubeVideos = () => {
     <section id="youtube-videos" className="py-5" style={{ 
       background: '#FFFFFF',
       position: 'relative',
-      marginTop: '6rem',
-      paddingTop: '4rem'
+      marginTop: '2rem',
+        paddingTop: '2rem'
     }}>
       <div className="container py-4">
         {/* Title */}

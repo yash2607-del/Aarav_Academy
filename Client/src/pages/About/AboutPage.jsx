@@ -160,11 +160,11 @@ function AboutPage({ onBackToHome }) {
                           border: '8px solid white'
                         }}
                       />
-                      {/* Decorative elements */}
-                      <div style={{ position: 'absolute', top: '5px', right: '15px', fontSize: '1.5rem' }}>ðŸ“š</div>
-                      <div style={{ position: 'absolute', bottom: '20px', left: '5px', fontSize: '1.5rem' }}>âœ¨</div>
-                      <div style={{ position: 'absolute', top: '50px', right: '-5px', fontSize: '1.5rem' }}>âœˆï¸</div>
-                      <div style={{ position: 'absolute', bottom: '60px', right: '-10px', fontSize: '1.5rem' }}>âœ–ï¸</div>
+                      {/* Decorative elements (use explicit emoji to avoid encoding issues) */}
+                      <div style={{ position: 'absolute', top: '5px', right: '15px', fontSize: '1.5rem' }}>✔️</div>
+                      <div style={{ position: 'absolute', bottom: '20px', left: '5px', fontSize: '1.5rem' }}>✨</div>
+                      <div style={{ position: 'absolute', top: '50px', right: '-5px', fontSize: '1.5rem' }}>🌟</div>
+                      <div style={{ position: 'absolute', bottom: '60px', right: '-10px', fontSize: '1.5rem' }}>✅</div>
                     </div>
                   </div>
                   <div className="text-center mt-3">

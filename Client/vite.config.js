@@ -7,7 +7,12 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.js',
+      devOptions: {
+        enabled: false,
+      },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'logo.png'],
       manifest: {
         name: 'Aarav Academy',
@@ -22,17 +27,17 @@ export default defineConfig({
         categories: ['education'],
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: '/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: 'pwa-512x512.png',
+            src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
           },
           {
-            src: 'pwa-512x512.png',
+            src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable',
@@ -40,14 +45,14 @@ export default defineConfig({
         ],
         screenshots: [
           {
-            src: 'pwa-512x512.png',
+            src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             form_factor: 'wide',
             label: 'Aarav Academy Home',
           },
           {
-            src: 'pwa-512x512.png',
+            src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             form_factor: 'narrow',
@@ -98,11 +103,6 @@ export default defineConfig({
             },
           },
         ],
-      },
-      devOptions: {
-        // Disable PWA runtime behavior during development to avoid
-        // the plugin looking for production service-worker files (dev-dist/sw.js).
-        enabled: false,
       },
     }),
   ],

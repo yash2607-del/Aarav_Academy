@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   images,
 } from '../../../data';
-import { Collapse } from 'bootstrap';
 // Animations removed: GSAP/ScrollTrigger not used
 
 const Achievers = () => {
