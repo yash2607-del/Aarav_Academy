@@ -1,5 +1,5 @@
 import React from 'react';
-import { images } from '../../../data';
+import { images } from '../../data/images.js';
 
 const Gallery = () => {
   const galleryItems = Object.values(images.gallery).map((src, index) => ({

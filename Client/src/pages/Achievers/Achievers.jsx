@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   images,
-} from '../../../data';
+} from '../../data/images.js'
 // Animations removed: GSAP/ScrollTrigger not used
 
 const Achievers = () => {

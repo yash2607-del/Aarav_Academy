@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { CLASSES_STRUCTURE } from "../../data/classStructure";
 import {
   FaBook,
@@ -403,7 +403,7 @@ export const ResourcePageTemplate = ({
                   Choose Stream
                 </h4>
                 <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
-                  Class {selectedClass.id} â€¢ Select your stream
+                  Class {selectedClass.id} • Select your stream
                 </p>
               </div>
             </div>
@@ -544,7 +544,7 @@ export const ResourcePageTemplate = ({
                   Choose Subject
                 </h4>
                 <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
-                  Class {selectedClass.id} â€¢ Pick your subject
+                  Class {selectedClass.id} • Pick your subject
                 </p>
               </div>
             </div>
@@ -691,7 +691,7 @@ export const ResourcePageTemplate = ({
                   Choose Subject
                 </h4>
                 <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
-                  Class {selectedClass.id} â€¢ {selectedStream.name} â€¢ Pick your
+                  Class {selectedClass.id} • {selectedStream.name} • Pick your
                   subject
                 </p>
               </div>
@@ -840,7 +840,7 @@ export const ResourcePageTemplate = ({
                 </h4>
                 <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
                   Class {selectedClass.id}
-                  {selectedStream ? ` â€¢ ${selectedStream.name}` : ""} â€¢{" "}
+                  {selectedStream ? ` • ${selectedStream.name}` : ""} •{" "}
                   {selectedSubject.name}
                 </p>
               </div>
