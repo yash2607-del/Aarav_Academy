@@ -10,14 +10,223 @@ const Achievers = () => {
   const [achievers, setAchievers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const defaultAchievers = [
+    {
+      id: 1,
+      name: "Ayushi",
+      achievement: "CBSE 12th - 88%",
+      percentage: 88,
+      year: "2025",
+      class: "12",
+      image: images.Toppers12.Ayushi,
+      testimonial: "Outstanding teaching methodology and regular practice tests helped me score exceptionally."
+    },
+    {
+      id: 2,
+      name: "Sambhavi",
+      achievement: "CBSE 12th - 93%",
+      percentage: 93,
+      year: "2025",
+      class: "12",
+      image: images.Toppers12.Sambhavi,
+      testimonial: "The personalized attention and excellent study material helped me achieve top marks."
+    },
+    {
+      id: 3,
+      name: "Nandani",
+      achievement: "CBSE 12th - 90%",
+      percentage: 90,
+      year: "2025",
+      class: "12",
+      image: images.Toppers12.Nandani,
+      testimonial: "Aarav Academy's dedicated faculty and comprehensive curriculum helped me excel."
+    },
+    {
+      id: 4,
+      name: "Laxmi",
+      achievement: "CBSE 10th - 88%",
+      percentage: 88,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Laxmi,
+      testimonial: "The structured approach and regular assessments built my strong foundation for success."
+    },
+    {
+      id: 5,
+      name: "Amnish",
+      achievement: "CBSE 12th - 92%",
+      percentage: 92,
+      year: "2025",
+      class: "12",
+      image: images.Toppers12.Amnish,
+      testimonial: "Expert faculty and regular mock tests prepared me well for examinations."
+    },
+    {
+      id: 6,
+      name: "Ayush",
+      achievement: "CBSE 10th - 90%",
+      percentage: 90,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Ayush,
+      testimonial: "The interactive teaching methods helped me achieve excellent results."
+    },
+    {
+      id: 7,
+      name: "Siya",
+      achievement: "CBSE 10th - 83%",
+      percentage: 83,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Siya,
+      testimonial: "The supportive environment and excellent teaching helped me build strong foundation."
+    },
+    {
+      id: 8,
+      name: "Dishant",
+      achievement: "CBSE 10th - 90%",
+      percentage: 90,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Dishant,
+      testimonial: "The comprehensive study material was instrumental in my board exam success."
+    },
+    {
+      id: 9,
+      name: "Vikas",
+      achievement: "CBSE 12th - 92%",
+      percentage: 92,
+      year: "2025",
+      class: "12",
+      image: images.Toppers12.Vikas,
+      testimonial: "Outstanding guidance and support from faculty helped me achieve my goals."
+    },
+    {
+      id: 10,
+      name: "Tanya",
+      achievement: "CBSE 12th - 92%",
+      percentage: 92,
+      year: "2025",
+      class: "12",
+      image: images.Toppers12.Tanya,
+      testimonial: "Regular assessments and doubt sessions were key to my success."
+    },
+    {
+      id: 11,
+      name: "Garima",
+      achievement: "CBSE 10th - 97%",
+      percentage: 97,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Garima,
+      testimonial: "The structured teaching approach helped me excel in my board exams."
+    },
+    {
+      id: 12,
+      name: "Aditya",
+      achievement: "CBSE 10th - 92%",
+      percentage: 92,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Aditya,
+      testimonial: "Excellent faculty and comprehensive study material ensured my success."
+    },
+    {
+      id: 13,
+      name: "Simran",
+      achievement: "CBSE 12th - 92%",
+      percentage: 92,
+      year: "2025",
+      class: "12",
+      image: images.Toppers12.Simran,
+      testimonial: "The personalized attention helped me achieve excellent results."
+    },
+    {
+      id: 14,
+      name: "Karishma",
+      achievement: "CBSE 12th - 92%",
+      percentage: 92,
+      year: "2025",
+      class: "12",
+      image: images.Toppers12.Karishma,
+      testimonial: "Interactive teaching methods made learning enjoyable and effective."
+    },
+    {
+      id: 15,
+      name: "Rajat",
+      achievement: "CBSE 10th - 91%",
+      percentage: 91,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Rajat,
+      testimonial: "Regular mock tests and practice sessions helped me score well."
+    },
+    {
+      id: 16,
+      name: "Aryan",
+      achievement: "CBSE 10th - 94%",
+      percentage: 94,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Aryan,
+      testimonial: "The comprehensive curriculum and dedicated faculty ensured my success."
+    },
+    {
+      id: 17,
+      name: "Aditya",
+      achievement: "CBSE 12th - 85%",
+      percentage: 85,
+      year: "2025",
+      class: "12",
+      image: images.Toppers12.Aditya,
+      testimonial: "The comprehensive curriculum and dedicated faculty ensured my success."
+    },
+    {
+      id: 18,
+      name: "Muskan",
+      achievement: "CBSE 10th - 89%",
+      percentage: 89,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Muskan,
+      testimonial: "The comprehensive curriculum and dedicated faculty ensured my success."
+    },
+    {
+      id: 19,
+      name: "Janvi",
+      achievement: "CBSE 10th - 97%",
+      percentage: 97,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Janvi,
+      testimonial: "The comprehensive curriculum and dedicated faculty ensured my success."
+    },
+    {
+      id: 20,
+      name: "Raman",
+      achievement: "CBSE 10th - 90%",
+      percentage: 90,
+      year: "2025",
+      class: "10",
+      image: images.Toppers10.Raman,
+      testimonial: "The comprehensive curriculum and dedicated faculty ensured my success."
+    }
+  ];
+
   useEffect(() => {
     const fetchAchievers = async () => {
       try {
         const res = await fetch('http://localhost:5000/api/achievers');
-        const data = await res.json();
-        setAchievers(data);
+        const dbData = await res.json();
+        // Merge the dynamically added achievers with the existing hardcoded ones
+        if (Array.isArray(dbData)) {
+          setAchievers([...dbData, ...defaultAchievers]);
+        } else {
+          setAchievers(defaultAchievers);
+        }
       } catch (err) {
         console.error('Failed to fetch achievers:', err);
+        setAchievers(defaultAchievers);
       } finally {
         setLoading(false);
       }
@@ -150,8 +359,7 @@ const Achievers = () => {
               willChange: 'transform'
             }}
           >
-            {/* Duplicate cards for seamless loop */}
-            {[...filteredAchievers, ...filteredAchievers].map((achiever, index) => (
+            {filteredAchievers.map((achiever, index) => (
               <div 
                 key={`${achiever._id || achiever.id || index}-${index}`}
                 style={{
