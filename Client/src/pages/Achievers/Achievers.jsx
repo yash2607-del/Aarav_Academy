@@ -176,7 +176,7 @@ const Achievers = () => {
                       <div className="mx-auto mb-3" style={{ maxWidth: '100%' }}>
                           {achiever.imageUrl || achiever.image ? (
                           <img
-                            src={achiever.imageUrl ? `http://localhost:5000${achiever.imageUrl}` : achiever.image}
+                            src={achiever.imageUrl ? (achiever.imageUrl.startsWith('data:') ? achiever.imageUrl : `http://localhost:5000${achiever.imageUrl}`) : achiever.image}
                             alt={achiever.name}
                             loading="lazy"
                             style={{

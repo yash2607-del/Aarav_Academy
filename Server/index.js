@@ -15,29 +15,19 @@ const Achiever = require('./models/Achiever');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: process.env.CLIENT_ORIGIN || '*',
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
-// Setup uploads directory
-const uploadDir = path.join(__dirname, 'uploads', 'achievers');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-// Configure multer
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadDir);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
+// Configure multer for memory storage (Required for Vercel Serverless)
+const storage = multer.memoryStorage();
+const upload = multer({ 
+  storage: storage,
+  limits: { fileSize: 2 * 1024 * 1024 } // 2MB limit
 });
-const upload = multer({ storage: storage });
-
-// Serve uploads directory statically
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URL || process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/aarav-academy')
@@ -274,7 +264,6 @@ app.post('/api/achievers', upload.single('pic'), async (req, res) => {
     const adminEmail = process.env.ADMIN_EMAIL || 'admin@example.com';
     const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
     if (email !== adminEmail || password !== adminPassword) {
-      if (req.file) fs.unlinkSync(req.file.path);
       return res.status(401).json({ success: false, message: 'Unauthorized' });
     }
 
@@ -282,13 +271,15 @@ app.post('/api/achievers', upload.single('pic'), async (req, res) => {
       return res.status(400).json({ success: false, message: 'Picture is required' });
     }
 
-    const imageUrl = `/uploads/achievers/${req.file.filename}`;
+    // Convert buffer to base64 string
+    const base64Image = req.file.buffer.toString('base64');
+    const imageUrl = `data:${req.file.mimetype};base64,${base64Image}`;
+
     const newAchiever = new Achiever({ name, class: className, percentage, year, testimonial, imageUrl });
     await newAchiever.save();
     
     res.json({ success: true, data: newAchiever });
   } catch (error) {
-    if (req.file) fs.unlinkSync(req.file.path);
     res.status(500).json({ error: 'Server error creating achiever' });
   }
 });
@@ -301,21 +292,19 @@ app.put('/api/achievers/:id', upload.single('pic'), async (req, res) => {
     const adminEmail = process.env.ADMIN_EMAIL || 'admin@example.com';
     const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
     if (email !== adminEmail || password !== adminPassword) {
-      if (req.file) fs.unlinkSync(req.file.path);
       return res.status(401).json({ success: false, message: 'Unauthorized' });
     }
 
     const updateData = { name, class: className, percentage, year, testimonial };
     
     if (req.file) {
-      updateData.imageUrl = `/uploads/achievers/${req.file.filename}`;
-      // Note: Typically you'd want to delete the old file here, but keeping it simple
+      const base64Image = req.file.buffer.toString('base64');
+      updateData.imageUrl = `data:${req.file.mimetype};base64,${base64Image}`;
     }
 
     const updated = await Achiever.findByIdAndUpdate(req.params.id, updateData, { new: true });
     res.json({ success: true, data: updated });
   } catch (error) {
-    if (req.file) fs.unlinkSync(req.file.path);
     res.status(500).json({ error: 'Server error updating achiever' });
   }
 });
@@ -338,6 +327,11 @@ app.delete('/api/achievers/:id', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Export app for Vercel serverless
+module.exports = app;
+
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
