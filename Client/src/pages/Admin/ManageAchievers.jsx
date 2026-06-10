@@ -207,10 +207,13 @@ export const ManageAchievers = ({ email, password }) => {
 
       {/* Add/Edit Modal */}
       {isModalOpen && (
-        <div className="modal-backdrop fade show" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-          <div className="modal d-block" tabIndex="-1">
-            <div className="modal-dialog modal-dialog-centered modal-lg">
-              <div className="modal-content" style={{ borderRadius: '20px', border: 'none' }}>
+        <div 
+          className="modal fade show d-block" 
+          tabIndex="-1" 
+          style={{ backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 1050 }}
+        >
+          <div className="modal-dialog modal-dialog-centered modal-lg">
+            <div className="modal-content shadow-lg" style={{ borderRadius: '20px', border: 'none', backgroundColor: '#ffffff' }}>
                 <div className="modal-header border-0 px-4 pt-4 pb-0">
                   <h5 className="modal-title fw-bold" style={{ color: '#276eb9' }}>
                     {editingId ? 'Edit Achiever' : 'Add New Achiever'}

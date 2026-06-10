@@ -34,6 +34,11 @@ mongoose.connect(process.env.MONGODB_URL || process.env.MONGODB_URI || 'mongodb:
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+// Root route
+app.get('/', (req, res) => {
+  res.send('Aarav Academy API Backend is running successfully!');
+});
+
 // --- API Routes ---
 
 // 1. Verify Admin Credentials
