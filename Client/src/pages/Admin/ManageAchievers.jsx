@@ -334,7 +334,6 @@ export const ManageAchievers = ({ email, password }) => {
               </div>
             </div>
           </div>
-        </div>
       )}
     </div>
   );
