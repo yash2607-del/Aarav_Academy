@@ -1,31 +1,39 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Thumbnail_1 from '../../assets/youtube-thumbnail/thumbnail_1.png';
 import Thumbnail_2 from '../../assets/youtube-thumbnail/thumbnail_2.png';
 import Thumbnail_3 from '../../assets/youtube-thumbnail/thumbnail_3.png';
 
-
-
-
 const YouTubeVideos = () => {
   const cardRefs = useRef([]);
+  const [videos, setVideos] = useState([]);
 
-  const videos = [
-    {
-      id: 1,
-      thumbnail: Thumbnail_1, // Replace with actual video ID
-      videoUrl: "https://youtube.com/live/zGfSk21uXOI?feature=share" // Replace with actual video URL
-    },
-    {
-      id: 2,
-      thumbnail: Thumbnail_2, // Replace with actual video ID
-      videoUrl: "https://youtu.be/19BMQekIinE" // Replace with actual video URL
-    },
-    {
-      id: 3,
-      thumbnail: Thumbnail_3, // Replace with actual video ID
-      videoUrl: "https://youtube.com/live/_0oh0Id5fOo?feature=share" // Replace with actual video URL
-    }
-  ];
+  const extractVideoId = (url) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?\/]*).*/;
+    const match = url?.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/videos');
+        const dbVideos = await res.json();
+        
+        if (Array.isArray(dbVideos)) {
+          // Only keep videos that have a valid URL saved in the database
+          const validVideos = dbVideos.filter(v => v && v.videoUrl && v.videoUrl.trim() !== '');
+          setVideos(validVideos);
+        } else {
+          setVideos([]);
+        }
+      } catch (err) {
+        console.error('Failed to fetch videos', err);
+        setVideos([]);
+      }
+    };
+    fetchVideos();
+  }, []);
+
 
   useEffect(() => {
     const cards = cardRefs.current.filter(Boolean);
@@ -49,7 +57,11 @@ const YouTubeVideos = () => {
       cards.forEach((card) => observer.unobserve(card));
       observer.disconnect();
     };
-  }, []);
+  }, [videos]);
+
+  if (videos.length === 0) {
+    return null;
+  }
 
   return (
     <section id="youtube-videos" className="py-5" style={{ 
@@ -97,40 +109,55 @@ const YouTubeVideos = () => {
         
         {/* Video Thumbnails */}
         <div className="row g-5 justify-content-center mb-5">
-          {videos.map((video) => (
-            <div key={video.id} className="col-lg-5 col-md-8">
-              <a 
-                href={video.videoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'none' }}
-              >
-                <div 
-                  ref={(node) => { cardRefs.current[video.id - 1] = node; }}
-                  className="video-card-reveal position-relative overflow-hidden"
-                  style={{
-                    borderRadius: '20px',
-                    boxShadow: '0 10px 40px rgba(46, 92, 138, 0.15)',
-                    cursor: 'default',
-                    aspectRatio: '16 / 9',
-                    transitionDelay: `${video.id * 90}ms`
-                  }}
+          {videos.map((video, index) => {
+            const videoId = extractVideoId(video.videoUrl);
+            const thumbUrl = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : video.thumbnail;
+            
+            return (
+              <div key={video.slotId || index} className="col-lg-5 col-md-8">
+                <a 
+                  href={video.videoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: 'none' }}
                 >
-                  <img 
-                    src={video.thumbnail}
-                    alt="YouTube Video Thumbnail"
+                  <div 
+                    ref={(node) => { cardRefs.current[index] = node; }}
+                    className="video-card-reveal position-relative overflow-hidden"
                     style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      objectPosition: 'center',
-                      display: 'block'
+                      borderRadius: '20px',
+                      boxShadow: '0 10px 40px rgba(46, 92, 138, 0.15)',
+                      cursor: 'default',
+                      aspectRatio: '16 / 9',
+                      transitionDelay: `${(index + 1) * 90}ms`
                     }}
-                  />
-                </div>
-              </a>
-            </div>
-          ))}
+                  >
+                    <img 
+                      src={thumbUrl}
+                      alt={video.title || "YouTube Video Thumbnail"}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        display: 'block'
+                      }}
+                    />
+                    <div className="position-absolute bottom-0 start-0 w-100 p-3" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }}>
+                      <h5 className="text-white fw-bold mb-0 text-truncate" style={{ fontFamily: '"Inter", sans-serif', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                        {video.title || 'Watch Video'}
+                      </h5>
+                    </div>
+                    <div className="position-absolute top-50 start-50 translate-middle">
+                      <div style={{ width: '60px', height: '40px', background: 'rgba(255,0,0,0.9)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.3)' }}>
+                        <div style={{ width: '0', height: '0', borderTop: '10px solid transparent', borderBottom: '10px solid transparent', borderLeft: '16px solid white' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            );
+          })}
         </div>
 
         {/* Visit Channel Button */}

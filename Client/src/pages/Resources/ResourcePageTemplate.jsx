@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CLASSES_STRUCTURE } from "../../data/classStructure";
 import {
   FaBook,
@@ -63,40 +63,110 @@ export const ResourcePageTemplate = ({
     return gradients[subjectId] || "#276eb9";
   };
 
-  const classes = classesData.map((cls) => ({
-    ...cls,
-    subjects: cls.subjects
-      ? cls.subjects.map((subj) => ({
-          ...subj,
-          chapters: Array.from({ length: subj.chapterCount }, (_, i) => ({
-            id: `${cls.id}-${subj.id}-ch${i + 1}`,
-            title: `Chapter ${i + 1}`,
-            pdf: `${pdfPathPrefix}/class-${cls.id}/${subj.id}/chapter-${
-              i + 1
-            }.pdf`,
-          })),
-        }))
-      : [],
-    streams: cls.streams
-      ? cls.streams.map((stream) => ({
-          ...stream,
-          subjects: stream.subjects.map((subj) => ({
-            ...subj,
-            chapters: Array.from({ length: subj.chapterCount }, (_, i) => ({
-              id: `${cls.id}-${stream.id}-${subj.id}-ch${i + 1}`,
-              title: `Chapter ${i + 1}`,
-              pdf: `${pdfPathPrefix}/class-${cls.id}/${stream.id}/${
-                subj.id
-              }/chapter-${i + 1}.pdf`,
-            })),
-          })),
-        }))
-      : undefined,
-  }));
 
   const [selectedClassId, setSelectedClassId] = useState(null);
   const [selectedStreamId, setSelectedStreamId] = useState(null);
   const [selectedSubjectId, setSelectedSubjectId] = useState(null);
+  
+  const [links, setLinks] = useState({});
+  const [chapterNames, setChapterNames] = useState({});
+  const [customChapterCount, setCustomChapterCount] = useState(null);
+  const [isLoadingLinks, setIsLoadingLinks] = useState(false);
+
+  const classes = classesData.map((cls) => ({
+    ...cls,
+    subjects: cls.subjects
+      ? cls.subjects.map((subj) => {
+          const count = (selectedSubjectId === subj.id && customChapterCount !== null) ? customChapterCount : subj.chapterCount;
+          return {
+            ...subj,
+            chapterCount: count,
+            chapters: Array.from({ length: count }, (_, i) => ({
+              id: `${cls.id}-${subj.id}-ch${i + 1}`,
+              title: `Chapter ${i + 1}`,
+              pdf: `${pdfPathPrefix}/class-${cls.id}/${subj.id}/chapter-${i + 1}.pdf`,
+            })),
+          };
+        })
+      : [],
+    streams: cls.streams
+      ? cls.streams.map((stream) => ({
+          ...stream,
+          subjects: stream.subjects.map((subj) => {
+            const count = (selectedSubjectId === subj.id && customChapterCount !== null) ? customChapterCount : subj.chapterCount;
+            return {
+              ...subj,
+              chapterCount: count,
+              chapters: Array.from({ length: count }, (_, i) => ({
+                id: `${cls.id}-${stream.id}-${subj.id}-ch${i + 1}`,
+                title: `Chapter ${i + 1}`,
+                pdf: `${pdfPathPrefix}/class-${cls.id}/${stream.id}/${subj.id}/chapter-${i + 1}.pdf`,
+              })),
+            };
+          }),
+        }))
+      : undefined,
+  }));
+  const getResourceType = () => {
+    if (pdfPathPrefix === 'notes') return 'study-material';
+    if (pdfPathPrefix === 'ncert') return 'ncert-notes';
+    if (pdfPathPrefix === 'test-series') return 'test-series';
+    return 'study-material';
+  };
+
+  useEffect(() => {
+    if (selectedSubjectId && selectedClassId) {
+      const fetchLinks = async () => {
+        setIsLoadingLinks(true);
+        try {
+          const resType = getResourceType();
+          let url = `http://localhost:5000/api/resources?resourceType=${resType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
+          let configUrl = `http://localhost:5000/api/resource-config?resourceType=${resType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
+          
+          if (selectedStreamId) {
+            url += `&streamId=${selectedStreamId}`;
+            configUrl += `&streamId=${selectedStreamId}`;
+          }
+          
+          const [resLinks, resConfig] = await Promise.all([
+            fetch(url),
+            fetch(configUrl).catch(() => null)
+          ]);
+          
+          const data = await resLinks.json();
+          let configData = null;
+          if (resConfig) {
+            configData = await resConfig.json().catch(() => null);
+          }
+          
+          const linksMap = {};
+          const namesMap = {};
+          if (Array.isArray(data)) {
+            data.forEach(item => {
+              linksMap[item.chapterId] = item.driveLink;
+              if (item.chapterName) namesMap[item.chapterId] = item.chapterName;
+            });
+          }
+          setLinks(linksMap);
+          setChapterNames(namesMap);
+
+          if (configData && configData.chapterCount !== undefined && configData.chapterCount !== null) {
+            setCustomChapterCount(configData.chapterCount);
+          } else {
+            setCustomChapterCount(null);
+          }
+        } catch (err) {
+          console.error("Failed to fetch links", err);
+        }
+        setIsLoadingLinks(false);
+      };
+      fetchLinks();
+    } else {
+      setLinks({});
+      setChapterNames({});
+      setCustomChapterCount(null);
+    }
+  }, [selectedSubjectId, selectedClassId, selectedStreamId, pdfPathPrefix]);
 
   const selectedClass =
     classes.find((cls) => cls.id === selectedClassId) || null;
@@ -904,7 +974,7 @@ export const ResourcePageTemplate = ({
                             marginBottom: "0.3rem",
                           }}
                         >
-                          {chapter.title}
+                          {chapterNames[`ch${index + 1}`] || chapter.title}
                         </h5>
                         <p
                           style={{
@@ -918,40 +988,61 @@ export const ResourcePageTemplate = ({
                         </p>
                       </div>
                     </div>
-                    <a
-                      href={chapter.pdf}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn w-100 d-flex align-items-center justify-content-center"
-                      style={{
-                        background: "#276eb9",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "15px",
-                        padding: "0.9rem",
-                        fontSize: "0.95rem",
-                        fontWeight: 600,
-                        fontFamily: '"Inter", sans-serif',
-                        marginTop: "auto",
-                        boxShadow: "0 4px 15px rgba(39, 110, 185, 0.3)",
-                        transition: "all 0.3s ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow =
-                          "0 6px 20px rgba(39, 110, 185, 0.5)";
-                        e.currentTarget.style.transform = "scale(1.02)";
-                        e.currentTarget.style.background = "#0a4d8f";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow =
-                          "0 4px 15px rgba(39, 110, 185, 0.3)";
-                        e.currentTarget.style.transform = "scale(1)";
-                        e.currentTarget.style.background = "#276eb9";
-                      }}
-                    >
-                      <FaDownload style={{ marginRight: "0.5rem" }} />
-                      {buttonText}
-                    </a>
+                    {links[`ch${index + 1}`] ? (
+                      <a
+                        href={links[`ch${index + 1}`]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn w-100 d-flex align-items-center justify-content-center"
+                        style={{
+                          background: "#276eb9",
+                          color: "white",
+                          border: "none",
+                          borderRadius: "15px",
+                          padding: "0.9rem",
+                          fontSize: "0.95rem",
+                          fontWeight: 600,
+                          fontFamily: '"Inter", sans-serif',
+                          marginTop: "auto",
+                          boxShadow: "0 4px 15px rgba(39, 110, 185, 0.3)",
+                          transition: "all 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.boxShadow =
+                            "0 6px 20px rgba(39, 110, 185, 0.5)";
+                          e.currentTarget.style.transform = "scale(1.02)";
+                          e.currentTarget.style.background = "#0a4d8f";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.boxShadow =
+                            "0 4px 15px rgba(39, 110, 185, 0.3)";
+                          e.currentTarget.style.transform = "scale(1)";
+                          e.currentTarget.style.background = "#276eb9";
+                        }}
+                      >
+                        <FaDownload style={{ marginRight: "0.5rem" }} />
+                        {buttonText}
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="btn w-100 d-flex align-items-center justify-content-center"
+                        style={{
+                          background: "#e0e0e0",
+                          color: "#888",
+                          border: "none",
+                          borderRadius: "15px",
+                          padding: "0.9rem",
+                          fontSize: "0.95rem",
+                          fontWeight: 600,
+                          fontFamily: '"Inter", sans-serif',
+                          marginTop: "auto",
+                          cursor: "not-allowed"
+                        }}
+                      >
+                        Coming Soon
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}

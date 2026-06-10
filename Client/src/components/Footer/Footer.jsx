@@ -59,18 +59,13 @@ const Footer = ({ onNavigate }) => {
                 </a>
               </li>
               <li>
-                <a href="#assignments" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('assignments'); }}>
-                  Assignments
-                </a>
-              </li>
-              <li>
-                <a href="#sample-papers" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('sample-papers'); }}>
-                  Sample Papers
-                </a>
-              </li>
-              <li>
                 <a href="#about" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('about'); }}>
                   About Us
+                </a>
+              </li>
+              <li>
+                <a href="#admin" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('admin'); }}>
+                  Admin Portal
                 </a>
               </li>
             </ul>

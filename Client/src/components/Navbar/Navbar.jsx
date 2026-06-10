@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
-
-
+import { useState, useEffect, useRef } from 'react';
+import { FaBell } from 'react-icons/fa';
 const Navbar = ({ onNavigate, currentView }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -11,6 +13,33 @@ const Navbar = ({ onNavigate, currentView }) => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/notifications');
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          setNotifications(data.filter(n => n.isActive));
+        }
+      } catch (err) {
+        console.error('Failed to fetch notifications:', err);
+      }
+    };
+    fetchNotifications();
+    const interval = setInterval(fetchNotifications, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const scrollToSection = (sectionId) => {
@@ -53,8 +82,6 @@ const Navbar = ({ onNavigate, currentView }) => {
     { label: 'Home', id: 'home' },
     { label: 'Study Notes', id: 'study-notes' },
     { label: 'NCERT Solution', id: 'ncert-solutions' },
-    { label: 'Assignments', id: 'assignments' },
-    { label: 'Sample Papers', id: 'sample-papers' },
     { label: 'Test Series', id: 'test-series' },
     { label: 'About Us', id: 'about' }
   ];
@@ -147,6 +174,55 @@ const Navbar = ({ onNavigate, currentView }) => {
             padding: 0.5rem 0 !important;
           }
         }
+        
+        @keyframes pulse-glow {
+          0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+          70% { box-shadow: 0 0 0 8px rgba(220, 53, 69, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+        }
+        
+        .notification-bell {
+          position: relative;
+          cursor: pointer;
+          color: #555;
+          font-size: 1.3rem;
+          margin-right: 20px;
+          transition: color 0.2s;
+        }
+        .notification-bell:hover {
+          color: #276eb9;
+        }
+        .notification-badge {
+          position: absolute;
+          top: -4px;
+          right: -4px;
+          background-color: #dc3545;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          animation: pulse-glow 2s infinite;
+        }
+        
+        .notification-dropdown {
+          position: absolute;
+          top: 45px;
+          right: -10px;
+          width: 320px;
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+          z-index: 1050;
+          overflow: hidden;
+          border: 1px solid #eaeaea;
+          transform-origin: top right;
+          animation: drop-in 0.2s ease-out forwards;
+        }
+        
+        @keyframes drop-in {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        
         @media (min-width: 992px) {
           .logo-text {
             display: flex !important;
@@ -250,6 +326,27 @@ const Navbar = ({ onNavigate, currentView }) => {
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
+                  onNavigate('admin');
+                }}
+                className="btn w-100 mb-2"
+                style={{
+                  background: 'white',
+                  color: '#276eb9',
+                  border: '2px solid #276eb9',
+                  padding: '0.5rem 0.9rem',
+                  borderRadius: '28px',
+                  fontWeight: '700',
+                  fontSize: '0.88rem',
+                  fontFamily: '"Inter", sans-serif',
+                  textTransform: 'none',
+                  letterSpacing: '0.3px'
+                }}
+              >
+                Admin Login
+              </button>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
                   if (currentView !== 'home') {
                     onNavigate('home');
                     setTimeout(() => {
@@ -279,8 +376,69 @@ const Navbar = ({ onNavigate, currentView }) => {
             </li>
           </ul>
 
-          {/* Request Callback Button - Desktop Only */}
-          <button
+          <div className="d-none d-lg-flex align-items-center" ref={dropdownRef}>
+            {/* Notification Bell */}
+            <div className="notification-bell" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+              <FaBell />
+              {notifications.length > 0 && <div className="notification-badge"></div>}
+              
+              {isDropdownOpen && (
+                <div className="notification-dropdown">
+                  <div style={{ padding: '15px 20px', backgroundColor: '#f8f9fa', borderBottom: '1px solid #eaeaea', fontWeight: 'bold', color: '#333' }}>
+                    Notifications
+                  </div>
+                  <div style={{ maxHeight: '350px', overflowY: 'auto' }}>
+                    {notifications.length === 0 ? (
+                      <div style={{ padding: '30px 20px', textAlign: 'center', color: '#888' }}>
+                        No new notifications
+                      </div>
+                    ) : (
+                      notifications.map(notif => (
+                        <div key={notif._id} style={{ padding: '15px 20px', borderBottom: '1px solid #f5f5f5' }}>
+                          <h6 style={{ margin: '0 0 5px 0', fontSize: '0.95rem', fontWeight: 'bold', color: '#276eb9' }}>{notif.title}</h6>
+                          <p style={{ margin: 0, fontSize: '0.85rem', color: '#666', lineHeight: '1.4' }}>{notif.message}</p>
+                          <small style={{ display: 'block', marginTop: '8px', fontSize: '0.75rem', color: '#aaa' }}>
+                            {new Date(notif.createdAt).toLocaleDateString()}
+                          </small>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Admin Login Button - Desktop Only */}
+            <button
+              onClick={() => {
+                onNavigate('admin');
+              }}
+              className="me-3"
+              style={{
+                background: 'white',
+                color: '#276eb9',
+                border: '2px solid #276eb9',
+                padding: '0.45rem 1.2rem',
+                borderRadius: '28px',
+                fontWeight: '700',
+                fontSize: '0.9rem',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                whiteSpace: 'nowrap',
+                fontFamily: '"Inter", sans-serif',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#f4f9ff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'white';
+              }}
+            >
+              Admin Login
+            </button>
+
+            {/* Request Callback Button - Desktop Only */}
+            <button
             onClick={() => {
               if (currentView !== 'home') {
                 onNavigate('home');
@@ -320,7 +478,8 @@ const Navbar = ({ onNavigate, currentView }) => {
             }}
           >
             Request a Callback
-          </button>
+            </button>
+          </div>
         </div>
         </div>
       </div>

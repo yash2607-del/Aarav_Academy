@@ -16,6 +16,7 @@ import Assignments from './pages/Resources/Assignments'
 import SamplePapers from './pages/Resources/SamplePapers'
 import TestSeries from './pages/Resources/TestSeries'
 import StudyNotes from './pages/Resources/StudyNotes'
+import { AdminPortal } from './pages/Admin/AdminPortal'
 // Removed Lenis/GSAP to disable smooth-scrolling/scroll-trigger animations
 
 function App() {
@@ -24,16 +25,19 @@ function App() {
     return localStorage.getItem('currentView') || 'home'
   })
 
-  // Save currentView to localStorage whenever it changes
+  // Save currentView to localStorage whenever it changes and scroll to top
   useEffect(() => {
-    localStorage.setItem('currentView', currentView)
+    localStorage.setItem('currentView', currentView);
+    window.scrollTo(0, 0);
   }, [currentView])
 
   // Lenis/GSAP removed — no global smooth-scroll or scroll-trigger behavior
 
   return (
     <div className="app">
-      <Navbar onNavigate={(view) => setCurrentView(view)} currentView={currentView} />
+      {currentView !== 'admin' && (
+        <Navbar onNavigate={(view) => setCurrentView(view)} currentView={currentView} />
+      )}
 
       {currentView === 'home' && (
         <>
@@ -72,7 +76,13 @@ function App() {
         <TestSeries onBackToHome={() => setCurrentView('home')} />
       )}
 
-      <Footer onNavigate={(view) => setCurrentView(view)} compact={currentView === 'home'} />
+      {currentView === 'admin' && (
+        <AdminPortal onBackToHome={() => setCurrentView('home')} />
+      )}
+
+      {currentView !== 'admin' && (
+        <Footer onNavigate={(view) => setCurrentView(view)} compact={currentView === 'home'} />
+      )}
     </div>
   )
 }
