@@ -1,2 +1,4 @@
-// Use empty string in development so Vite proxy handles requests seamlessly across all devices on the network.
-export const API_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/\/+$/, '') : "";
+// Use empty string in development (Vite proxy), and the exact Vercel backend URL in production.
+export const API_URL = import.meta.env.VITE_API_URL 
+  ? import.meta.env.VITE_API_URL.replace(/\/+$/, '') 
+  : (import.meta.env.DEV ? "" : "https://aarav-academy-ov2h.vercel.app");
