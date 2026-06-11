@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CLASSES_STRUCTURE } from "../../data/classStructure";
-import {
 import { API_URL } from "../../config.js";
+import {
   FaBook,
   FaFlask,
   FaAtom,
@@ -42,6 +42,8 @@ export const ResourcePageTemplate = ({
       history: <FaLandmark />,
       geography: <FaMapMarkedAlt />,
       biology: <FaDna />,
+      hindi: <FaBook />,
+      english: <FaBook />,
     };
     return icons[subjectId] || <FaBook />;
   };
@@ -60,6 +62,8 @@ export const ResourcePageTemplate = ({
       history: "#276eb9",
       geography: "#276eb9",
       biology: "#276eb9",
+      hindi: "#276eb9",
+      english: "#276eb9",
     };
     return gradients[subjectId] || "#276eb9";
   };
@@ -112,6 +116,7 @@ export const ResourcePageTemplate = ({
     if (pdfPathPrefix === 'notes') return 'study-material';
     if (pdfPathPrefix === 'ncert') return 'ncert-notes';
     if (pdfPathPrefix === 'test-series') return 'test-series';
+    if (pdfPathPrefix === 'assignments') return 'assignments';
     return 'study-material';
   };
 

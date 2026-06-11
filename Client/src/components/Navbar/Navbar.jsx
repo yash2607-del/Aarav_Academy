@@ -45,7 +45,7 @@ const Navbar = ({ onNavigate, currentView }) => {
 
   const scrollToSection = (sectionId) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
+
     setTimeout(() => {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -84,6 +84,7 @@ const Navbar = ({ onNavigate, currentView }) => {
     { label: 'Study Notes', id: 'study-notes' },
     { label: 'NCERT Solution', id: 'ncert-solutions' },
     { label: 'Test Series', id: 'test-series' },
+    { label: 'Assignments', id: 'assignments' },
     { label: 'About Us', id: 'about' }
   ];
 
@@ -230,261 +231,261 @@ const Navbar = ({ onNavigate, currentView }) => {
           }
         }
       `}</style>
-      <nav 
-      className={`navbar navbar-expand-lg navbar-light fixed-top ${scrolled ? 'shadow' : ''}`}
-      style={{
-        background: 'white',
-        transition: 'all 0.22s ease',
-        padding: '0.35rem 0',
-        borderBottom: '1px solid #eaeaea',
-        minHeight: '64px'
-      }}
-    >
-      <div className="container-fluid px-3">
-        <div className="navbar-container-mobile d-lg-flex d-flex align-items-center justify-content-between w-100">
-          <button 
-            className="navbar-toggler d-lg-none" 
-            type="button" 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-controls="navbarNav"
-            aria-expanded={mobileMenuOpen}
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          
-          <a 
-            className="navbar-brand d-flex align-items-center" 
-            href="#home"
-            style={{
-              fontFamily: '"Poppins", sans-serif',
-              cursor: 'pointer',
-              marginRight: '2rem'
-            }}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('home');
-            }}
-          >
-            <div className="logo-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: '1' }}>
-              <span style={{
-                fontSize: '1.15rem',
-                fontWeight: '700',
-                color: '#276eb9',
-                letterSpacing: '0.3px',
-                lineHeight: '1'
-              }}>
-                Aarav Academy
-              </span>
-              <span style={{ 
-                fontSize: '0.75rem', 
-                fontWeight: '500',
-                color: '#666',
-                letterSpacing: '0.2px',
-                lineHeight: '1'
-              }}>
-                (A unit of Aarav Student Hub)
-              </span>
-            </div>
-          </a>
-        
-        <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'show' : ''}`} id="navbarNav">
-          <ul
-            className="navbar-nav mx-auto align-items-lg-center"
-            style={{ gap: '0.5rem' }}
-          >
-            {navItems.map((item) => (
-              <li className="nav-item" key={item.id}>
-                <a
-                  className="nav-link"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    if (typeof onNavigate === 'function') {
-                      setTimeout(() => {
-                        onNavigate(item.id);
-                      }, 300);
-                    }
-                  }}
-                  style={{
-                    ...linkBaseStyle,
-                    background: currentView === item.id ? '#276eb9' : 'transparent',
-                    color: currentView === item.id ? 'white' : '#333',
-                    boxShadow: currentView === item.id ? '0 4px 10px rgba(39, 110, 185, 0.3)' : 'none'
-                  }}
-                  onMouseEnter={(e) => handleEnter(e, item.id)}
-                  onMouseLeave={(e) => handleLeave(e, item.id)}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-            
-            {/* More Dropdown */}
-            
-            {/* Request Callback Button - Inside Menu for Mobile */}
-            <li className="nav-item d-lg-none mt-3">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onNavigate('admin');
-                }}
-                className="btn w-100 mb-2"
-                style={{
-                  background: 'white',
-                  color: '#276eb9',
-                  border: '2px solid #276eb9',
-                  padding: '0.5rem 0.9rem',
-                  borderRadius: '28px',
-                  fontWeight: '700',
-                  fontSize: '0.88rem',
-                  fontFamily: '"Inter", sans-serif',
-                  textTransform: 'none',
-                  letterSpacing: '0.3px'
-                }}
-              >
-                Admin Login
-              </button>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  if (currentView !== 'home') {
-                    onNavigate('home');
-                    setTimeout(() => {
-                      scrollToSection('contact');
-                    }, 500);
-                  } else {
-                    scrollToSection('contact');
-                  }
-                }}
-                className="btn w-100"
-                style={{
-                  background: '#276eb9',
-                  color: 'white',
-                  border: 'none',
-                  padding: '0.5rem 0.9rem',
-                  borderRadius: '28px',
-                  fontWeight: '700',
-                  fontSize: '0.88rem',
-                  fontFamily: '"Inter", sans-serif',
-                  boxShadow: '0 6px 20px rgba(39, 110, 185, 0.4)',
-                  textTransform: 'none',
-                  letterSpacing: '0.3px'
-                }}
-              >
-                Request a Callback
-              </button>
-            </li>
-          </ul>
-
-          <div className="d-none d-lg-flex align-items-center" ref={dropdownRef}>
-            {/* Notification Bell */}
-            <div className="notification-bell" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-              <FaBell />
-              {notifications.length > 0 && <div className="notification-badge"></div>}
-              
-              {isDropdownOpen && (
-                <div className="notification-dropdown">
-                  <div style={{ padding: '15px 20px', backgroundColor: '#f8f9fa', borderBottom: '1px solid #eaeaea', fontWeight: 'bold', color: '#333' }}>
-                    Notifications
-                  </div>
-                  <div style={{ maxHeight: '350px', overflowY: 'auto' }}>
-                    {notifications.length === 0 ? (
-                      <div style={{ padding: '30px 20px', textAlign: 'center', color: '#888' }}>
-                        No new notifications
-                      </div>
-                    ) : (
-                      notifications.map(notif => (
-                        <div key={notif._id} style={{ padding: '15px 20px', borderBottom: '1px solid #f5f5f5' }}>
-                          <h6 style={{ margin: '0 0 5px 0', fontSize: '0.95rem', fontWeight: 'bold', color: '#276eb9' }}>{notif.title}</h6>
-                          <p style={{ margin: 0, fontSize: '0.85rem', color: '#666', lineHeight: '1.4' }}>{notif.message}</p>
-                          <small style={{ display: 'block', marginTop: '8px', fontSize: '0.75rem', color: '#aaa' }}>
-                            {new Date(notif.createdAt).toLocaleDateString()}
-                          </small>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Admin Login Button - Desktop Only */}
+      <nav
+        className={`navbar navbar-expand-lg navbar-light fixed-top ${scrolled ? 'shadow' : ''}`}
+        style={{
+          background: 'white',
+          transition: 'all 0.22s ease',
+          padding: '0.35rem 0',
+          borderBottom: '1px solid #eaeaea',
+          minHeight: '64px'
+        }}
+      >
+        <div className="container-fluid px-3">
+          <div className="navbar-container-mobile d-lg-flex d-flex align-items-center justify-content-between w-100">
             <button
-              onClick={() => {
-                onNavigate('admin');
-              }}
-              className="me-3"
+              className="navbar-toggler d-lg-none"
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-controls="navbarNav"
+              aria-expanded={mobileMenuOpen}
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <a
+              className="navbar-brand d-flex align-items-center"
+              href="#home"
               style={{
-                background: 'white',
-                color: '#276eb9',
-                border: '2px solid #276eb9',
-                padding: '0.45rem 1.2rem',
-                borderRadius: '28px',
-                fontWeight: '700',
-                fontSize: '0.9rem',
+                fontFamily: '"Poppins", sans-serif',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                whiteSpace: 'nowrap',
-                fontFamily: '"Inter", sans-serif',
+                marginRight: '2rem'
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#f4f9ff';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'white';
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('home');
               }}
             >
-              Admin Login
-            </button>
+              <div className="logo-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: '1' }}>
+                <span style={{
+                  fontSize: '1.15rem',
+                  fontWeight: '700',
+                  color: '#276eb9',
+                  letterSpacing: '0.3px',
+                  lineHeight: '1'
+                }}>
+                  Aarav Academy
+                </span>
+                <span style={{
+                  fontSize: '0.75rem',
+                  fontWeight: '500',
+                  color: '#666',
+                  letterSpacing: '0.2px',
+                  lineHeight: '1'
+                }}>
+                  (A unit of Aarav Student Hub)
+                </span>
+              </div>
+            </a>
 
-            {/* Request Callback Button - Desktop Only */}
-            <button
-            onClick={() => {
-              if (currentView !== 'home') {
-                onNavigate('home');
-                setTimeout(() => {
-                  scrollToSection('contact');
-                }, 500);
-              } else {
-                scrollToSection('contact');
-              }
-            }}
-            className="mt-2 mt-lg-0 mx-auto mx-lg-0 d-none d-lg-block"
-            style={{
-              background: '#276eb9',
-              color: 'white',
-              border: 'none',
-              padding: '0.5rem 0.95rem',
-              fontWeight: '700',
-              fontSize: '0.9rem',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              whiteSpace: 'nowrap',
-              fontFamily: '"Inter", sans-serif',
-              boxShadow: '0 6px 14px rgba(39, 110, 185, 0.32)',
-              marginBottom: '0',
-              textTransform: 'none',
-              letterSpacing: '0.3px'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#1f5f9f';
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 8px 25px rgba(39, 110, 185, 0.5)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#276eb9';
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(39, 110, 185, 0.4)';
-            }}
-          >
-            Request a Callback
-            </button>
+            <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'show' : ''}`} id="navbarNav">
+              <ul
+                className="navbar-nav mx-auto align-items-lg-center"
+                style={{ gap: '0.5rem' }}
+              >
+                {navItems.map((item) => (
+                  <li className="nav-item" key={item.id}>
+                    <a
+                      className="nav-link"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        if (typeof onNavigate === 'function') {
+                          setTimeout(() => {
+                            onNavigate(item.id);
+                          }, 300);
+                        }
+                      }}
+                      style={{
+                        ...linkBaseStyle,
+                        background: currentView === item.id ? '#276eb9' : 'transparent',
+                        color: currentView === item.id ? 'white' : '#333',
+                        boxShadow: currentView === item.id ? '0 4px 10px rgba(39, 110, 185, 0.3)' : 'none'
+                      }}
+                      onMouseEnter={(e) => handleEnter(e, item.id)}
+                      onMouseLeave={(e) => handleLeave(e, item.id)}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+
+                {/* More Dropdown */}
+
+                {/* Request Callback Button - Inside Menu for Mobile */}
+                <li className="nav-item d-lg-none mt-3">
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      onNavigate('admin');
+                    }}
+                    className="btn w-100 mb-2"
+                    style={{
+                      background: 'white',
+                      color: '#276eb9',
+                      border: '2px solid #276eb9',
+                      padding: '0.5rem 0.9rem',
+                      borderRadius: '28px',
+                      fontWeight: '700',
+                      fontSize: '0.88rem',
+                      fontFamily: '"Inter", sans-serif',
+                      textTransform: 'none',
+                      letterSpacing: '0.3px'
+                    }}
+                  >
+                    Admin Login
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      if (currentView !== 'home') {
+                        onNavigate('home');
+                        setTimeout(() => {
+                          scrollToSection('contact');
+                        }, 500);
+                      } else {
+                        scrollToSection('contact');
+                      }
+                    }}
+                    className="btn w-100"
+                    style={{
+                      background: '#276eb9',
+                      color: 'white',
+                      border: 'none',
+                      padding: '0.5rem 0.9rem',
+                      borderRadius: '28px',
+                      fontWeight: '700',
+                      fontSize: '0.88rem',
+                      fontFamily: '"Inter", sans-serif',
+                      boxShadow: '0 6px 20px rgba(39, 110, 185, 0.4)',
+                      textTransform: 'none',
+                      letterSpacing: '0.3px'
+                    }}
+                  >
+                    Request a Callback
+                  </button>
+                </li>
+              </ul>
+
+              <div className="d-none d-lg-flex align-items-center" ref={dropdownRef}>
+                {/* Notification Bell */}
+                <div className="notification-bell" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                  <FaBell />
+                  {notifications.length > 0 && <div className="notification-badge"></div>}
+
+                  {isDropdownOpen && (
+                    <div className="notification-dropdown">
+                      <div style={{ padding: '15px 20px', backgroundColor: '#f8f9fa', borderBottom: '1px solid #eaeaea', fontWeight: 'bold', color: '#333' }}>
+                        Notifications
+                      </div>
+                      <div style={{ maxHeight: '350px', overflowY: 'auto' }}>
+                        {notifications.length === 0 ? (
+                          <div style={{ padding: '30px 20px', textAlign: 'center', color: '#888' }}>
+                            No new notifications
+                          </div>
+                        ) : (
+                          notifications.map(notif => (
+                            <div key={notif._id} style={{ padding: '15px 20px', borderBottom: '1px solid #f5f5f5' }}>
+                              <h6 style={{ margin: '0 0 5px 0', fontSize: '0.95rem', fontWeight: 'bold', color: '#276eb9' }}>{notif.title}</h6>
+                              <p style={{ margin: 0, fontSize: '0.85rem', color: '#666', lineHeight: '1.4' }}>{notif.message}</p>
+                              <small style={{ display: 'block', marginTop: '8px', fontSize: '0.75rem', color: '#aaa' }}>
+                                {new Date(notif.createdAt).toLocaleDateString()}
+                              </small>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Admin Login Button - Desktop Only */}
+                <button
+                  onClick={() => {
+                    onNavigate('admin');
+                  }}
+                  className="me-3"
+                  style={{
+                    background: 'white',
+                    color: '#276eb9',
+                    border: '2px solid #276eb9',
+                    padding: '0.45rem 1.2rem',
+                    borderRadius: '28px',
+                    fontWeight: '700',
+                    fontSize: '0.9rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
+                    fontFamily: '"Inter", sans-serif',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#f4f9ff';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'white';
+                  }}
+                >
+                  Admin Login
+                </button>
+
+                {/* Request Callback Button - Desktop Only */}
+                <button
+                  onClick={() => {
+                    if (currentView !== 'home') {
+                      onNavigate('home');
+                      setTimeout(() => {
+                        scrollToSection('contact');
+                      }, 500);
+                    } else {
+                      scrollToSection('contact');
+                    }
+                  }}
+                  className="mt-2 mt-lg-0 mx-auto mx-lg-0 d-none d-lg-block"
+                  style={{
+                    background: '#276eb9',
+                    color: 'white',
+                    border: 'none',
+                    padding: '0.5rem 0.95rem',
+                    fontWeight: '700',
+                    fontSize: '0.9rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
+                    fontFamily: '"Inter", sans-serif',
+                    boxShadow: '0 6px 14px rgba(39, 110, 185, 0.32)',
+                    marginBottom: '0',
+                    textTransform: 'none',
+                    letterSpacing: '0.3px'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#1f5f9f';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(39, 110, 185, 0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#276eb9';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(39, 110, 185, 0.4)';
+                  }}
+                >
+                  Request a Callback
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-      </div>
-    </nav>
+      </nav>
     </>
   );
 };

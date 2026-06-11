@@ -40,9 +40,16 @@ function Hero({ onNavigate }) {
       }}
     >
       <style>{`
+        .hero-carousel-container {
+          position: relative;
+          width: 100%;
+          height: auto;
+          overflow: hidden;
+          background: #fff;
+        }
         @media (max-width: 991.98px) {
           .hero-section {
-            padding-top: 32px !important;
+            padding-top: 75px !important;
           }
           .carousel-arrow {
             width: 35px !important;
@@ -56,24 +63,19 @@ function Hero({ onNavigate }) {
       <div className="container-fluid px-0">
         <div className="row g-0">
           <div className="col-12">
-            <div style={{
-              position: 'relative',
-              width: '100%',
-              height: '70vh',
-              minHeight: '500px',
-              overflow: 'hidden'
-            }}>
+            <div className="hero-carousel-container">
               {slides.map((slide, index) => (
                 <div
                   key={slide.id}
                   style={{
-                      position: 'absolute',
+                      position: index === 0 ? 'relative' : 'absolute',
                       top: 0,
                       left: 0,
                       width: '100%',
                       height: '100%',
                       opacity: currentSlide === index ? 1 : 0,
-                      pointerEvents: currentSlide === index ? 'auto' : 'none'
+                      pointerEvents: currentSlide === index ? 'auto' : 'none',
+                      transition: 'opacity 0.4s ease-in-out'
                     }}
                 >
                   <img 
@@ -81,9 +83,7 @@ function Hero({ onNavigate }) {
                     alt={slide.alt}
                     style={{
                       width: '100%',
-                      height: '100%',
-                      objectFit: 'contain',
-                      objectPosition: 'center',
+                      height: 'auto',
                       display: 'block'
                     }}
                   />
@@ -148,7 +148,7 @@ function Hero({ onNavigate }) {
       {/* Slide Indicators */}
       <div style={{
         position: 'absolute',
-        bottom: '30px',
+        bottom: window.innerWidth < 768 ? '10px' : '30px',
         left: '50%',
         transform: 'translateX(-50%)',
         display: 'flex',

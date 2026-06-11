@@ -203,6 +203,7 @@ export const ManageResources = ({ email, password }) => {
                 <option value="study-material">Study Notes</option>
                 <option value="ncert-notes">NCERT Solution</option>
                 <option value="test-series">Test Series</option>
+                <option value="assignments">Assignments</option>
               </select>
             </div>
 

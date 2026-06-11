@@ -14,7 +14,8 @@ export const AdminPortal = ({ onBackToHome }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   
-  const [activeTab, setActiveTab] = useState('resources'); // 'resources', 'notifications'
+  const [activeTab, setActiveTab] = useState('resources');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 'resources', 'notifications'
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -126,10 +127,83 @@ export const AdminPortal = ({ onBackToHome }) => {
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8f9fc' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8f9fc', flexDirection: 'column' }}>
+      <style>{`
+        .admin-sidebar {
+          width: 280px;
+          background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+          color: white;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+          z-index: 1050;
+          transition: transform 0.3s ease-in-out;
+          height: 100vh;
+        }
+        .admin-main-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          overflow-x: hidden;
+        }
+        .admin-mobile-header {
+          display: none;
+        }
+        .admin-desktop-header {
+          display: flex;
+        }
+        @media (max-width: 991.98px) {
+          .admin-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: ${isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)'};
+          }
+          .admin-mobile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1040;
+          }
+          .admin-desktop-header {
+            display: none !important;
+          }
+          .admin-content-pad {
+            padding: 20px !important;
+          }
+        }
+        @media (min-width: 992px) {
+          .admin-layout-wrapper {
+            display: flex;
+            flex: 1;
+          }
+        }
+      `}</style>
+
+      {/* Mobile Header */}
+      <div className="admin-mobile-header">
+        <div className="d-flex align-items-center">
+          <button 
+            className="btn me-3" 
+            onClick={() => setIsSidebarOpen(true)}
+            style={{ background: '#276eb9', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '8px' }}
+          >
+            ☰
+          </button>
+          <h5 className="mb-0 fw-bold" style={{ color: '#276eb9' }}>Admin Panel</h5>
+        </div>
+      </div>
+      
+      <div className="admin-layout-wrapper" style={{ flex: 1, display: 'flex', flexDirection: 'row' }}>
+
       
       {/* Sidebar */}
-      <div style={{ width: '280px', background: 'linear-gradient(180deg, #1e3c72 0%, #2a5298 100%)', color: 'white', display: 'flex', flexDirection: 'column', boxShadow: '4px 0 15px rgba(0,0,0,0.1)', zIndex: 10 }}>
+      {/* Mobile Overlay */}
+      {isSidebarOpen && <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1045 }} onClick={() => setIsSidebarOpen(false)} />}
+      <div className="admin-sidebar">
         <div style={{ padding: '25px 20px', borderBottom: '1px solid rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center' }}>
           <button 
             type="button"
@@ -157,6 +231,7 @@ export const AdminPortal = ({ onBackToHome }) => {
           </button>
           <div>
             <h5 className="mb-0 fw-bold" style={{ letterSpacing: '0.5px' }}>Admin Panel</h5>
+            <button className="d-lg-none btn btn-link text-white p-0 ms-4" onClick={() => setIsSidebarOpen(false)} style={{ fontSize: '1.5rem', textDecoration: 'none' }}>×</button>
             <small style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Aarav Academy</small>
           </div>
         </div>
@@ -175,7 +250,7 @@ export const AdminPortal = ({ onBackToHome }) => {
               transition: 'all 0.2s',
               boxShadow: activeTab === 'notifications' ? '0 4px 12px rgba(0,0,0,0.1)' : 'none'
             }}
-            onClick={() => setActiveTab('notifications')}
+            onClick={() => { setActiveTab('notifications'); setIsSidebarOpen(false); }}
             onMouseEnter={e => { if (activeTab !== 'notifications') e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'; }}
             onMouseLeave={e => { if (activeTab !== 'notifications') e.currentTarget.style.backgroundColor = 'transparent'; }}
           >
@@ -193,7 +268,7 @@ export const AdminPortal = ({ onBackToHome }) => {
               transition: 'all 0.2s',
               boxShadow: activeTab === 'resources' ? '0 4px 12px rgba(0,0,0,0.1)' : 'none'
             }}
-            onClick={() => setActiveTab('resources')}
+            onClick={() => { setActiveTab('resources'); setIsSidebarOpen(false); }}
             onMouseEnter={e => { if (activeTab !== 'resources') e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'; }}
             onMouseLeave={e => { if (activeTab !== 'resources') e.currentTarget.style.backgroundColor = 'transparent'; }}
           >
@@ -211,7 +286,7 @@ export const AdminPortal = ({ onBackToHome }) => {
               boxShadow: activeTab === 'videos' ? '0 4px 15px rgba(255, 0, 0, 0.3)' : 'none',
               transition: 'all 0.3s'
             }}
-            onClick={() => setActiveTab('videos')}
+            onClick={() => { setActiveTab('videos'); setIsSidebarOpen(false); }}
             onMouseEnter={e => { if (activeTab !== 'videos') e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'; }}
             onMouseLeave={e => { if (activeTab !== 'videos') e.currentTarget.style.backgroundColor = 'transparent'; }}
           >
@@ -220,7 +295,7 @@ export const AdminPortal = ({ onBackToHome }) => {
           
           <button 
             className="btn w-100 text-start px-4 py-3 d-flex align-items-center mb-2"
-            onClick={() => setActiveTab('achievers')}
+            onClick={() => { setActiveTab('achievers'); setIsSidebarOpen(false); }}
             style={{ 
               backgroundColor: activeTab === 'achievers' ? 'rgba(255,255,255,0.2)' : 'transparent', 
               color: 'white', 
@@ -260,10 +335,10 @@ export const AdminPortal = ({ onBackToHome }) => {
       </div>
 
       {/* Main Content Area */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div className="admin-main-content">
         
         {/* Top Header */}
-        <div style={{ height: '80px', backgroundColor: 'white', borderBottom: '1px solid #f0f0f0', display: 'flex', alignItems: 'center', padding: '0 40px', boxShadow: '0 2px 15px rgba(0,0,0,0.03)' }}>
+        <div className="admin-desktop-header" style={{ height: '80px', backgroundColor: 'white', borderBottom: '1px solid #f0f0f0', alignItems: 'center', padding: '0 40px', boxShadow: '0 2px 15px rgba(0,0,0,0.03)' }}>
           <h3 className="mb-0 fw-bold" style={{ color: '#333', letterSpacing: '-0.5px' }}>
             {activeTab === 'resources' && 'Resource Management'}
             {activeTab === 'notifications' && 'Notifications Management'}
@@ -273,7 +348,7 @@ export const AdminPortal = ({ onBackToHome }) => {
         </div>
 
         {/* Dynamic Content */}
-        <div style={{ padding: '40px', flex: 1, overflowY: 'auto' }}>
+        <div className="admin-content-pad" style={{ padding: '40px', flex: 1, overflowY: 'auto', width: '100%', overflowX: 'hidden' }}>
 
           {activeTab === 'resources' && (
             <div className="card shadow-sm p-0" style={{ borderRadius: '20px', border: 'none', background: 'transparent' }}>
@@ -301,7 +376,7 @@ export const AdminPortal = ({ onBackToHome }) => {
 
         </div>
       </div>
-
     </div>
+  </div>
   );
 };
