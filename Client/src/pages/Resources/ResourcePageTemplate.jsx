@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CLASSES_STRUCTURE } from "../../data/classStructure";
 import {
+import { API_URL } from "../../config.js";
   FaBook,
   FaFlask,
   FaAtom,
@@ -120,8 +121,8 @@ export const ResourcePageTemplate = ({
         setIsLoadingLinks(true);
         try {
           const resType = getResourceType();
-          let url = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resources?resourceType=${resType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
-          let configUrl = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resource-config?resourceType=${resType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
+          let url = `${API_URL}/api/resources?resourceType=${resType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
+          let configUrl = `${API_URL}/api/resource-config?resourceType=${resType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
           
           if (selectedStreamId) {
             url += `&streamId=${selectedStreamId}`;

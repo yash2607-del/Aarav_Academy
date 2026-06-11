@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Thumbnail_1 from '../../assets/youtube-thumbnail/thumbnail_1.png';
 import Thumbnail_2 from '../../assets/youtube-thumbnail/thumbnail_2.png';
 import Thumbnail_3 from '../../assets/youtube-thumbnail/thumbnail_3.png';
+import { API_URL } from "../../config.js";
 
 const YouTubeVideos = () => {
   const cardRefs = useRef([]);
@@ -16,7 +17,7 @@ const YouTubeVideos = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/videos`);
+        const res = await fetch(`${API_URL}/api/videos`);
         const dbVideos = await res.json();
         
         if (Array.isArray(dbVideos)) {

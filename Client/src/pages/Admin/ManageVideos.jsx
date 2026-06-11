@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaEdit, FaSave, FaTimes } from 'react-icons/fa';
+import { API_URL } from "../../config.js";
 
 export const ManageVideos = ({ email, password }) => {
   const [videos, setVideos] = useState([]);
@@ -11,7 +12,7 @@ export const ManageVideos = ({ email, password }) => {
 
   const fetchVideos = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/videos`);
+      const res = await fetch(`${API_URL}/api/videos`);
       const data = await res.json();
       setVideos(data);
     } catch (err) {
@@ -47,7 +48,7 @@ export const ManageVideos = ({ email, password }) => {
         password
       };
       
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/videos`, {
+      const res = await fetch(`${API_URL}/api/videos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

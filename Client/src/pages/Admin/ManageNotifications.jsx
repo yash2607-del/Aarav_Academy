@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaTimes, FaEdit, FaTrash, FaPaperPlane } from 'react-icons/fa';
+import { API_URL } from "../../config.js";
 
 export const ManageNotifications = ({ email, password }) => {
   const [notifications, setNotifications] = useState([]);
@@ -18,7 +19,7 @@ export const ManageNotifications = ({ email, password }) => {
 
   const fetchNotifications = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/notifications`);
+      const res = await fetch(`${API_URL}/api/notifications`);
       const data = await res.json();
       if (Array.isArray(data)) {
         setNotifications(data);
@@ -60,7 +61,7 @@ export const ManageNotifications = ({ email, password }) => {
         email,
         password
       };
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/notifications`, {
+      const res = await fetch(`${API_URL}/api/notifications`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -81,7 +82,7 @@ export const ManageNotifications = ({ email, password }) => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this notification?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/notifications/${id}`, {
+      const res = await fetch(`${API_URL}/api/notifications/${id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

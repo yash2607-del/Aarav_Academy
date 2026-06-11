@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 import './Contact.css';
+import { API_URL } from "../../config.js";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ const Contact = () => {
     setSuccess(false);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/send-query`, {
+      const response = await fetch(`${API_URL}/api/send-query`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

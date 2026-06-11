@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CLASSES_STRUCTURE } from '../../data/classStructure';
 import { FaLock, FaSave, FaCheckCircle, FaEdit, FaTimes, FaPlus, FaMinus, FaTrash } from 'react-icons/fa';
+import { API_URL } from "../../config.js";
 
 export const ManageResources = ({ email, password }) => {
   const [resourceType, setResourceType] = useState('study-material');
@@ -52,8 +53,8 @@ export const ManageResources = ({ email, password }) => {
 
   const fetchConfigAndLinks = async () => {
     try {
-      let baseUrl = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resources?resourceType=${resourceType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
-      let configUrl = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resource-config?resourceType=${resourceType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
+      let baseUrl = `${API_URL}/api/resources?resourceType=${resourceType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
+      let configUrl = `${API_URL}/api/resource-config?resourceType=${resourceType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
       
       if (selectedStreamId) {
         baseUrl += `&streamId=${selectedStreamId}`;
@@ -101,7 +102,7 @@ export const ManageResources = ({ email, password }) => {
         password
       };
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resource-config`, {
+      const res = await fetch(`${API_URL}/api/resource-config`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -136,7 +137,7 @@ export const ManageResources = ({ email, password }) => {
         resourceType, classId: selectedClassId, streamId: selectedStreamId || null, subjectId: selectedSubjectId,
         chapterId, email, password
       };
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resources`, {
+      const res = await fetch(`${API_URL}/api/resources`, {
         method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
       });
       const data = await res.json();
@@ -167,7 +168,7 @@ export const ManageResources = ({ email, password }) => {
         password
       };
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resources`, {
+      const res = await fetch(`${API_URL}/api/resources`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

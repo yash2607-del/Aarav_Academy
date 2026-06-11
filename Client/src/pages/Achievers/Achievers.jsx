@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
+import { API_URL } from "../../config.js";
   images,
 } from '../../data/images.js'
 // Animations removed: GSAP/ScrollTrigger not used
@@ -216,7 +217,7 @@ const Achievers = () => {
   useEffect(() => {
     const fetchAchievers = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/achievers`);
+        const res = await fetch(`${API_URL}/api/achievers`);
         const dbData = await res.json();
         // Merge the dynamically added achievers with the existing hardcoded ones
         if (Array.isArray(dbData)) {
@@ -384,7 +385,7 @@ const Achievers = () => {
                       <div className="mx-auto mb-3" style={{ maxWidth: '100%' }}>
                           {achiever.imageUrl || achiever.image ? (
                           <img
-                            src={achiever.imageUrl ? (achiever.imageUrl.startsWith('data:') ? achiever.imageUrl : `${import.meta.env.VITE_API_URL || "http://localhost:5000"}${achiever.imageUrl}`) : achiever.image}
+                            src={achiever.imageUrl ? (achiever.imageUrl.startsWith('data:') ? achiever.imageUrl : `${API_URL}${achiever.imageUrl}`) : achiever.image}
                             alt={achiever.name}
                             loading="lazy"
                             style={{

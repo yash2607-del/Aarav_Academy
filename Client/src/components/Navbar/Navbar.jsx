@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaBell } from 'react-icons/fa';
+import { API_URL } from "../../config.js";
 const Navbar = ({ onNavigate, currentView }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,7 +19,7 @@ const Navbar = ({ onNavigate, currentView }) => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/notifications`);
+        const res = await fetch(`${API_URL}/api/notifications`);
         const data = await res.json();
         if (Array.isArray(data)) {
           setNotifications(data.filter(n => n.isActive));
