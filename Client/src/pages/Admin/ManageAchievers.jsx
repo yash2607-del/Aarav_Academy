@@ -25,7 +25,7 @@ export const ManageAchievers = ({ email, password }) => {
 
   const fetchAchievers = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/achievers');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/achievers`);
       const data = await res.json();
       setAchievers(data);
     } catch (err) {
@@ -46,7 +46,7 @@ export const ManageAchievers = ({ email, password }) => {
         year: achiever.year,
         testimonial: achiever.testimonial
       });
-      setPreviewUrl(achiever.imageUrl?.startsWith('data:') ? achiever.imageUrl : `http://localhost:5000${achiever.imageUrl}`);
+      setPreviewUrl(achiever.imageUrl?.startsWith('data:') ? achiever.imageUrl : `${import.meta.env.VITE_API_URL || "http://localhost:5000"}${achiever.imageUrl}`);
     } else {
       setEditingId(null);
       setFormData({
@@ -101,8 +101,8 @@ export const ManageAchievers = ({ email, password }) => {
 
     try {
       const url = editingId 
-        ? `http://localhost:5000/api/achievers/${editingId}`
-        : 'http://localhost:5000/api/achievers';
+        ? `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/achievers/${editingId}`
+        : `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/achievers`;
       
       const method = editingId ? 'PUT' : 'POST';
 
@@ -130,7 +130,7 @@ export const ManageAchievers = ({ email, password }) => {
     if (!window.confirm('Are you sure you want to remove this achiever?')) return;
     
     try {
-      const res = await fetch(`http://localhost:5000/api/achievers/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/achievers/${id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -178,7 +178,7 @@ export const ManageAchievers = ({ email, password }) => {
                 <div className="card h-100 border-0" style={{ backgroundColor: '#f8f9fa', borderRadius: '15px', overflow: 'hidden', border: '2px solid #eef2f6' }}>
                   <div style={{ height: '210px', backgroundColor: '#e9ecef', position: 'relative' }}>
                     <img 
-                      src={achiever.imageUrl?.startsWith('data:') ? achiever.imageUrl : `http://localhost:5000${achiever.imageUrl}`} 
+                      src={achiever.imageUrl?.startsWith('data:') ? achiever.imageUrl : `${import.meta.env.VITE_API_URL || "http://localhost:5000"}${achiever.imageUrl}`} 
                       alt={achiever.name} 
                       style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }}
                     />

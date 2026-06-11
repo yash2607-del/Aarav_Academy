@@ -52,8 +52,8 @@ export const ManageResources = ({ email, password }) => {
 
   const fetchConfigAndLinks = async () => {
     try {
-      let baseUrl = `http://localhost:5000/api/resources?resourceType=${resourceType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
-      let configUrl = `http://localhost:5000/api/resource-config?resourceType=${resourceType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
+      let baseUrl = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resources?resourceType=${resourceType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
+      let configUrl = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resource-config?resourceType=${resourceType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
       
       if (selectedStreamId) {
         baseUrl += `&streamId=${selectedStreamId}`;
@@ -101,7 +101,7 @@ export const ManageResources = ({ email, password }) => {
         password
       };
 
-      const res = await fetch('http://localhost:5000/api/resource-config', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resource-config`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -136,7 +136,7 @@ export const ManageResources = ({ email, password }) => {
         resourceType, classId: selectedClassId, streamId: selectedStreamId || null, subjectId: selectedSubjectId,
         chapterId, email, password
       };
-      const res = await fetch('http://localhost:5000/api/resources', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resources`, {
         method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
       });
       const data = await res.json();
@@ -167,7 +167,7 @@ export const ManageResources = ({ email, password }) => {
         password
       };
 
-      const res = await fetch('http://localhost:5000/api/resources', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resources`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

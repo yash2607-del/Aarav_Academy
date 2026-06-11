@@ -120,8 +120,8 @@ export const ResourcePageTemplate = ({
         setIsLoadingLinks(true);
         try {
           const resType = getResourceType();
-          let url = `http://localhost:5000/api/resources?resourceType=${resType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
-          let configUrl = `http://localhost:5000/api/resource-config?resourceType=${resType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
+          let url = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resources?resourceType=${resType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
+          let configUrl = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/resource-config?resourceType=${resType}&classId=${selectedClassId}&subjectId=${selectedSubjectId}`;
           
           if (selectedStreamId) {
             url += `&streamId=${selectedStreamId}`;

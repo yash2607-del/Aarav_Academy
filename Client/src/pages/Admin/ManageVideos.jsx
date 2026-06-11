@@ -11,7 +11,7 @@ export const ManageVideos = ({ email, password }) => {
 
   const fetchVideos = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/videos');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/videos`);
       const data = await res.json();
       setVideos(data);
     } catch (err) {
@@ -47,7 +47,7 @@ export const ManageVideos = ({ email, password }) => {
         password
       };
       
-      const res = await fetch('http://localhost:5000/api/videos', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/videos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

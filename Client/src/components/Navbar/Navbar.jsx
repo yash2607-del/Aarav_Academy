@@ -18,7 +18,7 @@ const Navbar = ({ onNavigate, currentView }) => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/notifications');
+        const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/notifications`);
         const data = await res.json();
         if (Array.isArray(data)) {
           setNotifications(data.filter(n => n.isActive));
