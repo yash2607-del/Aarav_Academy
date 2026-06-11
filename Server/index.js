@@ -6,6 +6,10 @@ const path = require('path');
 const fs = require('fs');
 require('dotenv').config();
 
+// Workaround for Node.js DNS resolution issues
+const dns = require('dns');
+dns.setDefaultResultOrder('ipv4first');
+
 const ResourceLink = require('./models/ResourceLink');
 const ResourceConfig = require('./models/ResourceConfig');
 const Video = require('./models/Video');
@@ -30,7 +34,9 @@ const upload = multer({
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URL || process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/aarav-academy')
+mongoose.connect(process.env.MONGODB_URL || process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/aarav-academy', {
+  family: 4
+})
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
